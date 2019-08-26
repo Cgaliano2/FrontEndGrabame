@@ -19,7 +19,7 @@ tray: any = [];
     return this.trayApi.getTray()
     .subscribe( data => {
           this.tray = data;
-          console.log(this.tray);
+          //console.log(this.tray);
     });
   }
   }

@@ -23,6 +23,14 @@ getTray(): Observable <any> {
         retry(1),catchError(this.handleError));
 }
 
+
+getOneTray(Tray:Tray): Observable<Tray>{
+ return this.http.get<Tray>(this.apiURL + '/tray/'+ `${Tray._id}`).pipe(
+     retry(1), catchError(this.handleError));
+}
+
+
+
 //Manejo de Errores
 handleError(error)
 {

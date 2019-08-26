@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavComponent } from './components/shared/nav/nav.component';
 import { TrayListComponent } from './components/tray-list/tray-list.component';
+import { TraySearchComponent } from './components/tray-search/tray-search.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { TrayListComponent } from './components/tray-list/tray-list.component';
     AppComponent,
     HomeComponent,
     NavComponent,
-    TrayListComponent
+    TrayListComponent,
+    TraySearchComponent
   ],
   imports: [
     BrowserModule,
