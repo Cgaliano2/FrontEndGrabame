@@ -1,7 +1,8 @@
+<script src="../../../js/script.js"></script>
 <table class="table table-light">
     <thead>
         <tr>
-            <th scope="col">Codigo Imagen</th>
+            <th scope="col">Id de la Imagen</th>
             <th scope="col">Fecha de Ingreso</th>
             <th scope="col">Codigo Imagen</th>
         </tr>
@@ -10,7 +11,50 @@
         <tr *ngFor="let bandeja of tray">
             <td>{{bandeja._id}}</td>
             <td>{{bandeja.fechaIngreso}}</td>
-            <td>{{bandeja.idImg}}</td>
+            <td><img [src]="bandeja.idImg" width=50px height=50px></td>
+            <td>
+
+            </td>
         </tr>
+
     </tbody>
 </table>
+<div *ngFor="let imagenes of images ">
+    <img class="img-fluid" data-src="{{imagenes}}" alt="Card image cap" style="cursor: pointer; height: 150px">
+</div>
+
+<a data-toggle="modal" data-target="#exampleModal">
+    <img src="../../../assets/captura.png" alt="">
+    <a>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <span aria-hidden="true">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <img class="imagenprueba" src="../../../assets/prueba.jpg" alt="">
+                    </div>
+                    <div class="modal-footer">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--
+<table class="table table-light ">
+    <thead>
+        <tr>
+            <th scope="col ">foto</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let emajen of imageTray ">
+            <td><img [src]="(emajen)" alt=" "></td>
+        </tr>
+    </tbody>
+</table>-->

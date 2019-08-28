@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 //modulo HTTP para la api
 import { HttpClientModule} from '@angular/common/http';
+//modulo Lightbox
+import { LightboxModule } from 'ngx-lightbox';
+
 
 //rutas
 import { APP_ROUTING } from './app.routes';
@@ -12,8 +15,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavComponent } from './components/shared/nav/nav.component';
 import { TrayListComponent } from './components/tray-list/tray-list.component';
-import { TraySearchComponent } from './components/tray-search/tray-search.component';
-
+import { SearchImageComponent } from './components/search-image/search-image.component';
 
 @NgModule({
   declarations: [
@@ -21,12 +23,13 @@ import { TraySearchComponent } from './components/tray-search/tray-search.compon
     HomeComponent,
     NavComponent,
     TrayListComponent,
-    TraySearchComponent
+    SearchImageComponent,
   ],
   imports: [
     BrowserModule,
     APP_ROUTING,
-    HttpClientModule
+    HttpClientModule,
+    LightboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

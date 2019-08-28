@@ -31,8 +31,8 @@
         </ul>
         <form class="form-inline my-2 my-lg-0" onsubmit="return false">
 
-            <input class="form-control mr-sm-2" type="text" placeholder="Search T">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
+            <input class="form-control mr-sm-2" type="text" placeholder="Search T" (keyup.enter)="buscarFoto(buscarImagen.value)" #buscarImagen>
+            <button (click)="buscarFoto(buscarImagen.value)" class="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
         </form>
     </div>
 </nav>

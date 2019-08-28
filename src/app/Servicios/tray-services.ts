@@ -9,7 +9,7 @@ import { Tray } from '../components/shared/tray';
 })
 
 export class TrayServices {
-apiURL='http://api-grbm.herokuapp.com';
+apiURL='http://api-grbm.herokuapp.com/';
 constructor(private http: HttpClient) {}
 //opciones Http
 httpOptions = {
@@ -19,17 +19,47 @@ httpOptions = {
 }
 //obtener Bandejas de la aplicación
 getTray(): Observable <any> {
-    return this.http.get<any>(this.apiURL + '/tray').pipe(
-        retry(1),catchError(this.handleError));
+    return this.http.get<any>(this.apiURL + 'tray').pipe(
+        retry(1),
+        catchError(this.handleError));
+}
+//obtener imagenes
+getImagesTray():Observable <any> {
+    return this.http.get<any>(this.apiURL + 'images').pipe(
+        retry(1),
+        catchError(this.handleError)
+    );
+}
+  
+SearchTray(id:string):Observable<any>
+{
+    return this.http.get(this.apiURL + 'tray/' + id).pipe(
+        retry(1),
+        catchError(this.handleError)
+    );
+}
+  
+
+/*
+//capturar imagenes
+getImagesTray():Observable <any> {
+    return this.http.get<any>(this.apiURL + '/images/').pipe(
+        retry(1),
+        catchError(this.handleError)
+    );
+}
+*/
+/*
+//capturar imagen
+getImageTray(id): Observable<Tray> {
+    return this.http.get<Tray>(this.apiURL + '/image/' + id)
+    .pipe(
+        retry(1),
+        catchError(this.handleError)
+    );
 }
 
-
-getOneTray(Tray:Tray): Observable<Tray>{
- return this.http.get<Tray>(this.apiURL + '/tray/'+ `${Tray._id}`).pipe(
-     retry(1), catchError(this.handleError));
-}
-
-
+*/
 
 //Manejo de Errores
 handleError(error)
@@ -45,5 +75,5 @@ handleError(error)
     window.alert(errorMessage);
     return throwError(errorMessage);
 }
-} 
+}; 
 

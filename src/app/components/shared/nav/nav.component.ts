@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TrayServices } from '../../../Servicios/tray-services';
+import {Router} from '@angular/router';
+
 
 
 @Component({
@@ -7,16 +10,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-
-  constructor() { }
+  constructor(
+    public router: Router
+  ) { }
 
   ngOnInit() {
 
-  
   }
-  searchT(term:string){
-     console.log(term);
-  }
-  }
+  buscarFoto(termino:string){
+  //console.log(termino);
+  this.router.navigate(['/imagen',termino]);
+}
 
 
+}
+
+
+ /*this.restApi.getImageTray(termino).subscribe((data:{})=>{
+      this.imageData=data;
+      console.log(this.imageData);
+      
+  })*/
