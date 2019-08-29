@@ -11,7 +11,9 @@
         <tr *ngFor="let bandeja of tray">
             <td>{{bandeja._id}}</td>
             <td>{{bandeja.fechaIngreso}}</td>
-            <td><img [src]="bandeja.idImg" width=50px height=50px></td>
+            <td>
+                <img [src]="bandeja.idImg" width=250px height=default />
+            </td>
             <td>
 
             </td>
@@ -19,33 +21,9 @@
 
     </tbody>
 </table>
-<div *ngFor="let imagenes of images ">
-    <img class="img-fluid" data-src="{{imagenes}}" alt="Card image cap" style="cursor: pointer; height: 150px">
-</div>
-
-<a data-toggle="modal" data-target="#exampleModal">
-    <img src="../../../assets/captura.png" alt="">
-    <a>
-
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-
-                        <span aria-hidden="true">&times;</span>
-                    </div>
-                    <div class="modal-body">
-                        <img class="imagenprueba" src="../../../assets/prueba.jpg" alt="">
-                    </div>
-                    <div class="modal-footer">
-
-                    </div>
-                </div>
-            </div>
-        </div>
 
 
-        <!--
+<!--
 <table class="table table-light ">
     <thead>
         <tr>
