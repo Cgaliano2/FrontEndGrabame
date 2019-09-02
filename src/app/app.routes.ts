@@ -2,7 +2,10 @@ import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { TrayListComponent } from './components/tray-list/tray-list.component';
-import { SearchImageComponent} from './components/search-image/search-image.component';
+import { SearchImageComponent} from './components/search-tray/search-tray.component';
+import { TrayComponent } from './components/tray/tray.component';
+
+
 
 
 
@@ -12,10 +15,11 @@ import { SearchImageComponent} from './components/search-image/search-image.comp
 
 
 const APP_ROUTES: Routes = [
-    { path: '', component: HomeComponent },
-    { path: 'home', component: HomeComponent },
-    {path: 'tray-list', component: TrayListComponent },
-    {path: 'imagen/:termino', component: SearchImageComponent },
+    {path: '', component: HomeComponent},
+    {path: 'home', component: HomeComponent},
+    {path: 'tray-list', component: TrayListComponent},
+    {path: 'Buscar-Bandeja/:termino', component: SearchImageComponent},
+    {path: 'tray/:id', component: TrayComponent},
     {path: '**', pathMatch: 'full' , redirectTo: 'home'}
 
 ];

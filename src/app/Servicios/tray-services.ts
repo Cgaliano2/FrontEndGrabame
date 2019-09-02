@@ -19,18 +19,10 @@ httpOptions = {
 }
 //obtener Bandejas de la aplicación
 getTray(): Observable <any> {
-    return this.http.get<any>(this.apiURL + 'tray').pipe(
+    return this.http.get<any>(this.apiURL + 'trays').pipe(
         retry(1),
         catchError(this.handleError));
-}
-//obtener imagenes
-getImagesTray():Observable <any> {
-    return this.http.get<any>(this.apiURL + 'images').pipe(
-        retry(1),
-        catchError(this.handleError)
-    );
-}
-  
+} 
 SearchTray(id:string):Observable<any>
 {
     return this.http.get(this.apiURL + 'tray/' + id).pipe(
@@ -38,7 +30,7 @@ SearchTray(id:string):Observable<any>
         catchError(this.handleError)
     );
 }
-  
+
 
 /*
 //capturar imagenes

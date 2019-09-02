@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TrayServices } from '../../Servicios/tray-services';
-import { Lightbox } from 'ngx-lightbox';
+import { Router } from '@angular/router';
+
+
 
 
 
@@ -11,24 +13,18 @@ import { Lightbox } from 'ngx-lightbox';
   styleUrls: ['./tray-list.component.css']
 })
 export class TrayListComponent implements OnInit {
-  imagesBasic = [
-    {
-      img: '../../../assets/captura.png',
-      thumb: '../../../assets/captura.png',
-      description: 'Image 1'
-    }];
 tray: any = [];
 images: any = [];
 
   constructor(
     private trayApi: TrayServices,
-    private lbx: Lightbox
+    private router: Router
   ) {}
   ngOnInit() {
   this.LoadTray();
-  //this.LoadImage();
 
   }
+  //Cargar 
   LoadTray() {
     return this.trayApi.getTray()
     .subscribe( data => {
@@ -36,41 +32,11 @@ images: any = [];
           //console.log(this.tray);
     });
   }
-loadImages()
+
+verBandejas(idx)
 {
-  this.trayApi.getImagesTray().subscribe(images => {
-    this.images = images;
 
-  });
+ this.router.navigate(['/tray', idx]);
 }
+
 }
-  
-  /*
-  LoadImage()
-  {
-    return this.trayApi.getImagesTray().subscribe(datos => {
-      this.imageTray = datos;
-      console.log(this.imageTray);
-    });
-  
-
-  }
-*/
-
-
-
-// buscar una imagen image = this.actRoute.snapshot.params['id'];
-// Buscar una Imagen imageData:{};
-
-
-    // obtener todas las imagenes this.LoadImage();
-  /*
-  obtener una imagen
-  this.trayApi.getImageTray(this.image).subscribe((data:{})=>{
-    this.imageData=data;
-    console.log(this.imageData)
-    
-  })*/
-//mostrar imagen
-    //public actRoute:ActivatedRoute,
-    //public router:Router

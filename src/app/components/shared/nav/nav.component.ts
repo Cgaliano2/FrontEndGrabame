@@ -18,8 +18,8 @@ export class NavComponent implements OnInit {
 
   }
   buscarFoto(termino:string){
-  //console.log(termino);
-  this.router.navigate(['/imagen',termino]);
+  this.router.navigate(['/Buscar-Bandeja', termino]);
+  console.log(termino);
 }
 
 
