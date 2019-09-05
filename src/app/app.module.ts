@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import locales from '@angular/common/locales/es';
 
-
+import {ReactiveFormsModule} from '@angular/forms';
 //modulo HTTP para la api
 import { HttpClientModule} from '@angular/common/http';
 //rutas
@@ -19,8 +19,8 @@ import { registerLocaleData } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //materiales
 import { MaterialModule} from './material/material.module';
-
-
+import { SearchDateComponent } from './components/search-date/search-date.component';
+import { VerticalTimelineModule } from 'angular-vertical-timeline';
 registerLocaleData(locales);
 @NgModule({
   declarations: [
@@ -30,13 +30,16 @@ registerLocaleData(locales);
     TrayListComponent,
     SearchImageComponent,
     TrayComponent,
+    SearchDateComponent,
   ],
   imports: [
     BrowserModule,
     APP_ROUTING,
     HttpClientModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule,
+    VerticalTimelineModule
   ],
   providers: [{provide: LOCALE_ID, useValue: 'es'}],
   bootstrap: [AppComponent]

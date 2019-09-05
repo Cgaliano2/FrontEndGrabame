@@ -10,6 +10,7 @@ import { TrayServices } from '../../Servicios/tray-services';
 })
 export class SearchImageComponent implements OnInit {
   TrayData: any = [];
+  
   constructor(
     private trayApi: TrayServices,
     private actRoute: ActivatedRoute) { }

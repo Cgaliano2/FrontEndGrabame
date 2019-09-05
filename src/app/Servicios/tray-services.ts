@@ -31,6 +31,14 @@ SearchTray(id:string):Observable<any>
     );
 }
 
+SearchDate(date:string):Observable<any>
+{
+    return this.http.get(this.apiURL + 'trays/' + date).pipe(
+        retry(1),
+        catchError(this.handleError)
+    );
+}
+
 
 /*
 //capturar imagenes

@@ -1,23 +1,40 @@
-<h1></h1>
-<table class="table table-light">
+<!--<table class="table table-light">
+        <thead>
+            <tr>
+                <th scope="col">QR de la Bandeja</th>
+                <th scope="col">Fecha de Ingreso</th>
+                <th scope="col">Codigo Imagen</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td>{{Tray.fechaIngreso | date:'MMM d, y'}}</td>
+                <td align="center">
+                    <img [src]="Tray.idImg" width=250px height=default />
+                </td>
+                <td>
+    
+                </td>
+            </tr>
+    
+        </tbody>
+    </table>-->
+<table class="table table-dark">
     <thead>
-        <tr>
-            <th scope="col">QR de la Bandeja</th>
-            <th scope="col">Fecha de Ingreso</th>
-            <th scope="col">Codigo Imagen</th>
-        </tr>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Codigo QR</th>
+        <th scope="col">Fecha de Ingreso</th>
+        <th scope="col">Imagen de la Bandeja</th>
+      </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>{{Tray.codigoQr}}</td>
-            <td>{{Tray.fechaIngreso | date:'MMM d, y'}}</td>
-            <td align="center">
-                <img [src]="Tray.idImg" width=250px height=default />
-            </td>
-            <td>
-
-            </td>
-        </tr>
-
+      <tr>
+        <th scope="row">1</th>
+        <td>{{Tray.codigoQr}}</td>
+        <td>{{Tray.fechaIngreso | date:'MMM d, y'}}</td>
+        <td> <img [src]="Tray.idImg" width=250px height=default /></td>
+      </tr>
     </tbody>
-</table>
+  </table>
