@@ -3,11 +3,10 @@ import { TrayServices } from '../../Servicios/tray-services';
 import { Router } from '@angular/router';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { Tray } from '../shared/tray';
-import {Moment} from 'moment';
 import * as _moment from 'moment';
 const moment = _moment;
 import {MatDatepickerInputEvent} from '@angular/material/datepicker';
-import { stringify } from 'querystring';
+
 
 
 @Component({
