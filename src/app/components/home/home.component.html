@@ -1,32 +1,29 @@
-<!DOCTYPE html>
-<html lang="es">
+<div class=" content">
 
-<!DOCTYPE html>
-<html lang="en">
+    <ul class="list-group list-group-flush">
+        <h5>
+            <li class="list-group-item">Total: {{Tray}} bandejas</li>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>GRBM</title>
-</head>
+            <li class="list-group-item">Ultima: {{Lastup | date:'d MMM y'}}</li>
+        </h5>
+    </ul>
+</div>
 
-<body>
-    <mat-grid-list cols="2" rowHeight="2:1">
-        <mat-grid-tile>
+
+<!--
+      <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile class="border">
             <div class="wrapper d-flex pr-4">
                 <small class="text-success font-weight-medium mr-2">USD</small>
                 <small class="text-gray">$103,342.50</small>
             </div>
         </mat-grid-tile>
-        <mat-grid-tile>
+        <mat-grid-tile class="border">
             <div *ngIf="chart">
                 <canvas id="canvas">{{ chart }}</canvas>
             </div>
         </mat-grid-tile>
-        <mat-grid-tile>3</mat-grid-tile>
-        <mat-grid-tile> </mat-grid-tile>
+        <mat-grid-tile class="border">3</mat-grid-tile>
+        <mat-grid-tile class="border"> </mat-grid-tile>
     </mat-grid-list>
-</body>
-
-</html>
+    -->

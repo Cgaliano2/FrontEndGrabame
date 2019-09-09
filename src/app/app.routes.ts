@@ -5,6 +5,10 @@ import { TrayListComponent } from './components/tray-list/tray-list.component';
 import { SearchImageComponent} from './components/search-tray/search-tray.component';
 import { TrayComponent } from './components/tray/tray.component';
 import {SearchDateComponent} from './components/search-date/search-date.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+
+
 
 
 
@@ -16,13 +20,15 @@ import {SearchDateComponent} from './components/search-date/search-date.componen
 
 
 const APP_ROUTES: Routes = [
-    {path: '', component: HomeComponent},
+    {path: '', component: LoginComponent},
     {path: 'home', component: HomeComponent},
     {path: 'tray-list', component: TrayListComponent},
     {path: 'Buscar-Bandeja/:termino', component: SearchImageComponent},
     {path: 'tray/:id', component: TrayComponent},
     {path: 'search-date/:term', component:SearchDateComponent},
-    {path: '**', pathMatch: 'full' , redirectTo: 'home'}
+    {path: 'login', component: LoginComponent},
+    {path: 'register', component: RegisterComponent},
+    {path: '**', pathMatch: 'full' , redirectTo: 'login'}
 
 ];
 

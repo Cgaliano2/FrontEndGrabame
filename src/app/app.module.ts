@@ -21,6 +21,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule} from './material/material.module';
 import { SearchDateComponent } from './components/search-date/search-date.component';
 import { VerticalTimelineModule } from 'angular-vertical-timeline';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { FormsModule } from '@angular/forms';
+
+
+
+
 registerLocaleData(locales);
 @NgModule({
   declarations: [
@@ -31,6 +38,8 @@ registerLocaleData(locales);
     SearchImageComponent,
     TrayComponent,
     SearchDateComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,9 +48,13 @@ registerLocaleData(locales);
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
-    VerticalTimelineModule
+    VerticalTimelineModule,
+    FormsModule,
+
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'es'}],
+  providers: [{provide: LOCALE_ID, useValue: 'es',
+
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

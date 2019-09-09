@@ -1,24 +1,25 @@
-
 <div style="height: 80vh;">
-        <mat-toolbar color="primary">
-                <mat-toolbar-row>
-                    <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
                   <mat-icon>menu</mat-icon>
                 </button>
-                    <span><img src="../../../../assets/logo-light.png" alt="" class="logo"></span>
-                </mat-toolbar-row>
-            </mat-toolbar>
-        <mat-sidenav-container fxFlexFill class="hola">
-            <mat-sidenav #sidenav>
-                <mat-nav-list>
-                    <a href="#" mat-list-item>Home</a>
-                    <a [routerLink]="['tray-list']" mat-list-item>Bandejas</a>
-                </mat-nav-list>
-            </mat-sidenav>
-          <mat-sidenav-content fxFlexFill><router-outlet></router-outlet></mat-sidenav-content>
-        </mat-sidenav-container>
-       
-    </div>
+            <span><img src="../../../../assets/logo-light.png" alt="" class="logo"></span>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-sidenav-container fxFlexFill class="hola">
+        <mat-sidenav #sidenav>
+            <mat-nav-list>
+                <a href="#" mat-list-item>Home</a>
+                <a [routerLink]="['tray-list']" mat-list-item>Bandejas</a>
+            </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content fxFlexFill>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+
+</div>
 
 
 <!--<div style="height: 80vh;">

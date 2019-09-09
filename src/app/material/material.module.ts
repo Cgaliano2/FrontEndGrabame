@@ -40,7 +40,11 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
-import{MatMomentDateModule} from '@angular/material-moment-adapter';
+import {MatMomentDateModule} from '@angular/material-moment-adapter';
+import { MatFormFieldModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+
 /*import { MatSortModule } from '@angular/material/sort';
 //Materials
 
@@ -109,7 +113,10 @@ const MaterialComponents = [
     MatTreeModule,
     PortalModule,
     ScrollingModule,
-    MatMomentDateModule
+    MatMomentDateModule,
+    MatFormFieldModule,
+    FlexLayoutModule
+  
 ];
 
 @NgModule({
