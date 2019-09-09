@@ -1,8 +1,4 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-.logo {
-    width: 120px;
-}
-
 html,
 body {
     height: 100%;
@@ -31,11 +27,13 @@ body {
 
 .login-wrapper {
     height: 100%;
+    margin-top: 5px;
 }
 
 .positronx {
     text-decoration: none;
     color: #ffffff;
+    width: 120px;
 }
 
 .box {
