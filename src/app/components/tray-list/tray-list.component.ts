@@ -2,7 +2,7 @@ import { Component, OnInit,ViewChild, Input} from '@angular/core';
 import { TrayServices } from '../../Servicios/tray-services';
 import { Router } from '@angular/router';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
-import { Tray } from '../shared/tray';
+import { Tray } from '../../models/tray';
 import * as _moment from 'moment';
 const moment = _moment;
 import {MatDatepickerInputEvent} from '@angular/material/datepicker';

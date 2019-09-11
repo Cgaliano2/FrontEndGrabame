@@ -116,7 +116,6 @@ const MaterialComponents = [
     MatMomentDateModule,
     MatFormFieldModule,
     FlexLayoutModule
-  
 ];
 
 @NgModule({

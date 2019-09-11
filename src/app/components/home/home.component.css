@@ -1,11 +1,17 @@
-mat-grid-tile {
-    background: rgb(255, 255, 255);
-}
-
-.list-group {
-    width: 100%;
-}
-
 .row {
     width: 100%;
+    margin-top: 10px;
+}
+
+.content {
+    margin-top: 200px;
+    margin-left: 15px;
+}
+
+.chart-area {
+    background-color: #400090;
+}
+
+.card-body {
+    background-color: #400090;
 }

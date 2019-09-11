@@ -49,6 +49,7 @@ body {
     -webkit-transform: scale(1);
     -ms-transform: scale(1);
     z-index: 5;
+    /*change size*/
     max-width: 330px;
 }
 
@@ -78,11 +79,14 @@ body {
 
 .login-wrapper .example-form {
     min-width: 100%;
-    max-width: 300px;
+    max-width: 100px;
     width: 100%;
 }
 
-.login-wrapper .example-full-width,
+.login-wrapper .example-full-width {
+    width: 100%;
+}
+
 .login-wrapper .btn-block {
     width: 100%;
 }
@@ -119,4 +123,36 @@ body {
 
 .mat-radio-button~.mat-radio-button {
     margin-left: 16px;
+}
+
+.box2 {
+    position: relative;
+    top: 0;
+    opacity: 1;
+    float: left;
+    padding: 60px 50px 40px 50px;
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    z-index: 5;
+    /*change size*/
+    max-width: 730px;
+}
+
+.login-wrapper .generic-fields {
+    width: 20%;
+    margin-right: 40px;
+}
+
+.login-wrapper .fields-large {
+    width: 50%;
+    margin-right: 100px;
+}
+
+.login-wrapper .example-full-width4 {
+    width: 100%;
+    margin-right: 100px;
 }

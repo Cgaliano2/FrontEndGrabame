@@ -2,18 +2,20 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TrayServices } from '../../Servicios/tray-services';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
-import { Tray } from '../shared/tray';
+import { Tray } from '../../models/tray';
 
 
 
 @Component({
   selector: 'app-tray',
   templateUrl: './tray.component.html',
+  styleUrls: ['./tray.component.css']
 })
 export class TrayComponent implements OnInit {
-  Tray: any = [];
- // displayedColumns: string[] = [];
-  //dataSource: any = [];
+    Tray: any = [];
+    displayedColumns: string[] = [];
+    dataSource: any = [];
+    TrayNumber:any=[];
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   constructor(private actRoute: ActivatedRoute,
@@ -26,19 +28,29 @@ export class TrayComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.actRoute.params.subscribe(params => {
+
+  this.actRoute.params.subscribe(params => {
+      const idex:string = (params ['id'] );
+      this.showOneTray(idex);
+     
+    
+    });
+}
+
+
+  /* 
+   ngOINIT
+  this.actRoute.params.subscribe(params => {
       let idex = (params ['id'] );
       this.showTray(idex);
-    });
+    });*/
+
+    showOneTray(term: string ) {
+      this.trayApi.SearchTray(term).subscribe((datos: { }) => {
+            this.Tray = datos;
+            this.TrayNumber = this.Tray.length;
+
+            console.log(this.Tray);
+      });
   }
-
-  showTray(idx:string)
-  {
-    this.trayApi.SearchTray(idx).subscribe((datos: {}) => {
-      this.Tray = datos;
-      console.log(this.Tray);
-
-    });
-  }
-
 }
