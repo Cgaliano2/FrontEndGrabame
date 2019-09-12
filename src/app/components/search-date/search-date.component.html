@@ -7,11 +7,11 @@
     <ng-container matColumnDef="detalles">
         <th mat-header-cell *matHeaderCellDef> No. </th>
         <td mat-cell *matCellDef="let element">
-                <a (click)="verBandejas(element._id)"class="btn btn-outline-light"  data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <mat-icon>details 
+            <a (click)="verBandejas(element._id)" class="btn btn-outline-light" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <mat-icon>details
                     <p *ngIf=false>{{element._id}}</p>
-                    </mat-icon>
-                </a>
+                </mat-icon>
+            </a>
         </td>
 
     </ng-container>
@@ -29,15 +29,14 @@
         <th mat-header-cell *matHeaderCellDef> Weight </th>
         <td mat-cell *matCellDef="let element"> {{element._id}} </td>
     </ng-container>-->
-   
+
     <!-- Date Column -->
     <ng-container matColumnDef="fechaIngreso">
         <th mat-header-cell *matHeaderCellDef> fechaIngreso </th>
-        <td mat-cell *matCellDef="let element"> {{element.fechaIngreso | date:'MMM d, y'}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.fechaIngreso |date:'mediumDate':'+0000'}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 <mat-paginator [pageSizeOptions]="[10, 15, 20]" showFirstLastButtons></mat-paginator>
-

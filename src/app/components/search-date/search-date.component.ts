@@ -1,5 +1,5 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
-import { TrayServices } from '../../Servicios/tray-services';
+import { TrayServices } from '../../_Services/tray-services';
 import {ActivatedRoute} from '@angular/router';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { Tray } from '../../models/tray';
@@ -28,7 +28,7 @@ constructor(
 
     this.actRoute.params.subscribe(params => {
       const termino:string = (params['term']);
-      console.log(termino);
+     // console.log(termino);
       this.searchByDate(termino);
     });
 
@@ -38,10 +38,9 @@ constructor(
 searchByDate(term: string ) {
     this.trayApi.SearchDate(term).subscribe((datos: { }) => {
           this.Trayxdate = datos;
-          console.log(this.Trayxdate)
           this.displayedColumns = ['detalles', 'codigoqr', 'fechaIngreso'];
           this.dataSource = new MatTableDataSource<Tray>(this.Trayxdate);
-          console.log(this.dataSource)
+          console.log(this.dataSource);
           this.dataSource.paginator = this.paginator;
     });
 }

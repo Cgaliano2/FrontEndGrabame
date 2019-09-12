@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { TrayServices } from '../../Servicios/tray-services';
+import { TrayServices } from '../../_Services/tray-services';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { Tray } from '../../models/tray';
 

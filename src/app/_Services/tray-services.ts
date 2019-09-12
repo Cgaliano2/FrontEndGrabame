@@ -37,6 +37,7 @@ SearchDate(date:string):Observable<any>
         retry(1),
         catchError(this.handleError)
     );
+
 }
 
 
@@ -69,8 +70,9 @@ handleError(error)
     {
         errorMessage = error.error.message;
     } else {
-        errorMessage = `Error code: ${error.status}\nMessage:${error.message}`;
-
+        errorMessage = `Error Numero ${error.status}\nSu peticion es invalida o no se encuentra en nuestros registros`;
+        //errorMessage = `Error Numero ${error.status}\nMessage:${error.message}`;
+       
     }
     window.alert(errorMessage);
     return throwError(errorMessage);

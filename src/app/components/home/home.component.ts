@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { Chart } from 'chart.js';
-import { TrayServices } from '../../Servicios/tray-services';
+import { TrayServices } from '../../_Services/tray-services';
 import * as _moment from 'moment';
 const moment = _moment;
 

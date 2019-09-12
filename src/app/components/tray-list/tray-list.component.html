@@ -41,7 +41,7 @@
             <!-- Date Column -->
             <ng-container matColumnDef="fechaIngreso">
                 <th mat-header-cell *matHeaderCellDef> fechaIngreso </th>
-                <td mat-cell *matCellDef="let element"> {{element.fechaIngreso | date:'MMM d, y'}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.fechaIngreso |date:'mediumDate':'+0000'}} </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

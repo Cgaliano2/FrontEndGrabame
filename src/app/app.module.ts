@@ -13,7 +13,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavComponent } from './components/shared/nav/nav.component';
 import { TrayListComponent } from './components/tray-list/tray-list.component';
-import { SearchImageComponent } from './components/search-tray/search-tray.component';
 import { TrayComponent } from './components/tray/tray.component';
 import { registerLocaleData } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -28,6 +27,7 @@ import { FormsModule } from '@angular/forms';
 
 
 
+
 registerLocaleData(locales);
 @NgModule({
   declarations: [
@@ -35,7 +35,6 @@ registerLocaleData(locales);
     HomeComponent,
     NavComponent,
     TrayListComponent,
-    SearchImageComponent,
     TrayComponent,
     SearchDateComponent,
     LoginComponent,
