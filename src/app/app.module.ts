@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
-//fecha
+//modulo HTTP para la api
+import { HttpClientModule} from '@angular/common/http';
+///fecha
 import { LOCALE_ID, NgModule } from '@angular/core';
 import locales from '@angular/common/locales/es';
 
 import {ReactiveFormsModule} from '@angular/forms';
-//modulo HTTP para la api
-import { HttpClientModule} from '@angular/common/http';
+
 //rutas
 import { APP_ROUTING } from './app.routes';
 //componentes
@@ -23,6 +24,8 @@ import { VerticalTimelineModule } from 'angular-vertical-timeline';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FormsModule } from '@angular/forms';
+import { AlertComponent } from './_directives/alert.component';
+
 
 
 
@@ -39,11 +42,12 @@ registerLocaleData(locales);
     SearchDateComponent,
     LoginComponent,
     RegisterComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
-    APP_ROUTING,
     HttpClientModule,
+    APP_ROUTING,
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,

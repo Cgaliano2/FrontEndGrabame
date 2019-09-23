@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TrayServices } from '../../../_Services/tray-services';
+import { TrayServices } from '../../../_Services/tray.service';
 import {Router} from '@angular/router';
 
 

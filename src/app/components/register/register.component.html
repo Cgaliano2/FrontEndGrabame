@@ -1,50 +1,82 @@
 <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+
+
     <mat-card class="box2">
         <mat-card-header>
             <mat-card-title>Register</mat-card-title>
         </mat-card-header>
 
-        <form (ngSubmit)="onSubmit()">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
             <mat-card-content>
                 <mat-form-field class="generic-fields">
-                    <input [(ngModel)]="usuario.nombre" required matInput placeholder="Nombre" name="nombre">
+                    <input type="text" formControlName="nombre" matInput placeholder="Nombre" name="nombre" [ngClass]="{ 'is-invalid': submitted && !f.nombre.errors }">
+                    <mat-error *ngIf="f.nombre?.errors?.required">
+                        Ingrese <strong>Nombre</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="generic-fields">
+                    <input formControlName="apPat" matInput placeholder="Apellido Paterno" name="apPat" [ngClass]="{ 'is-invalid': submitted && f.apPat.errors }">
+                    <mat-error *ngIf="f.apPat.errors">
+                        ingrese <strong>Apellido</strong>
+                    </mat-error>
                 </mat-form-field>
 
                 <mat-form-field class="generic-fields">
-                    <input [(ngModel)]="usuario.apPat" matInput placeholder="Apellido Paterno" name="apellidoP">
+                    <input formControlName="apMat" matInput placeholder="Apellido Materno" name="apMat" [ngClass]="{ 'is-invalid': submitted && f.apMat.errors }">
+                    <mat-error *ngIf="f.apMat.errors">
+                        ingrese <strong>Apellido</strong>
+                    </mat-error>
                 </mat-form-field>
 
                 <mat-form-field class="generic-fields">
-                    <input [(ngModel)]="usuario.apMat" matInput placeholder="Apellido Materno" name="apellidoM">
-                </mat-form-field>
-
-                <mat-form-field class="generic-fields">
-                    <input [(ngModel)]="usuario.rut" matInput placeholder="Rut" name="rut">
+                    <input formControlName="rut" matInput placeholder="Rut" name="rut" [ngClass]="{ 'is-invalid': submitted && f.rut.errors }">
+                    <mat-error *ngIf="f.rut.errors">
+                        ingrese <strong>Rut</strong>
+                    </mat-error>
                 </mat-form-field>
                 <mat-form-field class="fields-large">
-                    <input [(ngModel)]="usuario.email" matInput placeholder="Email" name="email">
+                    <input formControlName="email" matInput placeholder="Email" name="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                    <mat-error *ngIf="f.email.errors">
+                        ingrese <strong>Email</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="generic-fields">
+                    <input formControlName="ubicacion" matInput placeholder="Ubicación" name="ubicacion" [ngClass]="{ 'is-invalid': submitted && f.ubicacion.errors }">
+                </mat-form-field>
+                <mat-form-field class="generic-fields">
+                    <input formControlName="telefono" matInput placeholder="Teléfono" name="telefono" [ngClass]="{ 'is-invalid': submitted && f.telefono.errors }">
                 </mat-form-field>
 
                 <mat-form-field class="generic-fields">
-                    <input [(ngModel)]="usuario.rol" matInput placeholder="Rol" name="Rol">
-                </mat-form-field>
-                <mat-form-field class="fields-large">
-                    <input [(ngModel)]="usuario.ubicacion" matInput placeholder="Ubicación" name="ubicacion">
+                    <mat-label>Sexo</mat-label>
+                    <mat-select [(value)]="selected2" formControlName="sexo">
+                        <mat-option [value]="sexo" *ngFor="let sexo of Sexo">{{ sexo }}
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
                 <mat-form-field class="example-full-width4">
-                    <input [(ngModel)]="usuario.password" matInput type="password" placeholder="Contraseña" name="password">
+                    <input formControlName="password" matInput type="password" placeholder="Contraseña" name="password">
                 </mat-form-field>
-                <!--<mat-form-field class="example-full-width">
-                    <input matInput placeholder="asd">
-                </mat-form-field>-->
+
                 <mat-form-field class="example-full-width4">
                     <input matInput type="password" placeholder="Repetir Contraseña">
                 </mat-form-field>
 
             </mat-card-content>
 
-            <button mat-stroked-button color="primary" class="btn-block">Register</button>
+            <button [disabled]="loading" mat-stroked-button color="primary" class="btn-block">Register</button>
+            <img *ngIf="loading" src="../../../assets/loading.gif" />
+            <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
         </form>
     </mat-card>
 </div>
+
+
+<!--<mat-form-field class="example-full-width">
+        <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="favoriteSeason">
+            <mat-radio-button class="example-radio-button" *ngFor="let activado of Activado" [value]="activado">
+                {{activado}}
+            </mat-radio-button>
+        </mat-radio-group>
+    </mat-form-field>-->

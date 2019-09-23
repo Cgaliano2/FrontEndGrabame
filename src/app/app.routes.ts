@@ -5,18 +5,18 @@ import { TrayComponent } from './components/tray/tray.component';
 import {SearchDateComponent} from './components/search-date/search-date.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+//guard
 import { AuthGuard } from './_guards/auth.guard';
-
 
 const APP_ROUTES: Routes = [
     {path: '', component: HomeComponent, }, // canActivate: [AuthGuard]
     {path: 'tray-list', component: TrayListComponent},
     {path: 'tray/:id', component: TrayComponent},
-    {path: 'search-date/:term', component: SearchDateComponent},
+    {path: 'search-date/:term', component: SearchDateComponent },
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
-    {path: 'home', component: HomeComponent, },
-    {path: '**', pathMatch: 'full' , redirectTo: 'home'}
+    {path: 'home', component: HomeComponent},
+    //{path: '**', pathMatch: 'full' , redirectTo: 'home'}
 
 ];
 

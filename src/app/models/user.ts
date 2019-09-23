@@ -6,8 +6,9 @@ export class User {
   rut: string;
   password: string;
   sexo: string;
-  celular: number;
+  telofono: number;
   rol: string;
   email: string;
   ubicacion: string;
+  act: boolean;
 }

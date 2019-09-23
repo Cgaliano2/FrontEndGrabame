@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/Operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map, tap } from 'rxjs/Operators';
+import { environment } from './../../environments/environment';
+import { User } from '../models/user';
+import { isNullOrUndefined } from 'util';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { JwsResponseI } from '../models/jws-response';
+
 
 
 
@@ -8,25 +14,63 @@ import { map } from 'rxjs/Operators';
   providedIn: 'root'
 })
 export class AuthService {
-
+  authSubject= new BehaviorSubject(false);
+  private token:string;
+  apiURL = 'http://api-grbm.herokuapp.com';
   constructor(private http: HttpClient) { }
+// opciones Http
+httpOptions = {
+  headers: new HttpHeaders({
+      'content-Type': 'application/json'
+  })
+};
+register(user:User):Observable<JwsResponseI>{
+  return this.http.post<JwsResponseI>(`${this.apiURL}/user`, user).
+  pipe(tap((res:JwsResponseI)=>{
+    if(res){
+      //guardar token
+      this.saveToken(res.dataUser.token);
+    }
+  }));
+}
 
-  login(username: string, password: string) {
+login(user:User):Observable<JwsResponseI>{
+  return this.http.post<JwsResponseI>(`${this.apiURL}/login`, user).
+  pipe(tap((res:JwsResponseI)=>{
+    if(res){
+      //guardar token
+      this.saveToken(res.dataUser.token,);
+    }
+  }));
+}
 
-    return this.http.post<any>('aqui va el URL', {username, password})
-    .pipe(map(user => {
-      // login successful if there's a jwt token in the response
-      if (user && user.token) {
-        localStorage.setItem('currentUSer', JSON.stringify(user));
-      }
+  
 
+  getCurrentUSer(): User {
+    let user_string = localStorage.getItem('currentUser');
+    if (!isNullOrUndefined(user_string)) {
+      const user: User = JSON.parse(user_string);
       return user;
-
-    }));
-
+    }
+    else {
+      return null;
+    }
+  }
+  logout() {
+    this.token = '';
+    localStorage.removeItem('ACCESS_TOKEN');
   }
 
-  logout() {
-    localStorage.removeItem('currentUser');
+  private saveToken(token:string,):void{
+    localStorage.setItem("ACCESS_TOKEN", token);
+    this.token = token;
+  }
+
+  private getToken():string{
+    if(!this.token)
+    {
+      this.token = localStorage.getItem("ACCESS_TOKEN")
+    }
+    return this.token
   }
 }

@@ -91,6 +91,7 @@ export class FakeBackendInterceptor implements HttpInterceptor{
 
             // delete user
             if (request.url.match(/\/users\/\d+$/) && request.method === 'DELETE') {
+                // tslint:disable-next-line: max-line-length
                 // check for fake auth token in header and return user if valid, this security is implemented server side in a real application
                 if (request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
                     // find user by id in users array
@@ -119,6 +120,7 @@ export class FakeBackendInterceptor implements HttpInterceptor{
             
         }))
 
+        // tslint:disable-next-line: max-line-length
         // call materialize and dematerialize to ensure delay even if an error is thrown (https://github.com/Reactive-Extensions/RxJS/issues/648)
         .pipe(materialize())
         .pipe(delay(500))
