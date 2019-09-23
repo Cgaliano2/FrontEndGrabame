@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map, tap } from 'rxjs/Operators';
-import { environment } from './../../environments/environment';
+import { tap } from 'rxjs/operators';
 import { User } from '../models/user';
 import { isNullOrUndefined } from 'util';
 import { BehaviorSubject, Observable } from 'rxjs';
