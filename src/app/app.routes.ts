@@ -9,7 +9,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { AuthGuard } from './_guards/auth.guard';
 
 const APP_ROUTES: Routes = [
-    {path: '', component: HomeComponent, }, // canActivate: [AuthGuard]
+    {path: '', component: LoginComponent}, // canActivate: [AuthGuard]
     {path: 'tray-list', component: TrayListComponent},
     {path: 'tray/:id', component: TrayComponent},
     {path: 'search-date/:term', component: SearchDateComponent },
