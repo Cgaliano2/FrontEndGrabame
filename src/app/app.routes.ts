@@ -7,6 +7,8 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 //guard
 import { AuthGuard } from './_guards/auth.guard';
+import { HomeGuard } from './_guards/home.guard';
+
 
 const APP_ROUTES: Routes = [
     {path: '', component: LoginComponent}, // canActivate: [AuthGuard]
@@ -15,7 +17,7 @@ const APP_ROUTES: Routes = [
     {path: 'search-date/:term', component: SearchDateComponent },
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
-    {path: 'home', component: HomeComponent},
+    {path: 'home', component: HomeComponent},  //canActivate: [HomeGuard], canLoad: [HomeGuard]
     //{path: '**', pathMatch: 'full' , redirectTo: 'home'}
 
 ];

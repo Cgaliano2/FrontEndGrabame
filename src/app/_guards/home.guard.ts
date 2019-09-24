@@ -3,8 +3,9 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, CanLoad, Rout
 import { Observable } from 'rxjs';
 import { AuthService } from '../_Services/auth.service';
 
-
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+  })
 export class HomeGuard implements CanActivate, CanLoad {
 
     constructor(private authService: AuthService, private router: Router){}
