@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
   get f() { return this.loginForm.controls; }
 
   onSubmit() {
-    this.Authserv.login(this.loginForm.value).subscribe(res=>{
+    this.Authserv.login(this.loginForm.value).subscribe( res =>{
       this.router.navigate(['/home']);
     });
     /*this.submitted = true;
