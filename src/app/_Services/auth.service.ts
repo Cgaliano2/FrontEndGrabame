@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
+import { tap, catchError, mapTo } from 'rxjs/operators';
 import { User } from '../models/user';
 import { isNullOrUndefined } from 'util';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { JwsResponseI } from '../models/jws-response';
+import { of, Observable } from 'rxjs';
+import { Tokens } from '../models/tokens';
 
 
 
@@ -13,8 +13,8 @@ import { JwsResponseI } from '../models/jws-response';
   providedIn: 'root'
 })
 export class AuthService {
-  authSubject= new BehaviorSubject(false);
-  private token:string;
+  private readonly JWT_TOKEN = 'JWT_TOKEN';
+  private loggedUser: string;
   apiURL = 'http://api-grbm.herokuapp.com';
   constructor(private http: HttpClient) { }
 // opciones Http
@@ -23,53 +23,71 @@ httpOptions = {
       'content-Type': 'application/json'
   })
 };
-register(user:User):Observable<JwsResponseI>{
-  return this.http.post<JwsResponseI>(`${this.apiURL}/user`, user).
-  pipe(tap((res:JwsResponseI)=>{
-    if(res){
-      //guardar token
-      this.saveToken(res.dataUser.token);
-    }
-  }));
+register(user: User) {
+  return this.http.post(`${this.apiURL}/user`, user);
+}
+login(user: { username: string, password: string }): Observable<boolean> {
+  return this.http.post<any>(`${this.apiURL}/login`, user)
+    .pipe(
+      tap(tokens => this.doLoginUser(user.username, tokens)),
+      mapTo(true),
+      catchError(error => {
+        alert(error.error);
+        return of(false);
+      }));
 }
 
-login(user:User):Observable<JwsResponseI>{
-  return this.http.post<JwsResponseI>(`${this.apiURL}/login`, user).
-  pipe(tap((res:JwsResponseI)=>{
-    if(res){
-      //guardar token
-      this.saveToken(res.dataUser.token,);
-    }
-  }));
+logout() {
+  return this.http.post<any>(`${this.apiURL}/logout`, {
+    'removeTokens': this.removeTokens()
+  }).pipe(
+    tap(() => this.doLogoutUser()),
+    mapTo(true),
+    catchError(error => {
+      alert(error.error);
+      return of(false);
+    }));
 }
-
-  
 
   getCurrentUSer(): User {
     let user_string = localStorage.getItem('currentUser');
     if (!isNullOrUndefined(user_string)) {
       const user: User = JSON.parse(user_string);
       return user;
-    }
-    else {
+    } else {
       return null;
     }
   }
-  logout() {
-    this.token = '';
-    localStorage.removeItem('ACCESS_TOKEN');
+
+  
+  getJwtToken(){
+    return localStorage.getItem(this.JWT_TOKEN);
   }
 
-  private saveToken(token:string,):void{
-    localStorage.setItem("ACCESS_TOKEN", token);
-    this.token = token;
+
+  private doLoginUser(rut:string, tokens: Tokens)
+  {
+    this.loggedUser = rut;
+    this.storeTokens(tokens);
   }
 
-  private getToken():string{
-    if(!this.token)
-    {
-      this.token = localStorage.getItem("ACCESS_TOKEN")
-    }
-    return this.token
+
+  private doLogoutUser() {
+    this.loggedUser = null;
+    this.removeTokens();
   }
+
+  private storeTokens(tokens: Tokens) {
+    localStorage.setItem(this.JWT_TOKEN, tokens.jwt);
+
+
+  }
+  private removeTokens() {
+    localStorage.removeItem(this.JWT_TOKEN);
+  }
+
+  isLoggedIn() {
+    return !!this.getJwtToken();
+  }
+
 }

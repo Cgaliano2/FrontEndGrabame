@@ -9,37 +9,35 @@ import { Tray } from '../models/tray';
 })
 
 export class TrayServices {
-apiURL='http://api-grbm.herokuapp.com/';
+apiURL = 'http://api-grbm.herokuapp.com/';
 constructor(private http: HttpClient) {}
-//opciones Http
+// opciones Http
 httpOptions = {
     headers: new HttpHeaders({
         'content-Type': 'application/json'
     })
-}
-//obtener Bandejas de la aplicación
+};
+// obtener Bandejas de la aplicación
 getTray(): Observable <any> {
     return this.http.get<any>(this.apiURL + 'trays').pipe(
         retry(1),
         catchError(this.handleError));
-} 
-SearchTray(id:string):Observable<any>
-{
+}
+SearchTray(id: string): Observable<any> {
     return this.http.get(this.apiURL + 'tray/' + id).pipe(
         retry(1),
         catchError(this.handleError)
     );
 }
 
-SearchDate(date:string):Observable<any>
-{
+SearchDate(date: string): Observable<any> {
     return this.http.get(this.apiURL + 'trays/' + date).pipe(
         retry(1),
         catchError(this.handleError)
     );
 
 }
-getCharts():Observable<any>{
+getCharts(): Observable<any> {
     return this.http.get<any>(this.apiURL + 'charts').pipe(
         retry(1),
         catchError(this.handleError)
@@ -67,20 +65,18 @@ getImageTray(id): Observable<Tray> {
 
 */
 
-//Manejo de Errores
-handleError(error)
-{
+// Manejo de Errores
+handleError(error) {
     let errorMessage = 'invalid action!';
-    if (error.error instanceof ErrorEvent)
-    {
+    if (error.error instanceof ErrorEvent) {
         errorMessage = error.error.message;
     } else {
         errorMessage = `Error Numero ${error.status}\nSu peticion es invalida o no se encuentra en nuestros registros`;
-        //errorMessage = `Error Numero ${error.status}\nMessage:${error.message}`;
-       
+        // errorMessage = `Error Numero ${error.status}\nMessage:${error.message}`;
+
     }
     window.alert(errorMessage);
     return throwError(errorMessage);
 }
-}; 
+} 
 
