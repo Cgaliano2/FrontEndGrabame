@@ -1,6 +1,6 @@
 <div class="container main-container">
     <mat-form-field>
-        <input matInput [matDatepicker]="picker" placeholder="Selecciona una fecha" (dateInput)="addEvent('date', $event)">
+        <input matInput [matDatepicker]="picker" placeholder="Selecciona una fecha" (dateInput)="addEvent('input', $event)">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>

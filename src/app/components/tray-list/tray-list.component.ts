@@ -26,6 +26,14 @@ fecha:any;
 /*date = new FormControl(new Date().toString());
 serializedDate = new FormControl((new Date().toUTCString()));
 fecha = moment(this.serializedDate.value).format('YYYY-MM-DD');*/
+
+
+
+
+
+
+
+
 @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
 constructor(
@@ -58,7 +66,7 @@ constructor(
 
   events: string[] = [];
 
-  addEvent(term , event: MatDatepickerInputEvent<Date>) {
+  addEvent(type: string, event: MatDatepickerInputEvent<Date>,term) {
     this.events.push(`${moment(event.value).format('YYYY-MM-DD')}`);
     term= this.events.pop();
     console.log(term);

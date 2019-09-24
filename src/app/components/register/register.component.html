@@ -50,7 +50,7 @@
 
                 <mat-form-field class="generic-fields">
                     <mat-label>Sexo</mat-label>
-                    <mat-select formControlName="sexo">
+                    <mat-select [(value)]="selected2" formControlName="sexo">
                         <mat-option [value]="sexo" *ngFor="let sexo of Sexo">{{ sexo }}
                         </mat-option>
                     </mat-select>

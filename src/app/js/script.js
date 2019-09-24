@@ -1,4 +1,4 @@
-/*(document).ready(function() {
+(document).ready(function() {
     $("#sidebar").mCustomScrollbar({
         theme: "minimal"
     });
@@ -18,4 +18,4 @@
         $('.collapse.in').toggleClass('in');
         $('a[aria-expanded=true]').attr('aria-expanded', 'false');
     });
-});*/
+});

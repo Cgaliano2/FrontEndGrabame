@@ -4,7 +4,7 @@
             <mat-card-title><img src="../../../../assets/logo-colored.png" alt="" class="logo"></mat-card-title>
         </mat-card-header>
 
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
             <mat-card-content>
                 <mat-form-field class="example-full-width">
                     <input formControlName="rut" matInput placeholder="Rut" name="rut">
