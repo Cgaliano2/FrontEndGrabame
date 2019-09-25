@@ -16,8 +16,8 @@ const APP_ROUTES: Routes = [
     {path: 'tray/:id', component: TrayComponent},
     {path: 'search-date/:term', component: SearchDateComponent },
     {path: 'login', component: LoginComponent},
-    {path: 'register', component: RegisterComponent},
-    {path: 'home', component: HomeComponent},  //canActivate: [HomeGuard], canLoad: [HomeGuard]
+    {path: 'register', component: RegisterComponent},//canActivate: [AuthGuard]
+    {path: 'home', component: HomeComponent,canActivate: [HomeGuard], canLoad: [HomeGuard] },  //canActivate: [HomeGuard], canLoad: [HomeGuard]
     //{path: '**', pathMatch: 'full' , redirectTo: 'home'}
 
 ];

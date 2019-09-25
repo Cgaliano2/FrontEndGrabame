@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.Authserv.login(this.loginForm.value).subscribe( success =>{
+      console.log(success.valueOf);
       if(success){
         this.router.navigate(['/home']);
       }

@@ -66,7 +66,7 @@ constructor(
 
   events: string[] = [];
 
-  addEvent(type: string, event: MatDatepickerInputEvent<Date>,term) {
+  addEvent(term, event: MatDatepickerInputEvent<Date>) {
     this.events.push(`${moment(event.value).format('YYYY-MM-DD')}`);
     term= this.events.pop();
     console.log(term);

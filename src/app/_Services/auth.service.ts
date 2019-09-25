@@ -9,11 +9,13 @@ import { Tokens } from '../models/tokens';
 
 
 
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly JWT_TOKEN = 'JWT_TOKEN';
+  private readonly JWT_TOKEN = 'token';
   private loggedUser: string;
   apiURL = 'http://api-grbm.herokuapp.com';
   constructor(private http: HttpClient) { }
@@ -26,15 +28,16 @@ httpOptions = {
 register(user: User) {
   return this.http.post(`${this.apiURL}/user`, user);
 }
-login(user: { username: string, password: string }): Observable<boolean> {
+login(user: { rut: string, password: string }): Observable<boolean> {
   return this.http.post<any>(`${this.apiURL}/login`, user)
     .pipe(
-      tap(tokens => this.doLoginUser(user.username, tokens)),
+      tap(token => this.doLoginUser(user.rut, token)),
       mapTo(true),
       catchError(error => {
         alert(error.error);
         return of(false);
       }));
+  
 }
 
 logout() {
@@ -59,7 +62,6 @@ logout() {
     }
   }
 
-  
   getJwtToken(){
     return localStorage.getItem(this.JWT_TOKEN);
   }

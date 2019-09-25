@@ -4,12 +4,15 @@ import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Tray } from '../models/tray';
 
+
+
 @Injectable({
     providedIn: 'root'
 })
 
 export class TrayServices {
 apiURL = 'http://api-grbm.herokuapp.com/';
+
 constructor(private http: HttpClient) {}
 // opciones Http
 httpOptions = {
