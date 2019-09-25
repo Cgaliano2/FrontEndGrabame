@@ -11,4 +11,5 @@ export class User {
   email: string;
   ubicacion: string;
   act: boolean;
+  token:string;
 }

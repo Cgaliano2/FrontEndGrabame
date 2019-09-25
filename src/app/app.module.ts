@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 //modulo HTTP para la api
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 ///fecha
 import { LOCALE_ID, NgModule } from '@angular/core';
 import locales from '@angular/common/locales/es';
@@ -25,12 +25,8 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FormsModule } from '@angular/forms';
 import { AlertComponent } from './_directives/alert.component';
-
-
-
-
-
-
+//interceptor
+import { JwInterceptor } from './_helpers/jwt.interceptor';
 registerLocaleData(locales);
 @NgModule({
   declarations: [
@@ -55,7 +51,8 @@ registerLocaleData(locales);
     FormsModule,
 
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'es'}],
+  providers: [{provide: LOCALE_ID, useValue: 'es'},
+  { provide: HTTP_INTERCEPTORS, useClass: JwInterceptor, multi: true },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -11,15 +11,16 @@ import { Tray } from '../models/tray';
 })
 
 export class TrayServices {
-apiURL = 'http://api-grbm.herokuapp.com/';
+public apiURL = 'http://api-grbm.herokuapp.com/';
 
 constructor(private http: HttpClient) {}
 // opciones Http
-httpOptions = {
+/*httpOptions = {
     headers: new HttpHeaders({
         'content-Type': 'application/json'
     })
 };
+*/
 // obtener Bandejas de la aplicación
 getTray(): Observable <any> {
     return this.http.get<any>(this.apiURL + 'trays').pipe(

@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { AlertService } from '../../_Services/alert.service';
-import { AuthService } from '../../_Services/auth.service';
+import { AuthenticationService } from '../../_Services/authentication.service';
 
 
 export interface Roles {
@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
   constructor(
    private formBuilder: FormBuilder,
    private router: Router,
-   private authservice: AuthService,
+   private Authservice: AuthenticationService,
    private aleserv: AlertService) { }
 
 ngOnInit() {
@@ -49,11 +49,11 @@ get f() {return this.registerForm.controls; }
 onSubmit() {
 
   this.submitted = true;
-  if(this.registerForm.invalid){
+  if(this.registerForm.invalid) {
     return;
   }
 
-  this.authservice.register(this.registerForm.value).subscribe(res =>{
+  this.Authservice.register(this.registerForm.value).subscribe(res =>{
     this.aleserv.success('Registration Successful', true);
     this.router.navigateByUrl('/login');
   },
