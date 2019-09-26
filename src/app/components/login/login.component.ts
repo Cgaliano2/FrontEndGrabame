@@ -23,8 +23,6 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private AuthService: AuthenticationService,
     private alertService: AlertService) {
-
-     
      }
 
   ngOnInit() {
@@ -53,7 +51,6 @@ export class LoginComponent implements OnInit {
     this.AuthService.login(this.f.rut.value, this.f.password.value).
       pipe(first()).
       subscribe(data => {
-        
         this.router.navigate([this.returnUrl]);
       },
       error => {

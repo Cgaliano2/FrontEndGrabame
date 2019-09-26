@@ -5,18 +5,10 @@ import { User } from '../models/user';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { config } from '../../config';
 
-
-
-
-
-
-
-
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-
   private currentUserSubject:BehaviorSubject<User>;
   public currentUser: Observable<User>;
  // apiURL = 'http://api-grbm.herokuapp.com';
@@ -30,26 +22,37 @@ export class AuthenticationService {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser =  this.currentUserSubject.asObservable();
    }
+
+   public get currentUserValue(): User{
+    return this.currentUserSubject.value;
+  }
    register(user: User) {
     return this.http.post(`${config.apiUrl}user`, user);
   }
-  public get currentUserValue(): User{
-    return this.currentUserSubject.value;
-  }
-
-
   login(rut: string, password: string){
     return this.http.post<any>(`${config.apiUrl}login`,{ rut, password }).
     pipe(map(user => {
-      console.log(user);
       if (user && user.token) {
         localStorage.setItem('currentUser', JSON.stringify(user));
         this.currentUserSubject.next(user);
       }
       return user;
     }));
+
+    
   }
-  logout()
+/*
+public getToken()
+{
+  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  if(currentUser)
+  {
+    return currentUser.token;
+  }else
+  return null;
+}
+*/
+logout()
   {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient,HttpHeaders} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { config } from '../../config';
@@ -13,13 +13,15 @@ import { config } from '../../config';
 
 export class TrayServices {
 constructor(private http: HttpClient) {}
+/*
 // opciones Http
-/*httpOptions = {
+httpOptions = {
     headers: new HttpHeaders({
-        'content-Type': 'application/json'
+        'content-Type': 'application/json',
+        Authorize: `Bearer ${localStorage.getItem('token')}`
     })
-};
-*/
+};*/
+
 // obtener Bandejas de la aplicación
 getTray(): Observable <any> {
     return this.http.get<any>(`${config.apiUrl}trays`).pipe(
