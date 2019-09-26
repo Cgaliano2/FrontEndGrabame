@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map, catchError, mapTo } from 'rxjs/operators';
+import { HttpClient} from '@angular/common/http';
+import { map} from 'rxjs/operators';
 import { User } from '../models/user';
-import { isNullOrUndefined } from 'util';
-import { of, Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { config } from '../../config';
+
 
 
 
@@ -18,7 +19,7 @@ export class AuthenticationService {
 
   private currentUserSubject:BehaviorSubject<User>;
   public currentUser: Observable<User>;
-  apiURL = 'http://api-grbm.herokuapp.com';
+ // apiURL = 'http://api-grbm.herokuapp.com';
   // opciones Http
   /*httpOptions = {
     headers: new HttpHeaders({
@@ -30,7 +31,7 @@ export class AuthenticationService {
     this.currentUser =  this.currentUserSubject.asObservable();
    }
    register(user: User) {
-    return this.http.post(`${this.apiURL}/user`, user);
+    return this.http.post(`${config.apiUrl}user`, user);
   }
   public get currentUserValue(): User{
     return this.currentUserSubject.value;
@@ -38,10 +39,10 @@ export class AuthenticationService {
 
 
   login(rut: string, password: string){
-    return this.http.post<any>(`${this.apiURL}/login`,{ rut, password }).
+    return this.http.post<any>(`${config.apiUrl}login`,{ rut, password }).
     pipe(map(user => {
+      console.log(user);
       if (user && user.token) {
-        console.log(user);
         localStorage.setItem('currentUser', JSON.stringify(user));
         this.currentUserSubject.next(user);
       }

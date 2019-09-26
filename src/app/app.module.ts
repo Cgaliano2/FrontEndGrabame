@@ -51,8 +51,9 @@ registerLocaleData(locales);
     FormsModule,
 
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'es'},
-  { provide: HTTP_INTERCEPTORS, useClass: JwInterceptor, multi: true },],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: JwInterceptor, multi: true },
+    {provide: LOCALE_ID, useValue: 'es'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

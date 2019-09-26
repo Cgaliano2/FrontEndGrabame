@@ -11,11 +11,11 @@ import { AuthGuard } from './_guards/auth.guard';
 
 const APP_ROUTES: Routes = [
 
-   {path: '', component: LoginComponent}, // canActivate: [AuthGuard]
+   {path: '', component: HomeComponent,canActivate: [AuthGuard] }, // canActivate: [AuthGuard]
     {path: 'tray-list', component: TrayListComponent, canActivate: [AuthGuard]},
     {path: 'tray/:id', component: TrayComponent, canActivate: [AuthGuard]},
     {path: 'search-date/:term', component: SearchDateComponent,canActivate: [AuthGuard] },
-    {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
+    {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},//canActivate: [AuthGuard]
     {path: '**', redirectTo: ''}
 //canActivate: [HomeGuard], canLoad: [HomeGuard]
@@ -24,5 +24,5 @@ const APP_ROUTES: Routes = [
 ];
 
 
-export const APP_ROUTING = RouterModule.forRoot(APP_ROUTES,  { useHash: true });
+export const APP_ROUTING = RouterModule.forRoot(APP_ROUTES, { useHash: true });  //{ useHash: true }
 

@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { Tray } from '../models/tray';
+import { config } from '../../config';
+
 
 
 
@@ -11,8 +12,6 @@ import { Tray } from '../models/tray';
 })
 
 export class TrayServices {
-public apiURL = 'http://api-grbm.herokuapp.com/';
-
 constructor(private http: HttpClient) {}
 // opciones Http
 /*httpOptions = {
@@ -23,26 +22,26 @@ constructor(private http: HttpClient) {}
 */
 // obtener Bandejas de la aplicación
 getTray(): Observable <any> {
-    return this.http.get<any>(this.apiURL + 'trays').pipe(
+    return this.http.get<any>(`${config.apiUrl}trays`).pipe(
         retry(1),
         catchError(this.handleError));
 }
 SearchTray(id: string): Observable<any> {
-    return this.http.get(this.apiURL + 'tray/' + id).pipe(
+    return this.http.get(`${config.apiUrl}tray` + id).pipe(
         retry(1),
         catchError(this.handleError)
     );
 }
 
 SearchDate(date: string): Observable<any> {
-    return this.http.get(this.apiURL + 'trays/' + date).pipe(
+    return this.http.get(`${config.apiUrl}trays` + date).pipe(
         retry(1),
         catchError(this.handleError)
     );
 
 }
 getCharts(): Observable<any> {
-    return this.http.get<any>(this.apiURL + 'charts').pipe(
+    return this.http.get<any>(`${config.apiUrl}charts`).pipe(
         retry(1),
         catchError(this.handleError)
     );
