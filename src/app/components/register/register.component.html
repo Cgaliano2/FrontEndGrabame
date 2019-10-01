@@ -72,8 +72,9 @@
             <div *ngIf="error" class="alert alert-danger mt-3 mb-0">
                 {{error}}
             </div>
+
             <img *ngIf="loading" src="../../../assets/loading.gif" />
-            <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
+            <a [routerLink]="['home']" class="btn btn-link">Cancel</a>
         </form>
     </mat-card>
 </div>

@@ -16,7 +16,41 @@ import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-tray-list',
-  templateUrl: './tray-list.component.html',
+  template: ` 
+  <br>
+  <br>
+  <br>
+  <br>
+  <mat-accordion>
+  <mat-expansion-panel>
+      <mat-expansion-panel-header>
+          <mat-panel-title>
+              Busqueda por fecha
+          </mat-panel-title>
+          <mat-panel-description>
+              Selecciona una fecha
+          </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="" (dateInput)="obtenerFecha('input', $event)">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+  </mat-expansion-panel>
+  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+          <mat-panel-title>
+              Busqueda por rango de fechas
+          </mat-panel-title>
+          <mat-panel-description>
+              Selecciona un Rango de Fechas
+          </mat-panel-description>
+      </mat-expansion-panel-header>
+      <input id="rangeDate" name="rangeDate" #input="ngModel" [(ngModel)]="!rangeDate" type="text" bsDaterangepicker class="form-control" />
+      <button mat-button color="primary" (click)="obtainDate(input.viewModel)">Buscar</button>
+  </mat-expansion-panel>
+</mat-accordion>
+<router-outlet></router-outlet>`,
   styleUrls: ['./tray-list.component.css']
 
 })
