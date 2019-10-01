@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
+  error='';
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -48,9 +49,16 @@ export class LoginComponent implements OnInit {
         return;
     }
     this.loading = true;
-    this.AuthService.login(this.f.rut.value, this.f.password.value).subscribe(data => {
-        console.log(data);
-        this.router.navigate([this.returnUrl]);
+    this.AuthService.login(this.f.rut.value, this.f.password.value).pipe(first()).subscribe(data => {
+        
+      this.router.navigate([this.returnUrl]);
+      if(data.success == false)
+      {
+        this.error=data.message;
+        this.loading = false;
+      }
+     
+        
       });
 
   }
