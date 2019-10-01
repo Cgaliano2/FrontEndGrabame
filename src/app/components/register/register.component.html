@@ -46,11 +46,14 @@
                 </mat-form-field>
                 <mat-form-field class="generic-fields">
                     <input formControlName="telefono" matInput placeholder="Teléfono" name="telefono" [ngClass]="{ 'is-invalid': submitted && f.telefono.errors }">
+                    <mat-error *ngIf="f.telefono.errors">
+                        ingrese <strong>telefono</strong>
+                    </mat-error>
                 </mat-form-field>
 
                 <mat-form-field class="generic-fields">
                     <mat-label>Sexo</mat-label>
-                    <mat-select [(value)]="selected2" formControlName="sexo">
+                    <mat-select formControlName="sexo">
                         <mat-option [value]="sexo" *ngFor="let sexo of Sexo">{{ sexo }}
                         </mat-option>
                     </mat-select>
@@ -66,6 +69,9 @@
             </mat-card-content>
 
             <button [disabled]="loading" mat-stroked-button color="primary" class="btn-block">Register</button>
+            <div *ngIf="error" class="alert alert-danger mt-3 mb-0">
+                {{error}}
+            </div>
             <img *ngIf="loading" src="../../../assets/loading.gif" />
             <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
         </form>

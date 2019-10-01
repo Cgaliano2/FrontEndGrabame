@@ -9,7 +9,7 @@ body {
 body {
     background-image: url(http://smarthub.cl/images/polygon-bg.svg);
     background-position: center;
-    background-size: 2000px;
+    background-size: 2500px;
     background-repeat: no-repeat;
     min-height: 100vh;
     font-family: 'Roboto', sans-serif;
@@ -38,6 +38,12 @@ body {
     color: #ffffff;
     width: 120px;
     margin-left: 30%
+}
+
+.logox {
+    position: absolute;
+    top: 14px;
+    left: 40px;
 }
 
 .box {
@@ -241,4 +247,13 @@ body {
 .hola {
     height: 50%;
     background: transparent;
+}
+
+.footer {
+    margin-top: 25%;
+    background: transparent;
+}
+
+.mat-drawer {
+    margin-top: 3.4%;
 }

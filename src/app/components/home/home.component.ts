@@ -2,8 +2,8 @@ import { Component, OnInit} from '@angular/core';
 import { Chart } from 'chart.js';
 import { TrayServices } from '../../_Services/tray.service';
 import * as _moment from 'moment';
+import { FormControl } from '@angular/forms';
 const moment = _moment;
-
 
 
 @Component({
@@ -12,6 +12,9 @@ const moment = _moment;
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  
+  ubicacionControl = new FormControl();
+  selectFormControl = new FormControl();
   Lastup: any = [];
   Tray: any = [];
   public canvas : any;
@@ -22,9 +25,12 @@ export class HomeComponent implements OnInit {
   public clicked: boolean = true;
   public clicked1: boolean = false;
   public clicked2: boolean = false;
+  //CHART 1
   dato1: any;
   dato2: any;
   dato3: any;
+  //Ubicaciones
+  ubicaciones:any=[];
 
 
   //chart = [];
@@ -32,117 +38,77 @@ export class HomeComponent implements OnInit {
   constructor(private apiService: TrayServices) { }
 
   ngOnInit() {
+this.apiService.getUbication().subscribe(datos =>{
+  console.log(datos);
+  this.ubicaciones = datos;
+
+
+
+  //this.ubicaciones =datos.ubicaciones.map(datos => datos.lugar);
+  //console.log(this.ubicaciones);
+  //let data = datos.map(datos => ubicaciones.lugar)
+ 
+  
+  var gradientChartOptionsConfigurationWithTooltipBlue: any = {
+    maintainAspectRatio: false,
+    legend: {
+      display: false
+    },
+
+    tooltips: {
+      backgroundColor: '#f5f5f5',
+      titleFontColor: '#333',
+      bodyFontColor: '#666',
+      bodySpacing: 4,
+      xPadding: 12,
+      mode: "nearest",
+      intersect: 0,
+      position: "nearest"
+    },
+    responsive: true,
+    scales: {
+      yAxes: [{
+        barPercentage: 1.6,
+        gridLines: {
+          drawBorder: false,
+          color: 'rgba(29,140,248,0.0)',
+          zeroLineColor: "transparent",
+        },
+        ticks: {
+          suggestedMin: 60,
+          suggestedMax: 125,
+          padding: 20,
+          fontColor: "#2380f7"
+        }
+      }],
+
+      xAxes: [{
+        barPercentage: 1.6,
+        gridLines: {
+          drawBorder: false,
+          color: 'rgba(29,140,248,0.1)',
+          zeroLineColor: "transparent",
+        },
+        ticks: {
+          padding: 20,
+          fontColor: "#2380f7"
+        }
+      }]
+    }
+  };
+
+
+});
 this.apiService.getCharts().subscribe(res => {
       console.log(res);
-      let Total = res.map(res => res.total);
-      let Info = res.map(res => res._id.mes);
-      let Anio = res.map(res => res._id.año);
+      const Total = res.map(res => res.total).reverse();
+      const Info = res.map(res => res._id.mes).reverse();
+      const Anio = res.map(res => res._id.año).reverse();
       this.dato1 = Total;
       this.dato2 = Info;
       this.dato3 = Anio;
-   
 
-      console.log(this.dato1);
-
-
-
-
-      var gradientChartOptionsConfigurationWithTooltipBlue: any = {
-      maintainAspectRatio: false,
-      legend: {
-        display: false
-      },
-
-      tooltips: {
-        backgroundColor: '#f5f5f5',
-        titleFontColor: '#333',
-        bodyFontColor: '#666',
-        bodySpacing: 4,
-        xPadding: 12,
-        mode: "nearest",
-        intersect: 0,
-        position: "nearest"
-      },
-      responsive: true,
-      scales: {
-        yAxes: [{
-          barPercentage: 1.6,
-          gridLines: {
-            drawBorder: false,
-            color: 'rgba(29,140,248,0.0)',
-            zeroLineColor: "transparent",
-          },
-          ticks: {
-            suggestedMin: 60,
-            suggestedMax: 125,
-            padding: 20,
-            fontColor: "#2380f7"
-          }
-        }],
-
-        xAxes: [{
-          barPercentage: 1.6,
-          gridLines: {
-            drawBorder: false,
-            color: 'rgba(29,140,248,0.1)',
-            zeroLineColor: "transparent",
-          },
-          ticks: {
-            padding: 20,
-            fontColor: "#2380f7"
-          }
-        }]
-      }
-    };
-
-      var gradientChartOptionsConfigurationWithTooltipPurple: any = {
-      maintainAspectRatio: false,
-      legend: {
-        display: false
-      },
-
-      tooltips: {
-        backgroundColor: '#f5f5f5',
-        titleFontColor: '#333',
-        bodyFontColor: '#666',
-        bodySpacing: 4,
-        xPadding: 12,
-        mode: "nearest",
-        intersect: 0,
-        position: "nearest"
-      },
-      responsive: true,
-      scales: {
-        yAxes: [{
-          barPercentage: 1.6,
-          gridLines: {
-            drawBorder: false,
-            color: 'rgba(29,140,248,0.0)',
-            zeroLineColor: "transparent",
-          },
-          ticks: {
-            suggestedMin: 60,
-            suggestedMax: 125,
-            padding: 20,
-            fontColor: "#9a9a9a"
-          }
-        }],
-
-        xAxes: [{
-          barPercentage: 1.6,
-          gridLines: {
-            drawBorder: false,
-            color: 'rgba(225,78,202,0.1)',
-            zeroLineColor: "transparent",
-          },
-          ticks: {
-            padding: 20,
-            fontColor: "#9a9a9a"
-          }
-        }]
-      }
-    };
-
+     
       var gradientChartOptionsConfigurationWithTooltipRed: any = {
       maintainAspectRatio: false,
       legend: {
@@ -180,7 +146,7 @@ this.apiService.getCharts().subscribe(res => {
           barPercentage: 1.6,
           gridLines: {
             drawBorder: false,
-            color: 'rgba(233,32,16,0.1)',
+            color: 'rgba(0,252,212,0.1)',
             zeroLineColor: "transparent",
           },
           ticks: {
@@ -246,7 +212,7 @@ this.apiService.getCharts().subscribe(res => {
       },
 
       tooltips: {
-        backgroundColor: '#f5f5f5',
+        backgroundColor: '#54BAE8',//'#f5f5f5',
         titleFontColor: '#333',
         bodyFontColor: '#666',
         bodySpacing: 4,
@@ -336,33 +302,35 @@ this.apiService.getCharts().subscribe(res => {
       }
     };
 
-      this.canvas = document.getElementById("chartLineRed");
+      this.canvas = document.getElementById("chartBig1");
       this.ctx = this.canvas.getContext("2d");
 
       var gradientStroke = this.ctx.createLinearGradient(0, 230, 0, 50);
 
-      gradientStroke.addColorStop(1, 'rgba(233,32,16,0.2)');
-      gradientStroke.addColorStop(0.4, 'rgba(233,32,16,0.0)');
-      gradientStroke.addColorStop(0, 'rgba(233,32,16,0)'); //red colors
+      
+      gradientStroke.addColorStop(1, 'rgba(66,134,121,0.15)');
+      gradientStroke.addColorStop(0.4, 'rgba(66,134,121,0.0)'); //green colors
+      gradientStroke.addColorStop(0, 'rgba(66,134,121,0)'); //green colors
+
 
       var data = {
-      labels: ['JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+      labels: this.dato2,
       datasets: [{
         label: "Data",
         fill: true,
         backgroundColor: gradientStroke,
-        borderColor: '#ec250d',
+        borderColor: '#00D6B4',
         borderWidth: 2,
         borderDash: [],
         borderDashOffset: 0.0,
-        pointBackgroundColor: '#ec250d',
+        pointBackgroundColor: '#00D6B4',
         pointBorderColor: 'rgba(255,255,255,0)',
-        pointHoverBackgroundColor: '#ec250d',
+        pointHoverBackgroundColor: '#00D6B4',
         pointBorderWidth: 20,
         pointHoverRadius: 4,
         pointHoverBorderWidth: 15,
         pointRadius: 4,
-        data: [80, 100, 70, 80, 120, 80],
+        data: this.dato1,
       }]
     };
 
@@ -373,8 +341,8 @@ this.apiService.getCharts().subscribe(res => {
     });
 
 
-      this.canvas = document.getElementById("chartLineGreen");
-      this.ctx = this.canvas.getContext("2d");
+    this.canvas = document.getElementById("chartLineGreen");
+    this.ctx = this.canvas.getContext("2d");
 
 
       var gradientStroke = this.ctx.createLinearGradient(0, 230, 0, 50);
@@ -383,26 +351,7 @@ this.apiService.getCharts().subscribe(res => {
       gradientStroke.addColorStop(0.4, 'rgba(66,134,121,0.0)'); //green colors
       gradientStroke.addColorStop(0, 'rgba(66,134,121,0)'); //green colors
 
-      var data = {
-      labels: ['JUL', 'AUG', 'SEP', 'OCT', 'NOV'],
-      datasets: [{
-        label: "My First dataset",
-        fill: true,
-        backgroundColor: gradientStroke,
-        borderColor: '#00d6b4',
-        borderWidth: 2,
-        borderDash: [],
-        borderDashOffset: 0.0,
-        pointBackgroundColor: '#00d6b4',
-        pointBorderColor: 'rgba(255,255,255,0)',
-        pointHoverBackgroundColor: '#00d6b4',
-        pointBorderWidth: 20,
-        pointHoverRadius: 4,
-        pointHoverBorderWidth: 15,
-        pointRadius: 4,
-        data: [90, 27, 60, 12, 80],
-      }]
-    };
+      
 
       var myChart = new Chart(this.ctx, {
       type: 'line',
@@ -411,52 +360,6 @@ this.apiService.getCharts().subscribe(res => {
 
     });
 
-
-
-      var chart_labels = this.dato3;
-      this.datasets = [
-      this.dato1,//[100, 70, 90, 70, 85, 60, 75, 60, 90, 80, 110, 100],
-      this.dato1,//[80, 120, 105, 110, 95, 105, 90, 100, 80, 95, 70, 120],
-      [60, 80, 65, 130, 80, 105, 90, 130, 70, 115, 60, ]
-    ];
-      this.data = this.datasets[0];
-
-
-
-      this.canvas = document.getElementById("chartBig1");
-      this.ctx = this.canvas.getContext("2d");
-
-      var gradientStroke = this.ctx.createLinearGradient(0, 230, 0, 50);
-
-      gradientStroke.addColorStop(1, 'rgba(233,32,16,0.2)');
-      gradientStroke.addColorStop(0.4, 'rgba(233,32,16,0.0)');
-      gradientStroke.addColorStop(0, 'rgba(233,32,16,0)'); //red colors
-
-      var config = {
-      type: 'line',
-      data: {
-        labels: chart_labels,
-        datasets: [{
-          label: "My First dataset",
-          fill: true,
-          backgroundColor: gradientStroke,
-          borderColor: '#ec250d',
-          borderWidth: 2,
-          borderDash: [],
-          borderDashOffset: 0.0,
-          pointBackgroundColor: '#ec250d',
-          pointBorderColor: 'rgba(255,255,255,0)',
-          pointHoverBackgroundColor: '#ec250d',
-          pointBorderWidth: 20,
-          pointHoverRadius: 4,
-          pointHoverBorderWidth: 15,
-          pointRadius: 4,
-          data: this.data,
-        }]
-      },
-      options: gradientChartOptionsConfigurationWithTooltipRed
-    };
-      this.myChartData = new Chart(this.ctx, config);
 
 
       this.canvas = document.getElementById("CountryChart");

@@ -20,6 +20,8 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   loading = false;
   submitted = false;
+  error='';
+  success='';
   //Activado: Act[] = [{value: true, viewValue: 'Si'}, {value: false, viewValue: 'No'}];
   //Rol: Roles[] = [{value2: 'ADMIN_ROLE', viewValue2: 'Administrador'}, {value2: 'USER_ROLE', viewValue2: 'Usuario'} ];
   value: string;
@@ -37,7 +39,7 @@ ngOnInit() {
   rut:      ['', Validators.required],
   password: ['', [ Validators.required, Validators.minLength(6)]],
   sexo:     ['', Validators.required],
-  telefono:  ['', Validators.required],
+  telefono:  ['', [Validators.required, Validators.minLength(6)]],
   email:    ['', Validators.required],
   ubicacion: ['', Validators.required],
   
@@ -47,18 +49,19 @@ ngOnInit() {
 get f() {return this.registerForm.controls; }
 
 onSubmit() {
-
   this.submitted = true;
-  if(this.registerForm.invalid) {
+  if (this.registerForm.invalid) {
     return;
+    
   }
-
-  this.Authservice.register(this.registerForm.value).subscribe(res =>{
-    this.aleserv.success('Registration Successful', true);
-    this.router.navigateByUrl('/login');
+ console.log(this.registerForm.value);
+  this.Authservice.register(this.registerForm.value).subscribe(res => {
+    console.log(res);
+    this.router.navigateByUrl('/home');
   },
-  error =>{
-    this.aleserv.error(error);
+  error => {
+    console.log(error);
+    this.error = (error.error.message);
     this.loading = false;
   });
 

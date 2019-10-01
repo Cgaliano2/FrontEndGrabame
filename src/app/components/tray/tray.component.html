@@ -7,7 +7,7 @@
             </mat-card-title>
             <mat-card-subtitle>Informacion de la Bandeja</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image [src]="Tray.idImg" alt="Photo of a Shiba Inu" height="488" width="216">
+        <img mat-card-image [src]="Tray.idImg" alt="foto de la bandeja" height="488" width="216">
         <mat-card-content>
             <div class=" card-body">
                 <div class=" chart-area"><strong>CodigoQR:</strong>{{Tray.codigoQr}}</div>
@@ -15,9 +15,6 @@
 
             <div class=" card-body">
                 <div class=" chart-area"><strong>Subida el:</strong> {{Tray.fechaIngreso | date:'fullDate'}}</div>
-            </div>
-            <div class=" card-body">
-                <div class=" chart-area"><strong>Funcionario Encargado</strong></div>
             </div>
         </mat-card-content>
         <mat-card-actions>

@@ -9,7 +9,7 @@ import { config } from '../../config';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private currentUserSubject:BehaviorSubject<User>;
+  private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
  // apiURL = 'http://api-grbm.herokuapp.com';
   // opciones Http
@@ -23,23 +23,24 @@ export class AuthenticationService {
     this.currentUser =  this.currentUserSubject.asObservable();
    }
 
-   public get currentUserValue(): User{
+   public get currentUserValue(): User {
     return this.currentUserSubject.value;
   }
    register(user: User) {
     return this.http.post(`${config.apiUrl}user`, user);
   }
-  login(rut: string, password: string){
-    return this.http.post<any>(`${config.apiUrl}login`,{ rut, password }).
+  login(rut: string, password: string) {
+    return this.http.post<any>(`${config.apiUrl}login`, { rut, password }).
     pipe(map(user => {
       if (user && user.token) {
         localStorage.setItem('currentUser', JSON.stringify(user));
         this.currentUserSubject.next(user);
+
       }
       return user;
     }));
-
     
+
   }
 /*
 public getToken()
@@ -52,8 +53,7 @@ public getToken()
   return null;
 }
 */
-logout()
-  {
+logout() {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
   }

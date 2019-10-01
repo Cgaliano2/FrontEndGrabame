@@ -25,6 +25,7 @@
         "@angular/router": "~8.2.0",
         "@nebular/eva-icons": "4.2.1",
         "@nebular/theme": "^4.2.1",
+        "@ng-bootstrap/ng-bootstrap": "^5.1.1",
         "@ngtools/webpack": "^1.2.4",
         "angular-chart.js": "^1.1.1",
         "angular-timeline": "^1.7.0",
@@ -37,6 +38,7 @@
         "jshint": "^2.10.2",
         "lightbox2": "^2.11.1",
         "moment": "^2.24.0",
+        "ngx-bootstrap": "^5.1.2",
         "ngx-lightbox": "^2.0.0",
         "nodemon": "^1.19.1",
         "popper.js": "^1.15.0",
@@ -68,5 +70,4 @@
         "tslint": "~5.15.0",
         "typescript": "~3.5.3"
     }
-
 }

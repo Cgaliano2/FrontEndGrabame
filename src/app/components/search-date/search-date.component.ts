@@ -45,6 +45,7 @@ searchByDate(term: string ) {
     });
 }
 
+
 verBandejas(idx)
   { 
    this.enrutador.navigate(['/tray', idx]);

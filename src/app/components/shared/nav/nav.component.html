@@ -1,13 +1,12 @@
-<mat-toolbar color="primary" class="app-header">
+<mat-toolbar color="primary" class="app-header" *ngIf="currentUser">
 
-    <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm class="SideNavButton">
+    <button mat-icon-button (click)="sidenav.toggle()" fxShow="true">
                   <mat-icon>menu</mat-icon>
                 </button>
 
-    <div><img src="../../../../assets/logo-light.png" alt="" class="positronx"></div>
+    <div class="logox"><img src="../../../../assets/logo-light.png" alt="" class="positronx"></div>
     <span class="nav-tool-items">
-          <a mat-button routerLink="login" routerLinkActive="active">Log in</a>
-          <a mat-button mat-raised-button routerLink="register" routerLinkActive="active">Register</a>
+          <a mat-button mat-raised-button (click)="logout()">Log out</a>
         </span>
 </mat-toolbar>
 
@@ -16,10 +15,12 @@
         <mat-nav-list>
             <a [routerLink]="['home']" mat-list-item>Home</a>
             <a [routerLink]="['tray-list']" mat-list-item>Bandejas</a>
+            <a [routerLink]="['/register']" routerLinkActive="active" mat-list-item>Registrar Usuario</a>
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content fxFlexFill>
         <router-outlet></router-outlet>
+        <div class="footer"></div>
     </mat-sidenav-content>
 </mat-sidenav-container>
 

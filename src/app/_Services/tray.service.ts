@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
-import { HttpClient,HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { config } from '../../config';
+import { Ubication } from '../models/ubication';
 
 
 
@@ -29,14 +30,14 @@ getTray(): Observable <any> {
         catchError(this.handleError));
 }
 SearchTray(id: string): Observable<any> {
-    return this.http.get(`${config.apiUrl}tray` + id).pipe(
+    return this.http.get(`${config.apiUrl}tray/` + id).pipe(
         retry(1),
         catchError(this.handleError)
     );
 }
 
 SearchDate(date: string): Observable<any> {
-    return this.http.get(`${config.apiUrl}trays` + date).pipe(
+    return this.http.get(`${config.apiUrl}trays/` + date).pipe(
         retry(1),
         catchError(this.handleError)
     );
@@ -49,26 +50,19 @@ getCharts(): Observable<any> {
     );
 }
 
-/*
-//capturar imagenes
-getImagesTray():Observable <any> {
-    return this.http.get<any>(this.apiURL + '/images/').pipe(
-        retry(1),
-        catchError(this.handleError)
-    );
-}
-*/
-/*
-//capturar imagen
-getImageTray(id): Observable<Tray> {
-    return this.http.get<Tray>(this.apiURL + '/image/' + id)
-    .pipe(
+getUbication(): Observable<any> {
+    return this.http.get(`${config.apiUrl}trays/ubications`).pipe(
         retry(1),
         catchError(this.handleError)
     );
 }
 
-*/
+getByDateRange(dateRange:string)
+{
+    return this.http.get(`${config.apiUrl}trays/${dateRange}`);
+}
+
+
 
 // Manejo de Errores
 handleError(error) {
@@ -83,5 +77,5 @@ handleError(error) {
     window.alert(errorMessage);
     return throwError(errorMessage);
 }
-} 
+}
 

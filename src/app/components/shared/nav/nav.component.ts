@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { TrayServices } from '../../../_Services/tray.service';
 import {Router} from '@angular/router';
-
-
+import { AuthenticationService } from '../../../_Services/authentication.service';
+import { Observable } from 'rxjs';
+import { User } from '../../../models/user';
 
 @Component({
   selector: 'app-nav',
@@ -10,18 +10,23 @@ import {Router} from '@angular/router';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
+currentUser:User;
   constructor(
-    public router: Router
-  ) { }
+    public router: Router,
+    private AuthService:AuthenticationService
+  ) {
+
+    this.AuthService.currentUser.subscribe(x => this.currentUser= x);
+   }
 
   ngOnInit() {
-
   }
-  buscarFoto(termino:string){
-  this.router.navigate(['/Buscar-Bandeja', termino]);
-  console.log(termino);
-}
 
+
+  logout(){
+    this.AuthService.logout();
+    this.router.navigate(['/login']);
+  }
 
 }
 
@@ -29,5 +34,4 @@ export class NavComponent implements OnInit {
  /*this.restApi.getImageTray(termino).subscribe((data:{})=>{
       this.imageData=data;
       console.log(this.imageData);
-      
   })*/

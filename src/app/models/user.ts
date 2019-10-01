@@ -12,4 +12,5 @@ export class User {
   ubicacion: string;
   act: boolean;
   token: string;
+  success:boolean;
 }

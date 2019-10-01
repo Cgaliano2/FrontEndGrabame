@@ -15,7 +15,7 @@ export class TrayComponent implements OnInit {
     Tray: any = [];
     displayedColumns: string[] = [];
     dataSource: any = [];
-    TrayNumber:any=[];
+    TrayNumber: any = [];
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   constructor(private actRoute: ActivatedRoute,
@@ -30,15 +30,15 @@ export class TrayComponent implements OnInit {
   ngOnInit() {
 
   this.actRoute.params.subscribe(params => {
-      const idex:string = (params ['id'] );
+      const idex: string = (params.id );
       this.showOneTray(idex);
-     
-    
+
+
     });
 }
 
 
-  /* 
+  /*
    ngOINIT
   this.actRoute.params.subscribe(params => {
       let idex = (params ['id'] );
@@ -48,9 +48,8 @@ export class TrayComponent implements OnInit {
     showOneTray(term: string ) {
       this.trayApi.SearchTray(term).subscribe((datos: { }) => {
             this.Tray = datos;
+            console.log(this.Tray)
             this.TrayNumber = this.Tray.length;
-
-            console.log(this.Tray);
       });
   }
 }
