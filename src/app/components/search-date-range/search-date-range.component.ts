@@ -13,6 +13,7 @@ export class SearchDateRangeComponent implements OnInit {
   Trayxdaterange: any = [];
   displayedColumns: string[] = [];
   dataSource: any = [];
+  error;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   constructor(private TrayApi:TrayServices, private actRoute:ActivatedRoute) { }
 
@@ -20,14 +21,17 @@ export class SearchDateRangeComponent implements OnInit {
   }
 
 
-  searchByDateRange( term: string )
+  searchByDateRange( range: string )
   {
-   this.TrayApi.getByDateRange(term).subscribe((data: {}) => {
-    this.Trayxdaterange = data;
-    this.displayedColumns = ['detalles', 'codigoqr', 'fechaIngreso'];
-    this.dataSource = new MatTableDataSource<Tray>(this.Trayxdaterange);
-    this.dataSource.paginator = this.paginator;
-   });
+   this.TrayApi.getByDateRange(range).subscribe((res: {}) => {
+     console.log(res);
+     this.Trayxdaterange = res;
+     this.displayedColumns = ['detalles', 'codigoqr', 'fechaIngreso'];
+     this.dataSource = new MatTableDataSource<Tray>(this.Trayxdaterange);
+     this.dataSource.paginator = this.paginator;
+     
+   }
+   );
 
 }
 }

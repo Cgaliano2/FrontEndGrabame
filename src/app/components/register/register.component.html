@@ -1,6 +1,4 @@
-<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
-
-
+<div class="login-wrapper2" fxLayout="row" fxLayoutAlign="center center">
     <mat-card class="box2">
         <mat-card-header>
             <mat-card-title>Register</mat-card-title>
@@ -42,7 +40,12 @@
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field class="generic-fields">
-                    <input formControlName="ubicacion" matInput placeholder="Ubicación" name="ubicacion" [ngClass]="{ 'is-invalid': submitted && f.ubicacion.errors }">
+                    <mat-label>Sucursal</mat-label>
+                    <mat-select formControlName="ubicacion">
+                        <mat-option [value]="Ubicaciones[i]._id._id" *ngFor="let ubicacion of Ubicaciones;let i =index">{{Ubicaciones[i]._id.lugar}}
+                        </mat-option>
+
+                    </mat-select>
                 </mat-form-field>
                 <mat-form-field class="generic-fields">
                     <input formControlName="telefono" matInput placeholder="Teléfono" name="telefono" [ngClass]="{ 'is-invalid': submitted && f.telefono.errors }">

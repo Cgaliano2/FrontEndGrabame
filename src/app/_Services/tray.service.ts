@@ -36,11 +36,8 @@ SearchTray(id: string): Observable<any> {
     );
 }
 
-SearchDate(date: string): Observable<any> {
-    return this.http.get(`${config.apiUrl}trays/` + date).pipe(
-        retry(1),
-        catchError(this.handleError)
-    );
+SearchDate(date: string){
+    return this.http.get(`${config.apiUrl}trays/` + date);
 
 }
 getCharts(): Observable<any> {
@@ -57,9 +54,9 @@ getUbication(): Observable<any> {
     );
 }
 
-getByDateRange(dateRange:string)
+getByDateRange(term: string)
 {
-    return this.http.get(`${config.apiUrl}trays/${dateRange}`);
+    return this.http.get(`${config.apiUrl}trays/date/${term}`);
 }
 
 
@@ -70,11 +67,10 @@ handleError(error) {
     if (error.error instanceof ErrorEvent) {
         errorMessage = error.error.message;
     } else {
-        errorMessage = `Error Numero ${error.status}\nSu peticion es invalida o no se encuentra en nuestros registros`;
+        errorMessage = `${error.error.text}`;
         // errorMessage = `Error Numero ${error.status}\nMessage:${error.message}`;
 
     }
-    window.alert(errorMessage);
     return throwError(errorMessage);
 }
 }

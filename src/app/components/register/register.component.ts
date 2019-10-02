@@ -4,9 +4,11 @@ import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { AlertService } from '../../_Services/alert.service';
 import { AuthenticationService } from '../../_Services/authentication.service';
+import { TrayServices } from '../../_Services/tray.service';
+ 
 
 
-export interface Roles {
+export interface ubicacionI {
   value2: string;
   viewValue2: string;
 }
@@ -20,18 +22,34 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   loading = false;
   submitted = false;
-  error='';
-  success='';
-  //Activado: Act[] = [{value: true, viewValue: 'Si'}, {value: false, viewValue: 'No'}];
-  //Rol: Roles[] = [{value2: 'ADMIN_ROLE', viewValue2: 'Administrador'}, {value2: 'USER_ROLE', viewValue2: 'Usuario'} ];
+  error = '';
+  success = '';
+  Ubicaciones: any = [];
+  // Activado: Act[] = [{value: true, viewValue: 'Si'}, {value: false, viewValue: 'No'}];
+  // Rol: Roles[] = [{value2: 'ADMIN_ROLE', viewValue2: 'Administrador'}, {value2: 'USER_ROLE', viewValue2: 'Usuario'} ];
   value: string;
   constructor(
    private formBuilder: FormBuilder,
    private router: Router,
    private Authservice: AuthenticationService,
-   private aleserv: AlertService) { }
+   private TrayApi: TrayServices,
+   private aleserv: AlertService) {
+
+   }
+
+   
+   
+  
+  
 
 ngOnInit() {
+
+  this.TrayApi.getUbication().subscribe(res =>{
+
+    this.Ubicaciones = res;
+
+    console.log(res);
+  });
   this.registerForm = this.formBuilder.group({
   nombre:   ['', Validators.required],
   apPat:    ['', Validators.required],
@@ -48,13 +66,14 @@ ngOnInit() {
 
 get f() {return this.registerForm.controls; }
 
+
 onSubmit() {
   this.submitted = true;
   if (this.registerForm.invalid) {
     return;
     
   }
- console.log(this.registerForm.value);
+  console.log(this.registerForm.value);
   this.Authservice.register(this.registerForm.value).subscribe(res => {
     console.log(res);
     this.router.navigateByUrl('/home');
@@ -64,6 +83,12 @@ onSubmit() {
     this.error = (error.error.message);
     this.loading = false;
   });
+
+}
+
+}
+
+
 
   /*this.submitted = true;
 
@@ -81,6 +106,3 @@ onSubmit() {
         this.alertService.error(error);
         this.loading = false;
       });*/
-}
-
-}

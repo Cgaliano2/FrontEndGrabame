@@ -15,6 +15,8 @@ export class SearchDateComponent implements OnInit {
   Trayxdate: any = [];
   displayedColumns: string[] = [];
   dataSource: any = [];
+  error;
+  success;
 @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   
 
@@ -27,7 +29,7 @@ constructor(
   ngOnInit() {
 
     this.actRoute.params.subscribe(params => {
-      const termino:string = (params['term']);
+      const termino: string = (params['term']);
      // console.log(termino);
       this.searchByDate(termino);
     });
@@ -36,18 +38,23 @@ constructor(
 
 
 searchByDate(term: string ) {
-    this.trayApi.SearchDate(term).subscribe((datos: { }) => {
-          this.Trayxdate = datos;
-          this.displayedColumns = ['detalles', 'codigoqr', 'fechaIngreso'];
-          this.dataSource = new MatTableDataSource<Tray>(this.Trayxdate);
-          console.log(this.dataSource);
-          this.dataSource.paginator = this.paginator;
+  
+    this.trayApi.SearchDate(term).subscribe(datos => {
+       this.Trayxdate = datos;
+       this.displayedColumns = ['detalles', 'codigoqr', 'fechaIngreso'];
+       this.dataSource = new MatTableDataSource<Tray>(this.Trayxdate);
+       this.dataSource.paginator = this.paginator;
+       this.error='';
+
+    },error => {
+      this.Trayxdate='';
+      this.error = (error);
+      console.log(this.error);
     });
 }
 
 
-verBandejas(idx)
-  { 
+verBandejas(idx) {
    this.enrutador.navigate(['/tray', idx]);
   }
 

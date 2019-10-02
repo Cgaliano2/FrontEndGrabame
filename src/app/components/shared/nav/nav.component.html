@@ -10,7 +10,7 @@
         </span>
 </mat-toolbar>
 
-<mat-sidenav-container fxFlexFill class="hola">
+<mat-sidenav-container>
     <mat-sidenav #sidenav>
         <mat-nav-list>
             <a [routerLink]="['home']" mat-list-item>Home</a>
@@ -18,10 +18,11 @@
             <a [routerLink]="['/register']" routerLinkActive="active" mat-list-item>Registrar Usuario</a>
         </mat-nav-list>
     </mat-sidenav>
-    <mat-sidenav-content fxFlexFill>
+    <mat-sidenav-content>
         <router-outlet></router-outlet>
         <div class="footer"></div>
     </mat-sidenav-content>
+
 </mat-sidenav-container>
 
 

@@ -17,10 +17,7 @@ import { NgModel } from '@angular/forms';
 @Component({
   selector: 'app-tray-list',
   template: ` 
-  <br>
-  <br>
-  <br>
-  <br>
+  <div class="container main-container">
   <mat-accordion>
   <mat-expansion-panel>
       <mat-expansion-panel-header>
@@ -50,7 +47,8 @@ import { NgModel } from '@angular/forms';
       <button mat-button color="primary" (click)="obtainDate(input.viewModel)">Buscar</button>
   </mat-expansion-panel>
 </mat-accordion>
-<router-outlet></router-outlet>`,
+<router-outlet></router-outlet>
+<div>`,
   styleUrls: ['./tray-list.component.css']
 
 })
@@ -124,8 +122,8 @@ obtenerFecha(fecha , event: MatDatepickerInputEvent<Date>) {
   this.router.navigate(['search-date', fecha], {relativeTo: this.actRoute});
 }
   // Filtro X Rango de Fechas
-  obtainDate(term) {
-     this.fechas = term;
+  obtainDate(range) {
+     this.fechas = range;
      this.fecha1 = moment(this.fechas[0]).format('YYYY-MM-DD');
      this.fecha2 = moment(this.fechas[1]).format('YYYY-MM-DD');
      this.consulta = this.fecha1 + '&' + this.fecha2;
