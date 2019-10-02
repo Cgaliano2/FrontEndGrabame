@@ -43,7 +43,7 @@ import { NgModel } from '@angular/forms';
               Selecciona un Rango de Fechas
           </mat-panel-description>
       </mat-expansion-panel-header>
-      <input id="rangeDate" name="rangeDate" #input="ngModel" [(ngModel)]="!rangeDate" type="text" bsDaterangepicker class="form-control" />
+      <input id="rangeDate" name="rangeDate" #input="ngModel" [(ngModel)]="rangeDate" type="text" bsDaterangepicker class="form-control" />
       <button mat-button color="primary" (click)="obtainDate(input.viewModel)">Buscar</button>
   </mat-expansion-panel>
 </mat-accordion>
@@ -122,8 +122,8 @@ obtenerFecha(fecha , event: MatDatepickerInputEvent<Date>) {
   this.router.navigate(['search-date', fecha], {relativeTo: this.actRoute});
 }
   // Filtro X Rango de Fechas
-  obtainDate(range) {
-     this.fechas = range;
+  obtainDate(term) {
+     this.fechas = term;
      this.fecha1 = moment(this.fechas[0]).format('YYYY-MM-DD');
      this.fecha2 = moment(this.fechas[1]).format('YYYY-MM-DD');
      this.consulta = this.fecha1 + '&' + this.fecha2;

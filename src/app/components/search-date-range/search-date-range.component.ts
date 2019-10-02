@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TrayServices } from '../../_Services/tray.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { Tray } from '../../models/tray';
 
@@ -15,23 +15,33 @@ export class SearchDateRangeComponent implements OnInit {
   dataSource: any = [];
   error;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  constructor(private TrayApi:TrayServices, private actRoute:ActivatedRoute) { }
+  constructor(private TrayApi:TrayServices, private actRoute:ActivatedRoute, private enrutador:Router) { }
 
   ngOnInit() {
+    this.actRoute.params.subscribe(params => {
+      const termino: string = (params['term']);
+     console.log(termino);
+     this.searchByDateRange(termino);
+    
+    });
+
   }
 
 
-  searchByDateRange( range: string )
+  searchByDateRange(term)
   {
-   this.TrayApi.getByDateRange(range).subscribe((res: {}) => {
+   this.TrayApi.getByDateRange(term).subscribe((res: {}) => {
      console.log(res);
      this.Trayxdaterange = res;
      this.displayedColumns = ['detalles', 'codigoqr', 'fechaIngreso'];
      this.dataSource = new MatTableDataSource<Tray>(this.Trayxdaterange);
      this.dataSource.paginator = this.paginator;
-     
    }
    );
 
 }
+verBandejas(idx) {
+  this.enrutador.navigate(['/tray', idx]);
+ }
+
 }

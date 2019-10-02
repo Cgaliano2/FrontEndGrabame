@@ -54,7 +54,7 @@ getUbication(): Observable<any> {
     );
 }
 
-getByDateRange(term: string)
+getByDateRange(term:string):Observable<any>
 {
     return this.http.get(`${config.apiUrl}trays/date/${term}`);
 }

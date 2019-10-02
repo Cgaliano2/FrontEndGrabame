@@ -25,7 +25,7 @@ const APP_ROUTES: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
     {path: 'ubicacion', component: UbicacionComponent, canActivate: [AuthGuard]},
-    {path: 'search-dateRange/:range', component: SearchDateRangeComponent, canActivate:[AuthGuard] }, // canActivate: [AuthGuard]
+    {path: 'search-dateRange/:term', component: SearchDateRangeComponent, canActivate:[AuthGuard] }, // canActivate: [AuthGuard]
     {path: '**', redirectTo: ''}
 // canActivate: [HomeGuard], canLoad: [HomeGuard]
 //
