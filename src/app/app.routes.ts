@@ -19,13 +19,14 @@ const APP_ROUTES: Routes = [
    {path: '', component: HomeComponent, canActivate: [AuthGuard] }, // canActivate: [AuthGuard]
     {path: 'tray-list',  canActivate: [AuthGuard],component: TrayListComponent, 
     children: [
-    {path: 'search-date/:term', component: SearchDateComponent, canActivate: [AuthGuard]}
+    {path: 'search-date/:term', component: SearchDateComponent, canActivate: [AuthGuard]},
+    {path: 'search-dateRange/:term', component: SearchDateRangeComponent, canActivate:[AuthGuard]},
      ]},
  {path: 'tray/:id', component: TrayComponent, canActivate: [AuthGuard]},
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
     {path: 'ubicacion', component: UbicacionComponent, canActivate: [AuthGuard]},
-    {path: 'search-dateRange/:term', component: SearchDateRangeComponent, canActivate:[AuthGuard] }, // canActivate: [AuthGuard]
+     // canActivate: [AuthGuard]
     {path: '**', redirectTo: ''}
 // canActivate: [HomeGuard], canLoad: [HomeGuard]
 //

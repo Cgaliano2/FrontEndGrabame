@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 this.apiService.getUbication().subscribe(datos =>{
-  console.log(datos);
+ // console.log(datos);
   this.ubicaciones = datos;
 
 
@@ -100,7 +100,7 @@ this.apiService.getUbication().subscribe(datos =>{
 
 });
 this.apiService.getCharts().subscribe(res => {
-      console.log(res);
+     // console.log(res);
       const Total = res.map(res => res.total).reverse();
       const Info = res.map(res => res._id.mes).reverse();
       const Anio = res.map(res => res._id.año).reverse();

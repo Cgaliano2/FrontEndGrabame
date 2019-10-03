@@ -34,7 +34,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 //interceptor
 import { JwInterceptor } from './_helpers/jwt.interceptor';
-import { AlertService } from './_Services/alert.service';
+import { ErrorInterceptor } from './_helpers/error.interceptor';
+
 registerLocaleData(locales);
 @NgModule({
   declarations: [
@@ -65,8 +66,8 @@ registerLocaleData(locales);
 
   ],
   providers: [
-    AlertService,
     {provide: HTTP_INTERCEPTORS, useClass: JwInterceptor, multi: true },
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     {provide: LOCALE_ID, useValue: 'es'}],
   bootstrap: [AppComponent]
 })

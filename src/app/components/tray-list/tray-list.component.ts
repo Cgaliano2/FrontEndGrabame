@@ -128,7 +128,8 @@ obtenerFecha(fecha , event: MatDatepickerInputEvent<Date>) {
      this.fecha2 = moment(this.fechas[1]).format('YYYY-MM-DD');
      this.consulta = this.fecha1 + '&' + this.fecha2;
      console.log(this.consulta);
-     this.router.navigate(['search-dateRange', this.consulta]);
+     this.router.navigate(['search-dateRange/', this.consulta],{relativeTo:this.actRoute});
+     //this.router.navigate(['search-dateRange', this.consulta]);
      // this.router.navigate(['/'])
   }
 }

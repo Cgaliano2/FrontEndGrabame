@@ -49,6 +49,28 @@ export class LoginComponent implements OnInit {
         return;
     }
     this.loading = true;
+    this.AuthService.login(this.f.rut.value, this.f.password.value)
+    .pipe(first())
+    .subscribe(
+      data => {
+      this.router.navigate([this.returnUrl]);
+      },error =>{
+        this.error = error;
+        this.loading =  false;
+      });
+
+  }
+
+}
+/*
+onSubmit() {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.loginForm.invalid) {
+        return;
+    }
+    this.loading = true;
     this.AuthService.login(this.f.rut.value, this.f.password.value).pipe(first()).subscribe(data => {
       this.router.navigate([this.returnUrl]);
       if (data.success === false) {
@@ -60,8 +82,6 @@ export class LoginComponent implements OnInit {
 
   }
 
-}
-/*
 this.Authserv.login(this.loginForm.value).subscribe( success =>{
   console.log(success.valueOf);
   if(success){

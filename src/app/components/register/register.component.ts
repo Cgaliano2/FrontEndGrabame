@@ -75,12 +75,12 @@ onSubmit() {
   }
   console.log(this.registerForm.value);
   this.Authservice.register(this.registerForm.value).subscribe(res => {
-    console.log(res);
+    //console.log(res);
     this.router.navigateByUrl('/home');
   },
   error => {
-    console.log(error);
-    this.error = (error.error.message);
+    //console.log(error);
+    this.error = (error.message);
     this.loading = false;
   });
 
