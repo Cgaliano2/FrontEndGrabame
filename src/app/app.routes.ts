@@ -7,6 +7,10 @@ import { LoginComponent } from './_auth/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UbicacionComponent } from './components/ubicacion/ubicacion.component';
 import { SearchDateRangeComponent } from './components/search-date-range/search-date-range.component';
+import { SearchBarcodeComponent } from './components/search-barcode/search-barcode.component';
+
+
+
 
 
 // guard
@@ -16,13 +20,14 @@ import { AuthGuard } from './_guards/auth.guard';
 
 const APP_ROUTES: Routes = [
 
-   {path: '', component: HomeComponent, canActivate: [AuthGuard] }, // canActivate: [AuthGuard]
-    {path: 'tray-list',  canActivate: [AuthGuard],component: TrayListComponent, 
+    {path: '', component: HomeComponent, canActivate: [AuthGuard] }, // canActivate: [AuthGuard]
+    {path: 'tray-list',  canActivate: [AuthGuard], component: TrayListComponent,
     children: [
     {path: 'search-date/:term', component: SearchDateComponent, canActivate: [AuthGuard]},
-    {path: 'search-dateRange/:term', component: SearchDateRangeComponent, canActivate:[AuthGuard]},
+    {path: 'search-dateRange/:term', component: SearchDateRangeComponent, canActivate: [AuthGuard]},
+    {path: 'search-barcode/:codigoQr', component: SearchBarcodeComponent, canActivate: [AuthGuard]}
      ]},
- {path: 'tray/:id', component: TrayComponent, canActivate: [AuthGuard]},
+    {path: 'tray/:id', component: TrayComponent, canActivate: [AuthGuard]},
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
     {path: 'ubicacion', component: UbicacionComponent, canActivate: [AuthGuard]},

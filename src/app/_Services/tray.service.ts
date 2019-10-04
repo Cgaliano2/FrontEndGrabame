@@ -23,55 +23,49 @@ httpOptions = {
     })
 };*/
 
-// obtener Bandejas de la aplicación
+// BANDEJAS
 getTray(): Observable <any> {
-    return this.http.get<any>(`${config.apiUrl}trays`).pipe(
-        retry(1),
-        catchError(this.handleError));
+    return this.http.get<any>(`${config.apiUrl}trays`);
 }
 SearchTray(id: string): Observable<any> {
-    return this.http.get(`${config.apiUrl}tray/` + id).pipe(
-        retry(1),
-        catchError(this.handleError)
-    );
+    return this.http.get(`${config.apiUrl}tray/` + id);
 }
 
-SearchDate(date: string){
+SearchDate(date: string) {
     return this.http.get(`${config.apiUrl}trays/` + date);
 
 }
-getCharts(): Observable<any> {
-    return this.http.get<any>(`${config.apiUrl}charts`).pipe(
-        retry(1),
-        catchError(this.handleError)
-    );
-}
+
 
 getUbication(): Observable<any> {
-    return this.http.get(`${config.apiUrl}trays/ubications`).pipe(
-        retry(1),
-        catchError(this.handleError)
-    );
+    return this.http.get(`${config.apiUrl}trays/ubications`);
 }
 
-getByDateRange(term:string):Observable<any>
-{
+getByDateRange(term: string): Observable<any> {
+
     return this.http.get(`${config.apiUrl}trays/date/${term}`);
 }
+// Charts
 
-
-
-// Manejo de Errores
-handleError(error) {
-    let errorMessage = 'invalid action!';
-    if (error.error instanceof ErrorEvent) {
-        errorMessage = error.error.message;
-    } else {
-        errorMessage = `${error.error.text}`;
-        // errorMessage = `Error Numero ${error.status}\nMessage:${error.message}`;
-
-    }
-    return throwError(errorMessage);
+getChartsMontly(): Observable<any> {
+    return this.http.get<any>(`${config.apiUrl}charts/monthly`);
 }
+
+getChartYearly(): Observable<any> {
+
+    return this.http.get(`${config.apiUrl}charts/yearly`);
+}
+
+getChartDaily(): Observable<any> {
+
+    return this.http.get(`${config.apiUrl}charts/daily`);
+}
+
+
+getByBarcode(codigoQr: string) {
+
+    return this.http.get(`${config.apiUrl}trays/code/${codigoQr}`);
+}
+
 }
 

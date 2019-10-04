@@ -43,9 +43,25 @@ import { NgModel } from '@angular/forms';
               Selecciona un Rango de Fechas
           </mat-panel-description>
       </mat-expansion-panel-header>
-      <input id="rangeDate" name="rangeDate" #input="ngModel" [(ngModel)]="rangeDate" type="text" bsDaterangepicker class="form-control" />
-      <button mat-button color="primary" (click)="obtainDate(input.viewModel)">Buscar</button>
+      <input id="rangeDate" name="rangeDate" #input="ngModel" [(ngModel)]="!rangeDate" type="text" bsDaterangepicker class="form-control" />
+      <button mat-raised-button color="accent" (click)="obtainDate(input.viewModel)">Buscar</button>
   </mat-expansion-panel>
+  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+  <mat-expansion-panel-header>
+      <mat-panel-title>
+          Busqueda por codigo QR
+      </mat-panel-title>
+      <mat-panel-description>
+          Escribe el codigo 
+      </mat-panel-description>
+  </mat-expansion-panel-header>
+  <form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="CodigoQR" #codigoqr required="true">
+  </mat-form-field>
+  <button mat-raised-button color="accent" (click)="obtainBarCode(codigoqr.value)">Buscar</button>
+</form>
+</mat-expansion-panel>
 </mat-accordion>
 <router-outlet></router-outlet>
 <div>`,
@@ -76,6 +92,7 @@ fecha1: any;
 consulta: any;
 fecha: any;
 unArray: any = [];
+codigoqr:string;
 /*date = new FormControl(new Date().toString());
 serializedDate = new FormControl((new Date().toUTCString()));
 fecha = moment(this.serializedDate.value).format('YYYY-MM-DD');*/
@@ -89,6 +106,7 @@ fecha = moment(this.serializedDate.value).format('YYYY-MM-DD');*/
   LoadTray() {
     return this.trayApi.getTray()
     .subscribe( data => {
+          console.log(data);
           this.tray = data;
           this.displayedColumns = ['detalles', 'codigoqr', 'fechaIngreso', 'ubicacion'];
           this.dataSource = new MatTableDataSource<Tray>(data);
@@ -132,4 +150,11 @@ obtenerFecha(fecha , event: MatDatepickerInputEvent<Date>) {
      //this.router.navigate(['search-dateRange', this.consulta]);
      // this.router.navigate(['/'])
   }
+
+obtainBarCode(codigoqr: string) {
+
+  this.codigoqr = codigoqr;
+  console.log(this.codigoqr);
+  this.router.navigate(['search-barcode/', this.codigoqr], {relativeTo: this.actRoute});
+}
 }

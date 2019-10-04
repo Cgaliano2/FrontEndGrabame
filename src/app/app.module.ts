@@ -35,6 +35,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 //interceptor
 import { JwInterceptor } from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
+import { SearchBarcodeComponent } from './components/search-barcode/search-barcode.component';
+
 
 registerLocaleData(locales);
 @NgModule({
@@ -50,6 +52,7 @@ registerLocaleData(locales);
     RegisterComponent,
     UbicacionComponent,
     SearchDateRangeComponent,
+    SearchBarcodeComponent
   ],
   imports: [
     BrowserModule,

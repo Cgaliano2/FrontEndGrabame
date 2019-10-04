@@ -6,8 +6,7 @@ import { Tray } from '../../models/tray';
 
 @Component({
   selector: 'app-search-date-range',
-  templateUrl: './search-date-range.component.html',
-  styleUrls: ['./search-date-range.component.css']
+  templateUrl: './search-date-range.component.html'
 })
 export class SearchDateRangeComponent implements OnInit {
   Trayxdaterange: any = [];
@@ -20,24 +19,28 @@ export class SearchDateRangeComponent implements OnInit {
   ngOnInit() {
     this.actRoute.params.subscribe(params => {
       const termino: string = (params['term']);
-     console.log(termino);
-     this.searchByDateRange(termino);
+      // console.log(termino);
+      this.searchByDateRange(termino);
     
     });
 
   }
 
 
-  searchByDateRange(term)
-  {
+  searchByDateRange(term) {
    this.TrayApi.getByDateRange(term).subscribe((res: {}) => {
-     console.log(res);
+     // console.log(res);
      this.Trayxdaterange = res;
      this.displayedColumns = ['detalles', 'codigoqr', 'fechaIngreso'];
      this.dataSource = new MatTableDataSource<Tray>(this.Trayxdaterange);
      this.dataSource.paginator = this.paginator;
-   }
-   );
+     this.error = '';
+
+    }, error => {
+      // console.log(error);
+        this.Trayxdaterange = '';
+        this.error = error;
+    });
 
 }
 verBandejas(idx) {
