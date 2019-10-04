@@ -45,8 +45,11 @@ error: any;
 
   ngOnInit() {
 this.apiService.getUbication().subscribe(datos => {
-  // console.log(datos);
-  this.ubicaciones = datos;
+
+  const ArrayUbicaciones= Object.values(datos);
+  this.ubicaciones = ArrayUbicaciones[1];
+  //console.log(ArrayUbicaciones);
+
   const gradientChartOptionsConfigurationWithTooltipBlue: any = {
     maintainAspectRatio: false,
     legend: {
@@ -96,27 +99,29 @@ this.apiService.getUbication().subscribe(datos => {
   };
 
 
-}, error => {
-
-  this.error = error;
-  console.log(this.error);
-
 });
 
 this.apiService.getChartDaily().subscribe(res => {
-  const informacion = res.pop();
-  this.daily = informacion.total;
-  console.log(this.daily);
+  console.log(res);
+  const informacion = res.cantidad
+  // console.log(informacion);
+  const total = informacion.pop();
+  this.daily = total.total
+  
+
+
+  // console.log(this.daily);
 });
 
 
 this.apiService.getChartYearly().subscribe(res => {
-  // console.log(res);
+  console.log(res);
   this.Anual = res;
-  const total = this.Anual.map(res => res.total).reverse();
-  const anio = this.Anual.map(res => res._id.año).reverse();
+  const total = this.Anual.cantidad.map(res => res.total);
+  const anio = this.Anual.cantidad.map(res => res._id.año);
   this.anio = anio;
   this.total = total;
+
 
 // chart verde
   const gradientChartOptionsConfigurationWithTooltipGreen: any = {
@@ -209,17 +214,17 @@ this.apiService.getChartYearly().subscribe(res => {
 });
 this.apiService.getChartsMontly().subscribe(res => {
       // console.log(res);
-      const Anio = res.map(res => res._id.año).sort();
-      const Total = res.map(res => res.total);
-      const Info = res.map(res => res._id.mes).sort();
+      const Anio = res.cantidad.map(res => res._id.año);
+      const Total = res.cantidad.map(res => res.total);
+      const Info = res.cantidad.map(res => res._id.mes);
 
       this.dato1 = Total;
       this.dato2 = Info;
       this.dato3 = Anio;
 
-      console.log(this.dato1);
-      console.log(this.dato2);
-      console.log(this.dato3);
+      //console.log(this.dato1);
+      //console.log(this.dato2);
+      //console.log(this.dato3);
 
 
       const gradientChartOptionsConfigurationWithTooltipRed: any = {

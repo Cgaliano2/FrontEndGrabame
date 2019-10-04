@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { AlertService } from '../../_Services/alert.service';
 import { AuthenticationService } from '../../_Services/authentication.service';
 
 
@@ -22,8 +21,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    private AuthService: AuthenticationService,
-    private alertService: AlertService) {
+    private AuthService: AuthenticationService) {
      }
 
   ngOnInit() {
@@ -53,6 +51,7 @@ export class LoginComponent implements OnInit {
     .pipe(first())
     .subscribe(
       data => {
+        console.log(data);
         this.router.navigate([this.returnUrl]);
       },err =>{
         console.log(err);

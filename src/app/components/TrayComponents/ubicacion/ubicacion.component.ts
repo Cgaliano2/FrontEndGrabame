@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { TrayServices } from '../../_Services/tray.service';
-import { Ubication } from '../../models/ubication';
+import { TrayServices } from '../../../_Services/tray.service';
+import { Ubication } from '../../../models/ubication';
 
 
 

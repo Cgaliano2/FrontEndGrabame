@@ -1,8 +1,8 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
-import { TrayServices } from '../../_Services/tray.service';
+import { TrayServices } from '../../../_Services/tray.service';
 import {ActivatedRoute} from '@angular/router';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
-import { Tray } from '../../models/tray';
+import { Tray } from '../../../models/tray';
 import {Router} from '@angular/router';
 
 
@@ -40,9 +40,10 @@ constructor(
 searchByDate(term: string ) {
   
     this.trayApi.SearchDate(term).subscribe(datos => {
+       console.log(datos);
        this.Trayxdate = datos;
        this.displayedColumns = ['detalles', 'codigoqr', 'fechaIngreso'];
-       this.dataSource = new MatTableDataSource<Tray>(this.Trayxdate);
+       this.dataSource = new MatTableDataSource<Tray>(this.Trayxdate.bandejaDB);
        this.dataSource.paginator = this.paginator;
        this.error='';
 

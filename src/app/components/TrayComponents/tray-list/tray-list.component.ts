@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, Input} from '@angular/core';
-import { TrayServices } from '../../_Services/tray.service';
+import { TrayServices } from '../../../_Services/tray.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatTableDataSource, MatPaginator, MatDialog } from '@angular/material';
-import { Tray } from '../../models/tray';
+import { Tray } from '../../../models/tray';
 import * as _moment from 'moment';
 const moment = _moment;
 import {MatDatepickerInputEvent} from '@angular/material/datepicker';
@@ -62,6 +62,7 @@ import { NgModel } from '@angular/forms';
   <button mat-raised-button color="accent" (click)="obtainBarCode(codigoqr.value)">Buscar</button>
 </form>
 </mat-expansion-panel>
+
 </mat-accordion>
 <router-outlet></router-outlet>
 <div>`,
@@ -106,7 +107,7 @@ fecha = moment(this.serializedDate.value).format('YYYY-MM-DD');*/
   LoadTray() {
     return this.trayApi.getTray()
     .subscribe( data => {
-          console.log(data);
+         // console.log(data);
           this.tray = data;
           this.displayedColumns = ['detalles', 'codigoqr', 'fechaIngreso', 'ubicacion'];
           this.dataSource = new MatTableDataSource<Tray>(data);
@@ -135,7 +136,7 @@ fecha = moment(this.serializedDate.value).format('YYYY-MM-DD');*/
 obtenerFecha(fecha , event: MatDatepickerInputEvent<Date>) {
   this.events.push(`${moment(event.value).format('YYYY-MM-DD')}`);
   fecha = this.events.pop();
-  console.log(fecha);
+  //console.log(fecha);
   // this.router.navigate(['/search-date', term]);
   this.router.navigate(['search-date', fecha], {relativeTo: this.actRoute});
 }
@@ -145,7 +146,7 @@ obtenerFecha(fecha , event: MatDatepickerInputEvent<Date>) {
      this.fecha1 = moment(this.fechas[0]).format('YYYY-MM-DD');
      this.fecha2 = moment(this.fechas[1]).format('YYYY-MM-DD');
      this.consulta = this.fecha1 + '&' + this.fecha2;
-     console.log(this.consulta);
+    // console.log(this.consulta);
      this.router.navigate(['search-dateRange/', this.consulta],{relativeTo:this.actRoute});
      //this.router.navigate(['search-dateRange', this.consulta]);
      // this.router.navigate(['/'])
@@ -154,7 +155,7 @@ obtenerFecha(fecha , event: MatDatepickerInputEvent<Date>) {
 obtainBarCode(codigoqr: string) {
 
   this.codigoqr = codigoqr;
-  console.log(this.codigoqr);
+  // console.log(this.codigoqr);
   this.router.navigate(['search-barcode/', this.codigoqr], {relativeTo: this.actRoute});
 }
 }

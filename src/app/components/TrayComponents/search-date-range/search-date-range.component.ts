@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { TrayServices } from '../../_Services/tray.service';
+import { TrayServices } from '../../../_Services/tray.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
-import { Tray } from '../../models/tray';
+import { Tray } from '../../../models/tray';
 
 @Component({
   selector: 'app-search-date-range',
@@ -29,12 +29,12 @@ export class SearchDateRangeComponent implements OnInit {
 
   searchByDateRange(term) {
    this.TrayApi.getByDateRange(term).subscribe((res: {}) => {
-     // console.log(res);
-     this.Trayxdaterange = res;
-     this.displayedColumns = ['detalles', 'codigoqr', 'fechaIngreso'];
-     this.dataSource = new MatTableDataSource<Tray>(this.Trayxdaterange);
-     this.dataSource.paginator = this.paginator;
-     this.error = '';
+      console.log(res);
+      this.Trayxdaterange = res;
+      this.displayedColumns = ['detalles', 'codigoqr', 'fechaIngreso'];
+      this.dataSource = new MatTableDataSource<Tray>(this.Trayxdaterange.bandejaDB);
+      this.dataSource.paginator = this.paginator;
+      this.error = '';
 
     }, error => {
       // console.log(error);

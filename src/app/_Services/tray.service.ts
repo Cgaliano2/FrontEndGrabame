@@ -1,9 +1,8 @@
 import {Injectable} from '@angular/core';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
+import { HttpClient} from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { config } from '../../config';
-import { Ubication } from '../models/ubication';
+
 
 
 
@@ -31,8 +30,8 @@ SearchTray(id: string): Observable<any> {
     return this.http.get(`${config.apiUrl}tray/` + id);
 }
 
-SearchDate(date: string) {
-    return this.http.get(`${config.apiUrl}trays/` + date);
+SearchDate(date: string):Observable<any> {
+    return this.http.get(`${config.apiUrl}trays/dates/` + date);
 
 }
 
@@ -51,7 +50,7 @@ getChartsMontly(): Observable<any> {
     return this.http.get<any>(`${config.apiUrl}charts/monthly`);
 }
 
-getChartYearly(): Observable<any> {
+getChartYearly():Observable<any> {
 
     return this.http.get(`${config.apiUrl}charts/yearly`);
 }

@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { AlertService } from '../../_Services/alert.service';
-import { AuthenticationService } from '../../_Services/authentication.service';
-import { TrayServices } from '../../_Services/tray.service';
- 
+import { AuthenticationService } from '../../../_Services/authentication.service';
+import { TrayServices } from '../../../_Services/tray.service';
 
 
 export interface ubicacionI {
@@ -32,15 +30,9 @@ export class RegisterComponent implements OnInit {
    private formBuilder: FormBuilder,
    private router: Router,
    private Authservice: AuthenticationService,
-   private TrayApi: TrayServices,
-   private aleserv: AlertService) {
+   private TrayApi: TrayServices) {
 
    }
-
-   
-   
-  
-  
 
 ngOnInit() {
 
@@ -60,7 +52,6 @@ ngOnInit() {
   telefono:  ['', [Validators.required, Validators.minLength(6)]],
   email:    ['', Validators.required],
   ubicacion: ['', Validators.required],
-  
   });
 }
 
@@ -71,7 +62,6 @@ onSubmit() {
   this.submitted = true;
   if (this.registerForm.invalid) {
     return;
-    
   }
   console.log(this.registerForm.value);
   this.Authservice.register(this.registerForm.value).subscribe(res => {

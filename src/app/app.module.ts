@@ -1,48 +1,51 @@
 import { BrowserModule } from '@angular/platform-browser';
-//modulo HTTP para la api
+// modulo HTTP para la api
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
-///fecha
+/// fecha
 import { LOCALE_ID, NgModule } from '@angular/core';
 import locales from '@angular/common/locales/es';
 
 import {ReactiveFormsModule} from '@angular/forms';
 
-//rutas
+// rutas
 import { APP_ROUTING } from './app.routes';
-//componentes
-import { UbicacionComponent } from './components/ubicacion/ubicacion.component';
-import { SearchDateRangeComponent } from './components/search-date-range/search-date-range.component';
+// componentes
+import { UbicacionComponent } from './components/TrayComponents/ubicacion/ubicacion.component';
+import { SearchDateRangeComponent } from './components/TrayComponents/search-date-range/search-date-range.component';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavComponent } from './components/shared/nav/nav.component';
-import { TrayListComponent } from './components/tray-list/tray-list.component';
-import { TrayComponent } from './components/tray/tray.component';
+import { TrayListComponent } from './components/TrayComponents/tray-list/tray-list.component';
+import { TrayComponent } from './components/TrayComponents/tray/tray.component';
 import { registerLocaleData } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-//materiales
+// materiales
 import { MaterialModule} from './material/material.module';
-import { SearchDateComponent } from './components/search-date/search-date.component';
+import { SearchDateComponent } from './components/TrayComponents/search-date/search-date.component';
 import { VerticalTimelineModule } from 'angular-vertical-timeline';
 import { LoginComponent } from './_auth/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
+import { RegisterComponent } from './components/UserComponets/register/register.component';
 import { FormsModule } from '@angular/forms';
-import { AlertComponent } from './_directives/alert.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-//datepicker
+// datepicker
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
-//interceptor
+// interceptor
 import { JwInterceptor } from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
-import { SearchBarcodeComponent } from './components/search-barcode/search-barcode.component';
+import { SearchBarcodeComponent } from './components/TrayComponents/search-barcode/search-barcode.component';
+import { GetUsersComponent } from './components/UserComponets/get-users/get-users.component';
+import { DeleteUsersComponent } from './components/UserComponets/delete-users/delete-users.component';
+import { UpdateUsersComponent } from './components/UserComponets/update-users/update-users.component';
+import { SearchUserComponent } from './components/UserComponets/search-user/search-user.component';
+
 
 
 registerLocaleData(locales);
 @NgModule({
   declarations: [
     AppComponent,
-    AlertComponent,
     HomeComponent,
     NavComponent,
     TrayListComponent,
@@ -52,7 +55,11 @@ registerLocaleData(locales);
     RegisterComponent,
     UbicacionComponent,
     SearchDateRangeComponent,
-    SearchBarcodeComponent
+    SearchBarcodeComponent,
+    GetUsersComponent,
+    DeleteUsersComponent,
+    UpdateUsersComponent,
+    SearchUserComponent,
   ],
   imports: [
     BrowserModule,
