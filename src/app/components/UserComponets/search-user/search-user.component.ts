@@ -19,7 +19,7 @@ export class SearchUserComponent implements OnInit {
   ngOnInit() {
     this.actRoute.params.subscribe(params=>{
     const rut = (params['rut']);
-    console.log(rut);
+    // console.log(rut);
     this.searchUser(rut);
     });
 
@@ -40,7 +40,7 @@ export class SearchUserComponent implements OnInit {
 
   sendID(id:string) {
     this.updateId = id;
-    console.log(id);
+    // console.log(id);
     this.router.navigate(['update-user/', this.updateId]);
   }
 }

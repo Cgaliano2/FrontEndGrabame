@@ -1,6 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
-
 // Auth Component
 import { LoginComponent } from './_auth/login/login.component';
 // Componente Bandejas
@@ -12,14 +11,15 @@ import { SearchBarcodeComponent } from './components/TrayComponents/search-barco
 import {SearchDateComponent} from './components/TrayComponents/search-date/search-date.component';
 import { SearchTrayUserComponent } from './components/TrayComponents/search-tray-user/search-tray-user.component';
 import { TrayDateRangeUserComponent } from './components/TrayComponents/tray-date-range-user/tray-date-range-user.component';
-
-
 // User Component
 import { RegisterComponent } from './components/UserComponets/register/register.component';
 import { GetUsersComponent } from './components/UserComponets/get-users/get-users.component';
 import { SearchUserComponent } from './components/UserComponets/search-user/search-user.component';
 import { DeleteUsersComponent  } from './components/UserComponets/delete-users/delete-users.component';
 import { UpdateUsersComponent } from './components/UserComponets/update-users/update-users.component';
+// type Tray
+import { CreateTypeTrayComponent } from './components/TypeTray/create-type-tray/create-type-tray.component';
+
 
 
 
@@ -56,7 +56,9 @@ const APP_ROUTES: Routes = [
     ]},
    
     {path: 'delete-user/:rut', component: DeleteUsersComponent, canActivate: [AuthGuard]},
-    
+   // type Tray
+   
+   {path: 'register/traytype', component: CreateTypeTrayComponent, canActivate: [AuthGuard]},
      // canActivate: [AuthGuard]
     {path: '**', redirectTo: ''}
 // canActivate: [HomeGuard], canLoad: [HomeGuard]

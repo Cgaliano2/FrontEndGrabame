@@ -72,7 +72,7 @@ onSubmit() {
     this.router.navigateByUrl('/home');
   },
   error => {
-    //console.log(error);
+    // console.log(error);
     this.error = error;
     this.loading = false;
   });
