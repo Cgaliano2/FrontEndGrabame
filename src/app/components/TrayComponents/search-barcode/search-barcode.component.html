@@ -1,7 +1,7 @@
 <div class="container main-container">
     <div *ngIf="error" class="alert alert-danger mt-3 mb-0">
         {{error}}</div>
-    <table *ngIf="Trayxdaterange" mat-table class="mat-elevation-z8" [dataSource]="dataSource">
+    <table *ngIf="Trayxbarcode" mat-table class="mat-elevation-z8" [dataSource]="dataSource">
 
         <!--- Note that these columns can be defined in any order.
                   The actual rendered columns are set as a property on the row definition" -->
@@ -47,6 +47,4 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-    <mat-paginator [pageSizeOptions]="[10, 15, 20]" showFirstLastButtons></mat-paginator>
-
 </div>

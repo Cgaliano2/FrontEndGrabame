@@ -37,10 +37,12 @@ export class RegisterComponent implements OnInit {
 ngOnInit() {
 
   this.TrayApi.getUbication().subscribe(res =>{
+ 
+    this.Ubicaciones = res.ubicaciones;
+    console.log(this.Ubicaciones);
 
-    this.Ubicaciones = res;
-
-    console.log(res);
+   
+    
   });
   this.registerForm = this.formBuilder.group({
   nombre:   ['', Validators.required],
@@ -65,12 +67,13 @@ onSubmit() {
   }
   console.log(this.registerForm.value);
   this.Authservice.register(this.registerForm.value).subscribe(res => {
+    console.log(res);
     //console.log(res);
     this.router.navigateByUrl('/home');
   },
   error => {
     //console.log(error);
-    this.error = (error.message);
+    this.error = error;
     this.loading = false;
   });
 

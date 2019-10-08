@@ -12,6 +12,8 @@ export class SearchUserComponent implements OnInit {
   userByrut: any = [];
   displayedColumns: string[] = [];
   dataSource: any = [];
+  //
+  updateId:any;
   constructor(private actRoute:ActivatedRoute,private router:Router, private userApi:UserService) { }
 
   ngOnInit() {
@@ -29,10 +31,16 @@ export class SearchUserComponent implements OnInit {
     .subscribe( data => {
           console.log(data);
           this.userByrut = data;
-          this.displayedColumns = ['rut', 'nombre', 'apellidos','ubicacion'];
+          this.displayedColumns = ['rut', 'nombre', 'apellidos','ubicacion','acciones'];
           this.dataSource = new MatTableDataSource<any>(this.userByrut.usuario);
 
 
     });
+  }
+
+  sendID(id:string) {
+    this.updateId = id;
+    console.log(id);
+    this.router.navigate(['update-user/', this.updateId]);
   }
 }

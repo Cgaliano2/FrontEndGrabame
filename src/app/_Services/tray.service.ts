@@ -35,7 +35,16 @@ SearchDate(date: string):Observable<any> {
 
 }
 
+getByUser(rut: string):Observable<any>{
+    return this.http.get(`${config.apiUrl}trays/user/${rut}`);
 
+}
+
+getByDateRangeAndUser(term: string):Observable<any>{
+
+    return this.http.get(`${config.apiUrl}trays/user/dates/${term}`);
+
+}
 getUbication(): Observable<any> {
     return this.http.get(`${config.apiUrl}trays/ubications`);
 }

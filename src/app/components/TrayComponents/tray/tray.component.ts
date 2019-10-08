@@ -46,10 +46,9 @@ export class TrayComponent implements OnInit {
     });*/
 
     showOneTray(term: string ) {
-      this.trayApi.SearchTray(term).subscribe((datos: { }) => {
-            this.Tray = datos;
-            console.log(this.Tray)
-            this.TrayNumber = this.Tray.length;
+      this.trayApi.SearchTray(term).subscribe(datos=> {
+        this.Tray = datos.bandejaDB;
+        this.TrayNumber = this.Tray.length;
       });
   }
 }

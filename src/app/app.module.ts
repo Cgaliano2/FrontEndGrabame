@@ -39,6 +39,8 @@ import { GetUsersComponent } from './components/UserComponets/get-users/get-user
 import { DeleteUsersComponent } from './components/UserComponets/delete-users/delete-users.component';
 import { UpdateUsersComponent } from './components/UserComponets/update-users/update-users.component';
 import { SearchUserComponent } from './components/UserComponets/search-user/search-user.component';
+import { SearchTrayUserComponent } from './components/TrayComponents/search-tray-user/search-tray-user.component';
+import { TrayDateRangeUserComponent } from './components/TrayComponents/tray-date-range-user/tray-date-range-user.component';
 
 
 
@@ -60,6 +62,8 @@ registerLocaleData(locales);
     DeleteUsersComponent,
     UpdateUsersComponent,
     SearchUserComponent,
+    SearchTrayUserComponent,
+    TrayDateRangeUserComponent,
   ],
   imports: [
     BrowserModule,

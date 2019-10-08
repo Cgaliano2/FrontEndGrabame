@@ -62,7 +62,38 @@ import { NgModel } from '@angular/forms';
   <button mat-raised-button color="accent" (click)="obtainBarCode(codigoqr.value)">Buscar</button>
 </form>
 </mat-expansion-panel>
+<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+  <mat-expansion-panel-header>
+      <mat-panel-title>
+        Historial de Usuario
+      </mat-panel-title>
+      <mat-panel-description>
+          Escribe el rut del usuario
+      </mat-panel-description>
+  </mat-expansion-panel-header>
+  <form class="example-form2">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Rut" #rut required="true">
+  </mat-form-field>
+  <button mat-raised-button color="accent" (click)="sendRut(rut.value)">Buscar</button>
+</form>
+</mat-expansion-panel>
+<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+  <mat-expansion-panel-header>
+      <mat-panel-title>
+        Busqueda Avanzada
+      </mat-panel-title>
+      <mat-panel-description>
+          Ingresa los campos requeridos
+      </mat-panel-description>
+  </mat-expansion-panel-header>
+  <input id="dateRange2" name="rangeDate2" #input="ngModel" [(ngModel)]="!rangeDate2" type="text" bsDaterangepicker class="form-control" />
+<mat-form-field class="example-full-width">
+<input matInput placeholder="Rut" required="true" #rut2>
+</mat-form-field>
+<button mat-raised-button color="accent" (click)="searchByDateRangeAndUser(input.viewModel,rut2.value)">Buscar</button>
 
+</mat-expansion-panel>
 </mat-accordion>
 <router-outlet></router-outlet>
 <div>`,
@@ -93,10 +124,12 @@ fecha1: any;
 consulta: any;
 fecha: any;
 unArray: any = [];
-codigoqr:string;
-/*date = new FormControl(new Date().toString());
-serializedDate = new FormControl((new Date().toUTCString()));
-fecha = moment(this.serializedDate.value).format('YYYY-MM-DD');*/
+codigoqr: string;
+// busqueda por user
+rut: any;
+// busqueda por fecha y user
+RutxFecha:any;
+
 @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   events: string[] = [];
   ngOnInit() {
@@ -122,22 +155,10 @@ fecha = moment(this.serializedDate.value).format('YYYY-MM-DD');*/
    this.router.navigate(['/tray', idx]);
 
   }
-  // FILTROS----------------------------------------------------
-
-  // Filtro x Fecha
-  /*addEvent(term, event: MatDatepickerInputEvent<Date>) {
-    this.events.push(`${moment(event.value).format('YYYY-MM-DD')}`);
-    term = this.events.pop();
-
-    this.router.navigate(['/search-date', term]);
-  }
-*/
 
 obtenerFecha(fecha , event: MatDatepickerInputEvent<Date>) {
   this.events.push(`${moment(event.value).format('YYYY-MM-DD')}`);
   fecha = this.events.pop();
-  //console.log(fecha);
-  // this.router.navigate(['/search-date', term]);
   this.router.navigate(['search-date', fecha], {relativeTo: this.actRoute});
 }
   // Filtro X Rango de Fechas
@@ -146,16 +167,30 @@ obtenerFecha(fecha , event: MatDatepickerInputEvent<Date>) {
      this.fecha1 = moment(this.fechas[0]).format('YYYY-MM-DD');
      this.fecha2 = moment(this.fechas[1]).format('YYYY-MM-DD');
      this.consulta = this.fecha1 + '&' + this.fecha2;
-    // console.log(this.consulta);
-     this.router.navigate(['search-dateRange/', this.consulta],{relativeTo:this.actRoute});
-     //this.router.navigate(['search-dateRange', this.consulta]);
-     // this.router.navigate(['/'])
+     this.router.navigate(['search-dateRange/', this.consulta], {relativeTo: this.actRoute});
   }
 
 obtainBarCode(codigoqr: string) {
 
   this.codigoqr = codigoqr;
-  // console.log(this.codigoqr);
   this.router.navigate(['search-barcode/', this.codigoqr], {relativeTo: this.actRoute});
+}
+
+sendRut(rut: string) {
+ this.rut = rut;
+ this.router.navigate(['search-tray-user/', this.rut], {relativeTo: this.actRoute} );
+
+}
+
+searchByDateRangeAndUser(daterange, rut) {
+  this.rut = rut;
+  this.fechas = daterange;
+  this.fecha1 = moment(this.fechas[0]).format('YYYY-MM-DD');
+  this.fecha2 = moment(this.fechas[1]).format('YYYY-MM-DD');
+  this.RutxFecha = this.rut + '&' + this.fecha1 + '&' + this.fecha2;
+  console.log(this.RutxFecha);
+  this.router.navigate(['tray-date-range-user/', this.RutxFecha], {relativeTo: this.actRoute});
+
+
 }
 }

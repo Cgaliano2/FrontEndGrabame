@@ -40,7 +40,7 @@ constructor(
 searchByDate(term: string ) {
   
     this.trayApi.SearchDate(term).subscribe(datos => {
-       console.log(datos);
+       // console.log(datos);
        this.Trayxdate = datos;
        this.displayedColumns = ['detalles', 'codigoqr', 'fechaIngreso'];
        this.dataSource = new MatTableDataSource<Tray>(this.Trayxdate.bandejaDB);
@@ -50,7 +50,7 @@ searchByDate(term: string ) {
     },error => {
       this.Trayxdate='';
       this.error = (error);
-      console.log(this.error);
+      // console.log(this.error);
     });
 }
 

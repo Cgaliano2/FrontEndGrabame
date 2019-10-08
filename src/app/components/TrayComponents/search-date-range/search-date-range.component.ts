@@ -18,10 +18,10 @@ export class SearchDateRangeComponent implements OnInit {
 
   ngOnInit() {
     this.actRoute.params.subscribe(params => {
+      console.log(params);
       const termino: string = (params['term']);
       // console.log(termino);
       this.searchByDateRange(termino);
-    
     });
 
   }
@@ -29,7 +29,7 @@ export class SearchDateRangeComponent implements OnInit {
 
   searchByDateRange(term) {
    this.TrayApi.getByDateRange(term).subscribe((res: {}) => {
-      console.log(res);
+     // console.log(res);
       this.Trayxdaterange = res;
       this.displayedColumns = ['detalles', 'codigoqr', 'fechaIngreso'];
       this.dataSource = new MatTableDataSource<Tray>(this.Trayxdaterange.bandejaDB);
@@ -37,9 +37,9 @@ export class SearchDateRangeComponent implements OnInit {
       this.error = '';
 
     }, error => {
-      // console.log(error);
-        this.Trayxdaterange = '';
-        this.error = error;
+      this.Trayxdaterange = '';
+      this.error = (error);
+      //console.log(this.error);
     });
 
 }

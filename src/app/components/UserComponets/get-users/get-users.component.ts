@@ -90,7 +90,7 @@ export class GetUsersComponent implements OnInit {
 
   obtainRut(rut:string){
     this.rut=rut;
-    this.router.navigate(['search-user', this.rut], {relativeTo:this.actRoute});
+    this.router.navigate(['search-user/', this.rut], {relativeTo:this.actRoute});
 
   }
 }

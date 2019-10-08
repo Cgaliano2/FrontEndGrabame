@@ -26,7 +26,7 @@ export class UserService {
      return this.http.delete(`${config.apiUrl}/user/${rut}`)
  }
 
- updateUser(rut, data): Observable<any> {
-     return this.http.put(`${config.apiUrl}/${rut}`, JSON.stringify(data));
+ updateUser(id, data): Observable<any> {
+     return this.http.put(`${config.apiUrl}/${id}`, JSON.stringify(data));
  }
 }
