@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { config } from '../../config';
+import { User } from '../models/user';
 
 
 
@@ -11,7 +12,7 @@ import { config } from '../../config';
 export class UserService {
  constructor(private http: HttpClient) {}
 
-
+  
  getUsers(): Observable<any>{
 
     return this.http.get(`${config.apiUrl}users`);
@@ -26,7 +27,8 @@ export class UserService {
      return this.http.delete(`${config.apiUrl}/user/${rut}`)
  }
 
- updateUser(id, data): Observable<any> {
-     return this.http.put(`${config.apiUrl}user/${id}`, data);
+ updateUser(id, usuario:User){
+    console.log('id: '+ id, 'usuario: ' +Object.values(usuario[0])); 
+    return this.http.put<User>(`${config.apiUrl}user/${id}`, usuario[0]);
  }
 }

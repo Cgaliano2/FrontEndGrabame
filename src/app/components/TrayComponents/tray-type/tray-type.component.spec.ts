@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GetTypeTrayComponent } from './get-type-tray.component';
+import { TrayTypeComponent } from './tray-type.component';
 
-describe('GetTypeTrayComponent', () => {
-  let component: GetTypeTrayComponent;
-  let fixture: ComponentFixture<GetTypeTrayComponent>;
+describe('TrayTypeComponent', () => {
+  let component: TrayTypeComponent;
+  let fixture: ComponentFixture<TrayTypeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GetTypeTrayComponent ]
+      declarations: [ TrayTypeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GetTypeTrayComponent);
+    fixture = TestBed.createComponent(TrayTypeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

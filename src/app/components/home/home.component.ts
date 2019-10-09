@@ -102,7 +102,7 @@ this.apiService.getUbication().subscribe(datos => {
 });
 
 this.apiService.getChartDaily().subscribe(res => {
-  console.log(res);
+  // console.log(res);
   const informacion = res.cantidad
   // console.log(informacion);
   const total = informacion.pop();
@@ -115,7 +115,7 @@ this.apiService.getChartDaily().subscribe(res => {
 
 
 this.apiService.getChartYearly().subscribe(res => {
-  console.log(res);
+  // console.log(res);
   this.Anual = res;
   const total = this.Anual.cantidad.map(res => res.total);
   const anio = this.Anual.cantidad.map(res => res._id.año);

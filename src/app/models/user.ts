@@ -6,7 +6,7 @@ export class User {
   rut: string;
   password: string;
   sexo: string;
-  telofono: number;
+  telefono: number;
   rol: string;
   email: string;
   ubicacion: string;

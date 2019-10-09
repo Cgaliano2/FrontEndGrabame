@@ -14,11 +14,14 @@ export class SearchUserComponent implements OnInit {
   dataSource: any = [];
   //
   updateId:any;
+  // user
+  userDelete:any;
+  message:any;
   constructor(private actRoute:ActivatedRoute,private router:Router, private userApi:UserService) { }
 
   ngOnInit() {
     this.actRoute.params.subscribe(params=>{
-    const rut = (params['rut']);
+    const rut = (params ['rut']);
     // console.log(rut);
     this.searchUser(rut);
     });
@@ -29,18 +32,27 @@ export class SearchUserComponent implements OnInit {
   {
     return this.userApi.getUserByRut(rut)
     .subscribe( data => {
-          console.log(data);
+         // console.log(data);
           this.userByrut = data;
-          this.displayedColumns = ['rut', 'nombre', 'apellidos','ubicacion','acciones'];
+          this.displayedColumns = ['rut', 'nombre', 'apellidos', 'ubicacion', 'acciones'];
           this.dataSource = new MatTableDataSource<any>(this.userByrut.usuario);
 
 
     });
   }
 
-  sendID(id:string) {
+  sendID(id: string) {
     this.updateId = id;
     // console.log(id);
     this.router.navigate(['update-user/', this.updateId]);
+  }
+
+  deleteUser(id: string) {
+
+    this.userApi.deleteUser(id).subscribe(data => {
+      this.userDelete = data;
+      this.message = this.userDelete.message;
+      console.log(this.message);
+    });
   }
 }

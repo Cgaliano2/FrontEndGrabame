@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/_Services/user.service';
 import { TrayServices } from '../../../_Services/tray.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { User } from '../../../models/user';
 
 @Component({
   selector: 'app-update-users',
@@ -14,8 +15,9 @@ UpdateForm: FormGroup;
 Ubicaciones: any;
 UserXRut: any;
 Rut: any;
-user: any;
+user:User;
 error:any;
+id:any;
   constructor(private actRoute: ActivatedRoute,
               private UserApi: UserService,
               private router: Router,
@@ -60,17 +62,24 @@ error:any;
     .subscribe( data => {
         // console.log(data);
         this.UserXRut = data;
-        this.user = this.UserXRut;
-
-
+        this.user = this.UserXRut.usuario[0];
+        console.log(this.user);
+        this.id = this.user._id;
     });
   }
-  updateUser() {
-    if (window.confirm('Confirma los cambios')) {
-      this.UserApi.updateUser(this.Rut, this.UserXRut).subscribe(data => {
-    this.router.navigate(['get-users']);
-      }, error => {
 
+  updateUser() {
+    if (this.UpdateForm.invalid) {
+      return;
+    }
+    console.log(this.UpdateForm.value);
+    console.log(this.id);
+    if (window.confirm('Confirma los cambios')) {
+      this.UserApi.updateUser(this.id, this.UpdateForm.value)
+      .subscribe(data => {
+        console.log(data);
+      }, error => {
+        console.log(error);
         this.error = error;
       });
 

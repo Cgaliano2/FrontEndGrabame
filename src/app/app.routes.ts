@@ -19,17 +19,10 @@ import { DeleteUsersComponent  } from './components/UserComponets/delete-users/d
 import { UpdateUsersComponent } from './components/UserComponets/update-users/update-users.component';
 // type Tray
 import { CreateTypeTrayComponent } from './components/TypeTray/create-type-tray/create-type-tray.component';
-
-
-
-
-
-
-
-
-
+import { GetTypeTrayComponent } from './components/TypeTray/get-type-tray/get-type-tray.component';
 // guard
 import { AuthGuard } from './_guards/auth.guard';
+
 
 
 
@@ -59,6 +52,7 @@ const APP_ROUTES: Routes = [
    // type Tray
    
    {path: 'register/traytype', component: CreateTypeTrayComponent, canActivate: [AuthGuard]},
+   {path: 'traytype/list', component: GetTypeTrayComponent, canActivate: [AuthGuard]},
      // canActivate: [AuthGuard]
     {path: '**', redirectTo: ''}
 // canActivate: [HomeGuard], canLoad: [HomeGuard]

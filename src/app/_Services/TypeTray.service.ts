@@ -36,8 +36,8 @@ updateTypes(tipo: string): Observable<TypeTray> {
 }
 
 
-deleteTypes(date: string): Observable<any> {
-    return this.http.delete(`${config.apiUrl}trays/dates/` + date);
+deleteTypes(tipo: string): Observable<any> {
+    return this.http.delete(`${config.apiUrl}types/` + tipo);
 
 }
 

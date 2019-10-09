@@ -19,11 +19,7 @@ AllTypes: any;
       tipo: ['', [ Validators.required, Validators.maxLength(1)]],
       descripcion: ['', Validators.required],
       });
-    this.ApiService.getTypes().subscribe(data => {
-        this.AllTypes = data;
-        console.log(this.AllTypes);
-})
-
+ 
   }
 
   get f() {return this.registerType.controls; }

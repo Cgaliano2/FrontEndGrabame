@@ -41,8 +41,6 @@ ngOnInit() {
     this.Ubicaciones = res.ubicaciones;
     console.log(this.Ubicaciones);
 
-   
-    
   });
   this.registerForm = this.formBuilder.group({
   nombre:   ['', Validators.required],
@@ -65,9 +63,9 @@ onSubmit() {
   if (this.registerForm.invalid) {
     return;
   }
-  console.log(this.registerForm.value);
+ // console.log(this.registerForm.value);
   this.Authservice.register(this.registerForm.value).subscribe(res => {
-    console.log(res);
+   // console.log(res);
     //console.log(res);
     this.router.navigateByUrl('/home');
   },
