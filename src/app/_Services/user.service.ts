@@ -11,12 +11,16 @@ import { User } from '../models/user';
 })
 export class UserService {
  constructor(private http: HttpClient) {}
- httpOptions = {
+ /*httpOptions = {
    headers: new HttpHeaders({
        'content-Type': 'application/json',
-       Authorize: `Bearer ${localStorage.getItem('token')}`
+       'Access-Control-Allow-Origin':' *',
+       'Access-Control-Allow-Headers': 'X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method',
+       'Access-Control-Allow-Methods':'GET, POST, OPTIONS, PUT, DELETE',
+       'Allow': 'GET, POST, OPTIONS, PUT, DELETE'
+
    })
-};
+};*/
 
  getUsers(): Observable<any> {
 
@@ -35,7 +39,7 @@ export class UserService {
  updateUser(id: string, usuario: User): Observable<User> {
 
     console.log('id: ' + id, 'usuario: ' + usuario);
-    return this.http.put<User>(`${config.apiUrl}user/${id}`, usuario, this.httpOptions);
+    return this.http.put<User>(`${config.apiUrl}user/${id}`, usuario);
  }
  getUserByName(term: string): Observable<any> {
 console.log(term);

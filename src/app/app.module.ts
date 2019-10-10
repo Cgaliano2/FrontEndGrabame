@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 // modulo HTTP para la api
-import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpInterceptor } from '@angular/common/http';
 /// fecha
 import { LOCALE_ID, NgModule } from '@angular/core';
 import locales from '@angular/common/locales/es';
