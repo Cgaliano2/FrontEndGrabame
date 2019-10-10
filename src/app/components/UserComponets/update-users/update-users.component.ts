@@ -18,38 +18,43 @@ Rut: any;
 user: User;
 error: any;
 id: any;
-userEdited:any;
+userEdited: any;
+submitted = false;
   constructor(private actRoute: ActivatedRoute,
               private UserApi: UserService,
               private router: Router,
               private TrayApi: TrayServices,
-              private formBuilder: FormBuilder, ) { }
+              private formBuilder: FormBuilder, ){}
 
   ngOnInit() {
-
     // formulario
-
    // obtener rut
     this.actRoute.params.subscribe(params => {
-      // console.log(params);
+      console.log(params);
      this.Rut = (params.id);
-      // console.log(this.Rut);
+     // console.log(this.Rut);
      this.searchUser(this.Rut);
+  });
 
-      });
 // obtener ubicaciones
     this.TrayApi.getUbication().subscribe(res => {
         this.Ubicaciones = res.ubicaciones;
         // console.log(this.Ubicaciones);
-      });
+    });
+
     this.UpdateForm = this.formBuilder.group({
-        nombre:   ['', Validators.required],
-        apPat:    ['', Validators.required],
-        apMat:    ['', Validators.required],
-        rut:      ['', Validators.required],
-        telefono:  ['', [Validators.required, Validators.minLength(6)]],
-        email:    ['', Validators.required],
-        ubicacion: ['', Validators.required],
+      id:    ['', Validators.required],
+      ubicacion: ['', Validators.required],
+      nombre:   ['', Validators.required],
+      apPat:    ['', Validators.required],
+      apMat:    ['', Validators.required],
+      rut:      ['', Validators.required],
+      password: ['', [ Validators.required, Validators.minLength(6)]],
+      sexo:     ['', Validators.required],
+      telefono:  ['', [Validators.required, Validators.minLength(6)]],
+      email:    ['', Validators.required],
+      rol:    ['', Validators.required],
+      act: ['', Validators.required],
         });
   }
 
@@ -58,28 +63,23 @@ userEdited:any;
 
   searchUser(rut) {
     return this.UserApi.getUserByRut(rut)
-    .subscribe( data => {
-        // console.log(data);
-        this.UserXRut = data;
-        this.user = this.UserXRut.usuario;
-       // console.log(this.user);
-        this.id = this.user[0]._id;
+    .subscribe((data: {}) => {
+      console.log(data);
+      this.UserXRut = data;
+      this.user = this.UserXRut.usuarioEncontrado;
+      console.log(this.user);
+      this.id = this.user[0]._id;
+      console.log(data);
+
     });
   }
 
   updateUser() {
-   const formulario = this.UpdateForm.value;
-   this.userEdited = JSON.stringify(formulario);
-   if (window.confirm('Confirma los cambios')) {
-      this.UserApi.updateUser(this.id, this.userEdited)
-      .subscribe(data => {
-          console.log(data);
-      }, error => {
-        console.log(error);
-        this.error = error;
-      });
-
-    }
-
+     const formulario = this.UpdateForm.value;
+    // console.log(this.UpdateForm.value);
+    // this.userEdited = formulario;
+     console.log(this.user[0]);
+     this.UserApi.updateUser(this.id, this.user[0])
+      .subscribe(data => {});
   }
 }

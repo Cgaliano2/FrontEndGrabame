@@ -27,7 +27,8 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   }
    register(user: User) {
-    return this.http.post(`${config.apiUrl}user`, user);
+     console.log(user);
+     return this.http.post(`${config.apiUrl}user`, user);
   }
   login(rut: string, password: string) {
     return this.http.post<any>(`${config.apiUrl}login`, { rut, password }).
@@ -39,7 +40,7 @@ export class AuthenticationService {
       }
       return user;
     }));
-    
+
 
   }
 /*

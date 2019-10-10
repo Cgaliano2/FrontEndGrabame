@@ -36,8 +36,9 @@ export class RegisterComponent implements OnInit {
 
 ngOnInit() {
 
-  this.TrayApi.getUbication().subscribe(res =>{
- 
+  this.TrayApi.getUbication()
+  .subscribe(res => {
+
     this.Ubicaciones = res.ubicaciones;
     console.log(this.Ubicaciones);
 
@@ -58,13 +59,15 @@ ngOnInit() {
 get f() {return this.registerForm.controls; }
 
 
+
 onSubmit() {
   this.submitted = true;
   if (this.registerForm.invalid) {
     return;
   }
  // console.log(this.registerForm.value);
-  this.Authservice.register(this.registerForm.value).subscribe(res => {
+  this.Authservice.register(this.registerForm.value)
+  .subscribe(data => {
    // console.log(res);
     //console.log(res);
     this.router.navigateByUrl('/home');

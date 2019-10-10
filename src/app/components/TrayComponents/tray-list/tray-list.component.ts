@@ -43,7 +43,9 @@ import { NgModel } from '@angular/forms';
               Selecciona un Rango de Fechas
           </mat-panel-description>
       </mat-expansion-panel-header>
+      <div class="contenedor">
       <input id="rangeDate" name="rangeDate" #input="ngModel" [(ngModel)]="!rangeDate" type="text" bsDaterangepicker class="form-control" />
+      </div>
       <button mat-raised-button color="accent" (click)="obtainDate(input.viewModel)">Buscar</button>
   </mat-expansion-panel>
   <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">

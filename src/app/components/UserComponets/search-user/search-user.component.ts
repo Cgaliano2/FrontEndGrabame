@@ -21,6 +21,7 @@ export class SearchUserComponent implements OnInit {
 
   ngOnInit() {
     this.actRoute.params.subscribe(params=>{
+      console.log(params);
     const rut = (params ['rut']);
     // console.log(rut);
     this.searchUser(rut);
@@ -32,10 +33,10 @@ export class SearchUserComponent implements OnInit {
   {
     return this.userApi.getUserByRut(rut)
     .subscribe( data => {
-         // console.log(data);
+          console.log(data);
           this.userByrut = data;
           this.displayedColumns = ['rut', 'nombre', 'apellidos', 'ubicacion', 'acciones'];
-          this.dataSource = new MatTableDataSource<any>(this.userByrut.usuario);
+          this.dataSource = new MatTableDataSource<any>(this.userByrut.usuarioEncontrado);
 
 
     });

@@ -39,18 +39,18 @@ export class HomeComponent implements OnInit {
 daily: any;
 error: any;
 
-  // chart = [];
+ 
 
   constructor(private apiService: TrayServices) { }
 
-  ngOnInit() {
-this.apiService.getUbication().subscribe(datos => {
+ngOnInit() {
+  // CHART UBICACION
+  this.apiService.getUbication()
+    .subscribe(datos => {
+    const ArrayUbicaciones= Object.values(datos);
+    this.ubicaciones = ArrayUbicaciones[1];
 
-  const ArrayUbicaciones= Object.values(datos);
-  this.ubicaciones = ArrayUbicaciones[1];
-  //console.log(ArrayUbicaciones);
-
-  const gradientChartOptionsConfigurationWithTooltipBlue: any = {
+    const gradientChartOptionsConfigurationWithTooltipBlue: any = {
     maintainAspectRatio: false,
     legend: {
       display: false
@@ -101,21 +101,16 @@ this.apiService.getUbication().subscribe(datos => {
 
 });
 
-this.apiService.getChartDaily().subscribe(res => {
-  // console.log(res);
-  const informacion = res.cantidad
-  // console.log(informacion);
+  this.apiService.getChartDaily()
+.subscribe(res => {
+  const informacion = res.cantidad;
   const total = informacion.pop();
-  this.daily = total.total
-  
-
-
-  // console.log(this.daily);
+  this.daily = total.total;
 });
 
-
-this.apiService.getChartYearly().subscribe(res => {
-  // console.log(res);
+// CHART X AÑO!
+  this.apiService.getChartYearly()
+.subscribe(res => {
   this.Anual = res;
   const total = this.Anual.cantidad.map(res => res.total);
   const anio = this.Anual.cantidad.map(res => res._id.año);
@@ -123,7 +118,6 @@ this.apiService.getChartYearly().subscribe(res => {
   this.total = total;
 
 
-// chart verde
   const gradientChartOptionsConfigurationWithTooltipGreen: any = {
   maintainAspectRatio: false,
   legend: {
@@ -212,8 +206,9 @@ this.apiService.getChartYearly().subscribe(res => {
 });
 
 });
-this.apiService.getChartsMontly().subscribe(res => {
-      // console.log(res);
+// CHART CHART MENSUAL
+  this.apiService.getChartsMontly()
+.subscribe(res => {
       const Anio = res.cantidad.map(res => res._id.año);
       const Total = res.cantidad.map(res => res.total);
       const Info = res.cantidad.map(res => res._id.mes);
@@ -221,11 +216,6 @@ this.apiService.getChartsMontly().subscribe(res => {
       this.dato1 = Total;
       this.dato2 = Info;
       this.dato3 = Anio;
-
-      //console.log(this.dato1);
-      //console.log(this.dato2);
-      //console.log(this.dato3);
-
 
       const gradientChartOptionsConfigurationWithTooltipRed: any = {
       maintainAspectRatio: false,
