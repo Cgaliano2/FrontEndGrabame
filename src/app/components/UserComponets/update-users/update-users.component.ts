@@ -30,10 +30,9 @@ submitted = false;
     // formulario
    // obtener rut
     this.actRoute.params.subscribe(params => {
-      console.log(params);
-     this.Rut = (params.id);
+      this.Rut = (params.id);
      // console.log(this.Rut);
-     this.searchUser(this.Rut);
+      this.searchUser(this.Rut);
   });
 
 // obtener ubicaciones
@@ -64,12 +63,11 @@ submitted = false;
   searchUser(rut) {
     return this.UserApi.getUserByRut(rut)
     .subscribe((data: {}) => {
-      console.log(data);
       this.UserXRut = data;
-      this.user = this.UserXRut.usuarioEncontrado;
-      console.log(this.user);
+      console.log(this.UserXRut);
+      // this.id = this.UserXRut[0]._id
+      this.user = this.UserXRut.usuarioEncontrado; 
       this.id = this.user[0]._id;
-      console.log(data);
 
     });
   }
@@ -78,8 +76,9 @@ submitted = false;
      const formulario = this.UpdateForm.value;
     // console.log(this.UpdateForm.value);
     // this.userEdited = formulario;
-     console.log(this.user[0]);
-     this.UserApi.updateUser(this.id, this.user[0])
-      .subscribe(data => {});
+     this.UserApi.updateUser(this.id, formulario)
+      .subscribe(data => {
+        console.log(data);
+      });
   }
 }

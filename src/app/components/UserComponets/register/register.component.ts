@@ -65,11 +65,8 @@ onSubmit() {
   if (this.registerForm.invalid) {
     return;
   }
- // console.log(this.registerForm.value);
   this.Authservice.register(this.registerForm.value)
   .subscribe(data => {
-   // console.log(res);
-    //console.log(res);
     this.router.navigateByUrl('/home');
   },
   error => {

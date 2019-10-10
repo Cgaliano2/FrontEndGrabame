@@ -22,7 +22,8 @@ error;
 
 
   getTypes() {
-    this.ApiService.getTypes().subscribe(data => {
+    this.ApiService.getTypes()
+    .subscribe(data => {
       console.log(data);
       this.AllTypes = data;
       console.log(this.AllTypes);
@@ -30,16 +31,13 @@ error;
       this.dataSource = new MatTableDataSource<TypeTray>(this.AllTypes.detalleDB);
       this.dataSource.paginator = this.paginator;
       this.error = '';
- 
 });
-
-
-  }
+}
 
   deleteType(tipo: string) {
-    if(window.confirm('Estai seguro csm')){
-   this.ApiService.deleteTypes(tipo).subscribe(data => {
-     console.log(data);
+    if (window.confirm('¿Elimina el tipo de bandeja?')) {
+   this.ApiService.deleteTypes(tipo)
+   .subscribe(data => {
      location.reload(true);
    });
   }

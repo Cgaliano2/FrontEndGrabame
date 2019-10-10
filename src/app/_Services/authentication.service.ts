@@ -4,6 +4,7 @@ import { map} from 'rxjs/operators';
 import { User } from '../models/user';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { config } from '../../config';
+import { Localconfig } from '../../localConfig';
 
 @Injectable({
   providedIn: 'root'
@@ -30,13 +31,13 @@ export class AuthenticationService {
      console.log(user);
      return this.http.post(`${config.apiUrl}user`, user);
   }
+  
   login(rut: string, password: string) {
     return this.http.post<any>(`${config.apiUrl}login`, { rut, password }).
     pipe(map(user => {
       if (user && user.token) {
         localStorage.setItem('currentUser', JSON.stringify(user));
         this.currentUserSubject.next(user);
-
       }
       return user;
     }));

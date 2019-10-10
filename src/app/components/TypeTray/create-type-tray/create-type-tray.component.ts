@@ -19,23 +19,20 @@ AllTypes: any;
       tipo: ['', [ Validators.required, Validators.maxLength(1)]],
       descripcion: ['', Validators.required],
       });
- 
   }
 
   get f() {return this.registerType.controls; }
-
 
   onSubmit() {
     this.submitted = true;
     if (this.registerType.invalid) {
       return;
     }
-    this.ApiService.createDetails(this.registerType.value).subscribe(res => {
-     console.log(res);
+    this.ApiService.createDetails(this.registerType.value)
+    .subscribe(data => {
      this.router.navigateByUrl('/home');
     },
     error => {
-      console.log(error.message);
       this.error = error;
       this.loading = false;
     });

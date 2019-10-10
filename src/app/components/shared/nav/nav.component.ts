@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { AuthenticationService } from '../../../_Services/authentication.service';
-import { Observable } from 'rxjs';
 import { User } from '../../../models/user';
 
 @Component({
@@ -14,23 +13,16 @@ currentUser:User;
     public router: Router,
     private AuthService:AuthenticationService
   ) {
+    this.AuthService.currentUser.
+    subscribe(x =>
+      this.currentUser = x
+      );
+    }
 
-    this.AuthService.currentUser.subscribe(x => this.currentUser= x);
-   }
+  ngOnInit() {}
 
-  ngOnInit() {
-  }
-
-
-  logout(){
+  logout() {
     this.AuthService.logout();
     this.router.navigate(['/login']);
   }
-
 }
-
-
- /*this.restApi.getImageTray(termino).subscribe((data:{})=>{
-      this.imageData=data;
-      console.log(this.imageData);
-  })*/

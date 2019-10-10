@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { config } from '../../config';
 import { User } from '../models/user';
+import { Localconfig } from '../../localConfig';
+
 
 
 
@@ -24,7 +26,7 @@ export class UserService {
 
  getUsers(): Observable<any> {
 
-    return this.http.get(`${config.apiUrl}users`);
+    return this.http.get(`${Localconfig.apiUrl}users`);
  }
 
  getUserByRut(rut: string): Observable<any> {
