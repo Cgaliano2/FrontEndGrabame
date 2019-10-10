@@ -6,32 +6,32 @@
 
         <form [formGroup]="UpdateForm" (ngSubmit)="updateUser()">
 
-            <mat-card-content>
+            <mat-card-content *ngFor="let User of user">
                 <mat-form-field class="generic-fields">
-                    <input formControlName="nombre" matInput placeholder="Nombre" name="nombre" [ngClass]="{ 'is-invalid': submitted && !f.nombre.errors }">
+                    <input [(ngModel)]="User.nombre" formControlName="nombre" matInput placeholder="Nombre" name="nombre" [ngClass]="{ 'is-invalid': submitted && !f.nombre.errors }">
                     <mat-error *ngIf="!f.nombre?.errors?.required">
                         Ingrese <strong>Nombre</strong>
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field class="generic-fields">
-                    <input formControlName="apPat" [(ngModel)]="user.apPat" matInput placeholder="Apellido Paterno" name="apPat" [ngClass]="{ 'is-invalid': submitted && f.apPat.errors }">
+                    <input formControlName="apPat" [(ngModel)]="User.apPat" matInput placeholder="Apellido Paterno" name="apPat" [ngClass]="{ 'is-invalid': submitted && f.apPat.errors }">
                     <mat-error *ngIf="!f.apPat.errors">
                         ingrese <strong>Apellido</strong>
                     </mat-error>
                 </mat-form-field>
 
                 <mat-form-field class="generic-fields">
-                    <input formControlName="apMat" [(ngModel)]="user.apMat" matInput placeholder="Apellido Materno" name="apMat">
+                    <input formControlName="apMat" [(ngModel)]="User.apMat" matInput placeholder="Apellido Materno" name="apMat">
                 </mat-form-field>
 
                 <mat-form-field class="generic-fields">
-                    <input formControlName="rut" [(ngModel)]="user.rut" matInput placeholder="Rut" name="rut" [ngClass]="{ 'is-invalid': submitted && f.rut.errors }">
+                    <input formControlName="rut" [(ngModel)]="User.rut" matInput placeholder="Rut" name="rut" [ngClass]="{ 'is-invalid': submitted && f.rut.errors }">
                     <mat-error *ngIf="!f.rut.errors">
                         ingrese <strong>Rut</strong>
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field class="fields-large">
-                    <input formControlName="email" [(ngModel)]="user.email" matInput placeholder="Email" name="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                    <input formControlName="email" [(ngModel)]="User.email" matInput placeholder="Email" name="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
                     <mat-error *ngIf="!f.email.errors">
                         ingrese <strong>Email</strong>
                     </mat-error>
@@ -45,7 +45,7 @@
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field class="generic-fields">
-                    <input formControlName="telefono" [(ngModel)]="user.telefono" matInput placeholder="Teléfono" name="telefono" [ngClass]="{ 'is-invalid': submitted && f.telefono.errors }">
+                    <input formControlName="telefono" [(ngModel)]="User.telefono" matInput placeholder="Teléfono" name="telefono" [ngClass]="{ 'is-invalid': submitted && f.telefono.errors }">
                     <mat-error *ngIf="!f.telefono.errors">
                         ingrese <strong>telefono</strong>
                     </mat-error>

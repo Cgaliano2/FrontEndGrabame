@@ -15,9 +15,10 @@ UpdateForm: FormGroup;
 Ubicaciones: any;
 UserXRut: any;
 Rut: any;
-user:User;
-error:any;
-id:any;
+user: User;
+error: any;
+id: any;
+userEdited:any;
   constructor(private actRoute: ActivatedRoute,
               private UserApi: UserService,
               private router: Router,
@@ -46,8 +47,6 @@ id:any;
         apPat:    ['', Validators.required],
         apMat:    ['', Validators.required],
         rut:      ['', Validators.required],
-        password: ['', [ Validators.required, Validators.minLength(6)]],
-        sexo:     ['', Validators.required],
         telefono:  ['', [Validators.required, Validators.minLength(6)]],
         email:    ['', Validators.required],
         ubicacion: ['', Validators.required],
@@ -62,22 +61,19 @@ id:any;
     .subscribe( data => {
         // console.log(data);
         this.UserXRut = data;
-        this.user = this.UserXRut.usuario[0];
-        console.log(this.user);
-        this.id = this.user._id;
+        this.user = this.UserXRut.usuario;
+       // console.log(this.user);
+        this.id = this.user[0]._id;
     });
   }
 
   updateUser() {
-    if (this.UpdateForm.invalid) {
-      return;
-    }
-    console.log(this.UpdateForm.value);
-    console.log(this.id);
-    if (window.confirm('Confirma los cambios')) {
-      this.UserApi.updateUser(this.id, this.UpdateForm.value)
+   const formulario = this.UpdateForm.value;
+   this.userEdited = JSON.stringify(formulario);
+   if (window.confirm('Confirma los cambios')) {
+      this.UserApi.updateUser(this.id, this.userEdited)
       .subscribe(data => {
-        console.log(data);
+          console.log(data);
       }, error => {
         console.log(error);
         this.error = error;

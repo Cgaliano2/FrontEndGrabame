@@ -13,7 +13,7 @@ export class UserService {
  constructor(private http: HttpClient) {}
 
   
- getUsers(): Observable<any>{
+ getUsers(): Observable<any> {
 
     return this.http.get(`${config.apiUrl}users`);
  }
@@ -23,12 +23,17 @@ export class UserService {
     return this.http.get(`${config.apiUrl}user/${rut}`);
  }
 
- deleteUser(rut) {
-     return this.http.delete(`${config.apiUrl}/user/${rut}`)
+ deleteUser(id: number) {
+     return this.http.delete(`${config.apiUrl}user/${id}`);
  }
 
- updateUser(id, usuario:User){
-    console.log('id: '+ id, 'usuario: ' +Object.values(usuario[0])); 
-    return this.http.put<User>(`${config.apiUrl}user/${id}`, usuario[0]);
+ updateUser(id, usuario) {
+    console.log('id: '+ id, 'usuario: ' + usuario);
+    return this.http.put(`${config.apiUrl}user/${id}`, usuario);
  }
+ getUserByName(term: string):Observable<any>{
+console.log(term);
+   return this.http.get(`${config.apiUrl}user/${term}`);
+
+}
 }

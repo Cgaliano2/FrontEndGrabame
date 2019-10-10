@@ -47,12 +47,13 @@ export class SearchUserComponent implements OnInit {
     this.router.navigate(['update-user/', this.updateId]);
   }
 
-  deleteUser(id: string) {
-
+  deleteUser(id: number) {
+if(window.confirm('estas seguro de eliminar?')){
     this.userApi.deleteUser(id).subscribe(data => {
       this.userDelete = data;
       this.message = this.userDelete.message;
-      console.log(this.message);
+      console.log(data);
     });
+  }
   }
 }

@@ -17,6 +17,8 @@ import { GetUsersComponent } from './components/UserComponets/get-users/get-user
 import { SearchUserComponent } from './components/UserComponets/search-user/search-user.component';
 import { DeleteUsersComponent  } from './components/UserComponets/delete-users/delete-users.component';
 import { UpdateUsersComponent } from './components/UserComponets/update-users/update-users.component';
+import { SearchNameComponent } from './components/UserComponets/search-name/search-name.component';
+
 // type Tray
 import { CreateTypeTrayComponent } from './components/TypeTray/create-type-tray/create-type-tray.component';
 import { GetTypeTrayComponent } from './components/TypeTray/get-type-tray/get-type-tray.component';
@@ -46,6 +48,7 @@ const APP_ROUTES: Routes = [
     {path: 'update-user/:id', component: UpdateUsersComponent, canActivate: [AuthGuard]},
     {path: 'get-users', component: GetUsersComponent,children:[
     {path: 'search-user/:rut', component: SearchUserComponent, canActivate: [AuthGuard]},
+    {path: 'get-user-name/:name', component: SearchNameComponent, canActivate: [AuthGuard]},
     ]},
    
     {path: 'delete-user/:rut', component: DeleteUsersComponent, canActivate: [AuthGuard]},

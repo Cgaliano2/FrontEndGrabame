@@ -19,39 +19,32 @@ import { Router, ActivatedRoute } from '@angular/router';
       </mat-expansion-panel-header>
       <form class="example-form">
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="rut" #rut required="true">
+        <input matInput placeholder="digite Rut" #rut required="true">
       </mat-form-field>
-      <button mat-raised-button color="accent" (click)="obtainRut(rut.value)">Buscar</button>
+      <button mat-raised-button color="accent" (click)="getRut(rut.value)">Buscar</button>
     </form>
   </mat-expansion-panel>
   <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
       <mat-expansion-panel-header>
           <mat-panel-title>
-              Busqueda por rango de fechas
+              Busqueda por nombre
           </mat-panel-title>
           <mat-panel-description>
-              Selecciona un Rango de Fechas
+            ingrese el nombre completo del usuario
           </mat-panel-description>
       </mat-expansion-panel-header>
-      <input id="rangeDate" name="rangeDate" #input="ngModel" [(ngModel)]="!rangeDate" type="text" bsDaterangepicker class="form-control" />
-      <button mat-raised-button color="accent" (click)="obtainDate(input.viewModel)">Buscar</button>
-  </mat-expansion-panel>
-  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-  <mat-expansion-panel-header>
-      <mat-panel-title>
-          Busqueda por codigo QR
-      </mat-panel-title>
-      <mat-panel-description>
-          Escribe el codigo 
-      </mat-panel-description>
-  </mat-expansion-panel-header>
-  <form class="example-form">
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="CodigoQR" #codigoqr required="true">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Nombre" #nombre required="true">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+      <input matInput placeholder="Apellido Paterno" #apPat required="true">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+    <input matInput placeholder="Apellido Materno" #apMat required="true">
   </mat-form-field>
-  <button mat-raised-button color="accent" (click)="obtainBarCode(codigoqr.value)">Buscar</button>
-</form>
-</mat-expansion-panel>
+  <button mat-raised-button color="accent" (click)="getFulName(nombre.value, apPat.value,apMat.value)">Buscar</button>
+
+  </mat-expansion-panel>
 
 </mat-accordion>
 <router-outlet></router-outlet>
@@ -63,6 +56,8 @@ export class GetUsersComponent implements OnInit {
   dataSource: any = [];
   //buscar x Rut
   rut:any;
+  // buscar x Nombre
+  fullName: string;
   constructor(
     private UserApi: UserService,
     private router: Router,
@@ -88,9 +83,19 @@ export class GetUsersComponent implements OnInit {
     });
   }
 
-  obtainRut(rut:string){
+  getRut(rut:string){
     this.rut=rut;
-    this.router.navigate(['search-user/', this.rut], {relativeTo:this.actRoute});
+    this.router.navigate(['search-user', this.rut], {relativeTo:this.actRoute});
+
+  }
+
+  getFulName(nombre: any, apPat: any, apMat: any ) {
+    const NOMBRE = nombre;
+    const APPAT = apPat;
+    const APMAT = apMat;
+    this.fullName = NOMBRE + '&' + APPAT + '&' + APMAT;
+    console.log(this.fullName);
+    this.router.navigate(['get-user-name', this.fullName], {relativeTo: this.actRoute});
 
   }
 }

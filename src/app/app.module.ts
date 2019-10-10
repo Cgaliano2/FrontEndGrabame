@@ -45,6 +45,7 @@ import { GetTypeTrayComponent } from './components/TypeTray/get-type-tray/get-ty
 import { CreateTypeTrayComponent } from './components/TypeTray/create-type-tray/create-type-tray.component';
 import { DeleteTypeTrayComponent } from './components/TypeTray/delete-type-tray/delete-type-tray.component';
 import { SearchTypeTrayComponent } from './components/TypeTray/search-type-tray/search-type-tray.component';
+import { SearchNameComponent } from './components/UserComponets/search-name/search-name.component';
 
 
 
@@ -72,6 +73,7 @@ registerLocaleData(locales);
     CreateTypeTrayComponent,
     DeleteTypeTrayComponent,
     SearchTypeTrayComponent,
+    SearchNameComponent,
   ],
   imports: [
     BrowserModule,
