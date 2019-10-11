@@ -12,6 +12,8 @@ error: any;
 loading: any;
 submitted = false;
 AllTypes: any;
+res:any;
+
   constructor(private formBuilder: FormBuilder, private ApiService: TypeTrayService, private router: Router) { }
 
   ngOnInit() {
@@ -30,11 +32,9 @@ AllTypes: any;
     }
     this.ApiService.createDetails(this.registerType.value)
     .subscribe(data => {
-     this.router.navigateByUrl('/home');
-    },
-    error => {
-      this.error = error;
-      this.loading = false;
+      console.log(data);
+      this.res = data;
+      this.error = this.res.error.errors.tipo.message;
     });
   }
 }

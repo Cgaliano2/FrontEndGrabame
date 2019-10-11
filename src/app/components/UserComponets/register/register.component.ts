@@ -23,9 +23,11 @@ export class RegisterComponent implements OnInit {
   error = '';
   success = '';
   Ubicaciones: any = [];
+  res:any;
   // Activado: Act[] = [{value: true, viewValue: 'Si'}, {value: false, viewValue: 'No'}];
   // Rol: Roles[] = [{value2: 'ADMIN_ROLE', viewValue2: 'Administrador'}, {value2: 'USER_ROLE', viewValue2: 'Usuario'} ];
   value: string;
+  message: string;
   constructor(
    private formBuilder: FormBuilder,
    private router: Router,
@@ -44,15 +46,15 @@ ngOnInit() {
 
   });
   this.registerForm = this.formBuilder.group({
-  nombre:   ['', Validators.required],
-  apPat:    ['', Validators.required],
-  apMat:    ['', Validators.required],
-  rut:      ['', Validators.required],
-  password: ['', [ Validators.required, Validators.minLength(6)]],
-  sexo:     ['', Validators.required],
-  telefono:  ['', [Validators.required, Validators.minLength(6)]],
-  email:    ['', Validators.required],
-  ubicacion: ['', Validators.required],
+    ubicacion: ['', Validators.required],
+    nombre:   ['', Validators.required],
+    apPat:    ['', Validators.required],
+    apMat:    ['', Validators.required],
+    rut:      ['', Validators.required],
+    password: ['', [ Validators.required, Validators.minLength(6)]],
+    sexo:     ['', Validators.required],
+    telefono:  ['', [Validators.required, Validators.minLength(6)]],
+    email:    ['', Validators.required],
   });
 }
 
@@ -67,7 +69,9 @@ onSubmit() {
   }
   this.Authservice.register(this.registerForm.value)
   .subscribe(data => {
-    this.router.navigateByUrl('/home');
+    this.res=data;
+    this.message ='Usuario Agregado con exito!'
+    this.error='';
   },
   error => {
     // console.log(error);

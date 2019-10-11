@@ -26,7 +26,7 @@ export class UserService {
 
  getUsers(): Observable<any> {
 
-    return this.http.get(`${Localconfig.apiUrl}users`);
+    return this.http.get(`${config.apiUrl}users`);
  }
 
  getUserByRut(rut: string): Observable<any> {

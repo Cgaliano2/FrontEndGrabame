@@ -20,6 +20,8 @@ error: any;
 id: any;
 userEdited: any;
 submitted = false;
+message='';
+res:any
   constructor(private actRoute: ActivatedRoute,
               private UserApi: UserService,
               private router: Router,
@@ -42,18 +44,12 @@ submitted = false;
     });
 
     this.UpdateForm = this.formBuilder.group({
-      id:    ['', Validators.required],
       ubicacion: ['', Validators.required],
       nombre:   ['', Validators.required],
       apPat:    ['', Validators.required],
       apMat:    ['', Validators.required],
       rut:      ['', Validators.required],
-      password: ['', [ Validators.required, Validators.minLength(6)]],
-      sexo:     ['', Validators.required],
       telefono:  ['', [Validators.required, Validators.minLength(6)]],
-      email:    ['', Validators.required],
-      rol:    ['', Validators.required],
-      act: ['', Validators.required],
         });
   }
 
@@ -78,7 +74,11 @@ submitted = false;
     // this.userEdited = formulario;
      this.UserApi.updateUser(this.id, formulario)
       .subscribe(data => {
-        console.log(data);
+        this.res = data;
+        this.message = this.res.message;
+      }, error => {
+        this.message='';
+        this.error = error;
       });
   }
 }

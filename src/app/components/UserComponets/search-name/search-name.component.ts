@@ -11,6 +11,7 @@ export class SearchNameComponent implements OnInit {
   displayedColumns: string[] = [];
   dataSource: any = [];
   UserXName;
+  error: any;
   constructor(private actRoute:ActivatedRoute, private UserApi:UserService) { }
 
   ngOnInit() {
@@ -29,6 +30,7 @@ export class SearchNameComponent implements OnInit {
       this.UserXName = data;
       this.displayedColumns = ['rut', 'nombre', 'apellidos', 'ubicacion', 'acciones'];
       this.dataSource = new MatTableDataSource<any>(this.UserXName.usuario);
+      this.error = this.UserXName.message;
     });
 
   }

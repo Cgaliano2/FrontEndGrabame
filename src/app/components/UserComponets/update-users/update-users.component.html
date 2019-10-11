@@ -30,12 +30,6 @@
                         ingrese <strong>Rut</strong>
                     </mat-error>
                 </mat-form-field>
-                <mat-form-field class="fields-large">
-                    <input formControlName="email" [(ngModel)]="User.email" matInput placeholder="Email" name="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
-                    <mat-error *ngIf="!f.email.errors">
-                        ingrese <strong>Email</strong>
-                    </mat-error>
-                </mat-form-field>
                 <mat-form-field class="generic-fields">
                     <mat-label>Sucursal</mat-label>
                     <mat-select formControlName="ubicacion">
@@ -56,6 +50,9 @@
             <button mat-stroked-button color="primary" class="btn-block">Actualizar</button>
             <div *ngIf="error" class="alert alert-danger mt-3 mb-0">
                 {{error}}
+            </div>
+            <div *ngIf="res" class="alert alert-success mt-3 mb-0">
+                {{message}}
             </div>
             <a [routerLink]="['home']" class="btn btn-link">Cancel</a>
         </form>

@@ -15,7 +15,6 @@ import { TrayDateRangeUserComponent } from './components/TrayComponents/tray-dat
 import { RegisterComponent } from './components/UserComponets/register/register.component';
 import { GetUsersComponent } from './components/UserComponets/get-users/get-users.component';
 import { SearchUserComponent } from './components/UserComponets/search-user/search-user.component';
-import { DeleteUsersComponent  } from './components/UserComponets/delete-users/delete-users.component';
 import { UpdateUsersComponent } from './components/UserComponets/update-users/update-users.component';
 import { SearchNameComponent } from './components/UserComponets/search-name/search-name.component';
 
@@ -50,8 +49,7 @@ const APP_ROUTES: Routes = [
     {path: 'search-user/:rut', component: SearchUserComponent, canActivate: [AuthGuard]},
     {path: 'get-user-name/:name', component: SearchNameComponent, canActivate: [AuthGuard]},
     ]},
-   
-    {path: 'delete-user/:rut', component: DeleteUsersComponent, canActivate: [AuthGuard]},
+  
    // type Tray
    
    {path: 'register/traytype', component: CreateTypeTrayComponent, canActivate: [AuthGuard]},

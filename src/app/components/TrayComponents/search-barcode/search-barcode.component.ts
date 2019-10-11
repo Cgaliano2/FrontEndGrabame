@@ -33,14 +33,10 @@ export class SearchBarcodeComponent implements OnInit {
      console.log(res);
      this.Trayxbarcode = res;
      this.displayedColumns = ['detalles', 'codigoqr', 'fechaIngreso'];
-     this.dataSource = new MatTableDataSource<Tray>(this.Trayxbarcode);
+     this.dataSource = new MatTableDataSource<Tray>(this.Trayxbarcode.bandejaDB);
      this.dataSource.paginator = this.paginator;
-     this.error = '';
+     this.error = this.Trayxbarcode.message;
 
-  }, error => {
-    console.log(error);
-    this.Trayxbarcode = '';
-    this.error = error;
   });
 
 }

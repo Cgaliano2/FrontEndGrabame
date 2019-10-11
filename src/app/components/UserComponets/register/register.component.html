@@ -34,7 +34,7 @@
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field class="fields-large">
-                    <input formControlName="email" matInput placeholder="Email" name="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                    <input formControlName="email" matInput placeholder="Email" name="email" [ngClass]="{ 'is-invalid': submitted && !f.email.errors }">
                     <mat-error *ngIf="!f.email.errors">
                         ingrese <strong>Email</strong>
                     </mat-error>
@@ -75,9 +75,12 @@
             <div *ngIf="error" class="alert alert-danger mt-3 mb-0">
                 {{error}}
             </div>
+            <div *ngIf="res" class="alert alert-success mt-3 mb-0">
+                {{message}}
+            </div>
 
             <img *ngIf="loading" src="../../../assets/loading.gif" />
-            <a [routerLink]="['home']" class="btn btn-link">Cancel</a>
+            <a [routerLink]="['home']" class="btn btn-link">Regresar</a>
         </form>
     </mat-card>
 </div>

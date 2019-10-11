@@ -36,14 +36,12 @@ import { JwInterceptor } from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { SearchBarcodeComponent } from './components/TrayComponents/search-barcode/search-barcode.component';
 import { GetUsersComponent } from './components/UserComponets/get-users/get-users.component';
-import { DeleteUsersComponent } from './components/UserComponets/delete-users/delete-users.component';
 import { UpdateUsersComponent } from './components/UserComponets/update-users/update-users.component';
 import { SearchUserComponent } from './components/UserComponets/search-user/search-user.component';
 import { SearchTrayUserComponent } from './components/TrayComponents/search-tray-user/search-tray-user.component';
 import { TrayDateRangeUserComponent } from './components/TrayComponents/tray-date-range-user/tray-date-range-user.component';
 import { GetTypeTrayComponent } from './components/TypeTray/get-type-tray/get-type-tray.component';
 import { CreateTypeTrayComponent } from './components/TypeTray/create-type-tray/create-type-tray.component';
-import { DeleteTypeTrayComponent } from './components/TypeTray/delete-type-tray/delete-type-tray.component';
 import { SearchTypeTrayComponent } from './components/TypeTray/search-type-tray/search-type-tray.component';
 import { SearchNameComponent } from './components/UserComponets/search-name/search-name.component';
 
@@ -64,14 +62,12 @@ registerLocaleData(locales);
     SearchDateRangeComponent,
     SearchBarcodeComponent,
     GetUsersComponent,
-    DeleteUsersComponent,
     UpdateUsersComponent,
     SearchUserComponent,
     SearchTrayUserComponent,
     TrayDateRangeUserComponent,
     GetTypeTrayComponent,
     CreateTypeTrayComponent,
-    DeleteTypeTrayComponent,
     SearchTypeTrayComponent,
     SearchNameComponent,
   ],
