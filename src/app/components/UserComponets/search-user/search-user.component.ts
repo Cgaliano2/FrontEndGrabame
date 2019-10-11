@@ -33,6 +33,7 @@ export class SearchUserComponent implements OnInit {
   searchUser(rut) {
     return this.userApi.getUserByRut(rut)
     .subscribe( data => {
+          console.log(data);
           this.userByrut = data;
           this.displayedColumns = ['rut', 'nombre', 'apellidos', 'ubicacion', 'acciones'];
           this.dataSource = new MatTableDataSource<any>(this.userByrut.usuarioEncontrado);

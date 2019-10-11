@@ -14,6 +14,7 @@ export class TrayDateRangeUserComponent implements OnInit {
   dataSource: any = [];
   error;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  total: number;
   constructor(private actRoute: ActivatedRoute, private TrayApi: TrayServices, private enrutador: Router) { }
 
   ngOnInit() {
@@ -31,6 +32,13 @@ export class TrayDateRangeUserComponent implements OnInit {
        this.dataSource = new MatTableDataSource<any>(this.TrayXDateXUser.bandejas);
        this.dataSource.paginator = this.paginator;
        this.error = '';
+       const total = this.TrayXDateXUser.bandejas;
+      if (!total) {
+       this.total = 0;
+     } else {
+     const index = this.getAllIndexes(total);
+     this.total = index.length;
+    }
      }, error => {
        this.TrayXDateXUser = '';
        this.error = (error);
@@ -40,4 +48,11 @@ export class TrayDateRangeUserComponent implements OnInit {
  verBandejas(idx) {
   this.enrutador.navigate(['/tray', idx]);
  }
+ getAllIndexes(arr) {
+  let indexes = [], i: number;
+  for (i = 0; i < arr.length; i++) {
+        indexes.push(i);
+}
+  return indexes;
+}
 }

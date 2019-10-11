@@ -32,7 +32,7 @@
                 </mat-form-field>
                 <mat-form-field class="generic-fields">
                     <mat-label>Sucursal</mat-label>
-                    <mat-select formControlName="ubicacion">
+                    <mat-select formControlName="ubicacion" [(ngModel)]="User.ubicacion._id">
                         <mat-option [value]="Ubicaciones[i]._id._id" *ngFor="let ubicacion of Ubicaciones;let i =index">{{Ubicaciones[i]._id.lugar}}
                         </mat-option>
 
@@ -54,7 +54,7 @@
             <div *ngIf="res" class="alert alert-success mt-3 mb-0">
                 {{message}}
             </div>
-            <a [routerLink]="['home']" class="btn btn-link">Cancel</a>
+            <a [routerLink]="['/get-users']" class="btn btn-link">Regresar</a>
         </form>
     </mat-card>
 </div>

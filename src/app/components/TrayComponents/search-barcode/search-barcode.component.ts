@@ -14,6 +14,7 @@ export class SearchBarcodeComponent implements OnInit {
   dataSource: any = [];
   error;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  total: number;
   constructor(private TrayApi: TrayServices, private actRoute: ActivatedRoute, private enrutador: Router) { }
 
   ngOnInit() {
@@ -30,18 +31,33 @@ export class SearchBarcodeComponent implements OnInit {
 
   searchByBarcode(codigoQr: string) {
     this.TrayApi.getByBarcode(codigoQr).subscribe((res: {}) => {
-     console.log(res);
      this.Trayxbarcode = res;
      this.displayedColumns = ['detalles', 'codigoqr', 'fechaIngreso'];
      this.dataSource = new MatTableDataSource<Tray>(this.Trayxbarcode.bandejaDB);
      this.dataSource.paginator = this.paginator;
      this.error = this.Trayxbarcode.message;
+     const total = this.Trayxbarcode.bandejaDB;
+     if(!total) {
+       this.total = 0;
+     } else {
+     const index = this.getAllIndexes(total);
+     this.total = index.length;
+    }
+
 
   });
 
 }
 verBandejas(idx) {
 this.enrutador.navigate(['/tray', idx]);
+}
+
+getAllIndexes(arr) {
+  let indexes = [], i: number;
+  for (i = 0; i < arr.length; i++) {
+        indexes.push(i);
+}
+  return indexes;
 }
 
 

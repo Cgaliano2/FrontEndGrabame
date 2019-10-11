@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../../_Services/user.service';
 import { MatTableDataSource } from '@angular/material';
 
@@ -12,7 +12,9 @@ export class SearchNameComponent implements OnInit {
   dataSource: any = [];
   UserXName;
   error: any;
-  constructor(private actRoute:ActivatedRoute, private UserApi:UserService) { }
+  updateId: any;
+  userDelete: any;
+  constructor(private actRoute:ActivatedRoute, private UserApi:UserService, private router: Router) { }
 
   ngOnInit() {
 
@@ -28,11 +30,27 @@ export class SearchNameComponent implements OnInit {
     .subscribe(data => {
       console.log(data);
       this.UserXName = data;
-      this.displayedColumns = ['rut', 'nombre', 'apellidos', 'ubicacion', 'acciones'];
-      this.dataSource = new MatTableDataSource<any>(this.UserXName.usuario);
+      this.displayedColumns = ['rut', 'nombre', 'apellidos', 'acciones'];
+      this.dataSource = new MatTableDataSource<any>(this.UserXName.usuarioEncontrado);
       this.error = this.UserXName.message;
     });
 
+  }
+
+  sendID(id: string) {
+    this.updateId = id;
+    // console.log(id);
+    this.router.navigate(['update-user/', this.updateId]);
+  }
+
+  deleteUser(id: number) {
+    if(window.confirm('estas seguro de eliminar?')){
+      this.UserApi.deleteUser(id).subscribe(data => {
+      this.userDelete = data;
+      this.error = this.userDelete.message;
+      console.log(data);
+    });
+  }
   }
 
 }

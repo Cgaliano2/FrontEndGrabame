@@ -14,6 +14,7 @@ TrayXUser:any = [];
 displayedColumns: string[] = [];
 dataSource: any = [];
 @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  total: number;
   constructor(private actRoute:ActivatedRoute, private ApiService:TrayServices , private enrutador: Router) { }
 
   ngOnInit() {
@@ -33,18 +34,29 @@ dataSource: any = [];
       this.dataSource = new MatTableDataSource<any>(this.TrayXUser.bandejas);
       this.dataSource.paginator = this.paginator;
       this.error='';
-
-      
+      const total = this.TrayXUser.bandejas;
+      if (!total) {
+       this.total = 0;
+     } else {
+     const index = this.getAllIndexes(total);
+     this.total = index.length;
+    }
      }, error => {
        this.TrayXUser = '';
        this.error = error;
-       
      });
 
   }
 
-  
 verBandejas(idx) {
   this.enrutador.navigate(['/tray', idx]);
  }
+ 
+ getAllIndexes(arr) {
+  let indexes = [], i: number;
+  for (i = 0; i < arr.length; i++) {
+        indexes.push(i);
+}
+  return indexes;
+}
 }

@@ -1,7 +1,8 @@
-<div class="container main-container">
-    <div *ngIf="error" class="alert alert-danger mt-3 mb-0">
-        {{error}}</div>
-    <table *ngIf="TrayXUser" mat-table class="mat-elevation-z8" [dataSource]="dataSource">
+<div *ngIf="error" class="alert alert-danger mt-3 mb-0">
+    {{error}}</div>
+<div class="container main-container" *ngIf="!error">
+
+    <table mat-table class="mat-elevation-z8" [dataSource]="dataSource">
 
         <ng-container matColumnDef="nombre">
             <th mat-header-cell *matHeaderCellDef> Nombre </th>
@@ -46,7 +47,7 @@
     </table>
     <mat-paginator [pageSizeOptions]="[10, 15, 20]" showFirstLastButtons></mat-paginator>
 
-
+    <div *ngIf="total">Total de resultados {{total}}</div>
 </div>
 <!--
 <a  (click)="verBandejas(element._id)" class="btn btn-outline-light" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">

@@ -62,7 +62,7 @@ res:any
       this.UserXRut = data;
       console.log(this.UserXRut);
       // this.id = this.UserXRut[0]._id
-      this.user = this.UserXRut.usuarioEncontrado; 
+      this.user = this.UserXRut.usuarioEncontrado;
       this.id = this.user[0]._id;
 
     });

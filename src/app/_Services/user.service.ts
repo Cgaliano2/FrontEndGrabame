@@ -31,7 +31,7 @@ export class UserService {
 
  getUserByRut(rut: string): Observable<any> {
 
-    return this.http.get(`${config.apiUrl}user/${rut}`);
+    return this.http.get(`${config.apiUrl}user/rut/${rut}`);
  }
 
  deleteUser(id: number) {
@@ -45,7 +45,7 @@ export class UserService {
  }
  getUserByName(term: string): Observable<any> {
 console.log(term);
-return this.http.get(`${config.apiUrl}user/${term}`);
+return this.http.get(`${config.apiUrl}user/name/${term}`);
 
 }
 }

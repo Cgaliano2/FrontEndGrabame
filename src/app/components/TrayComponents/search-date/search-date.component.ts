@@ -17,6 +17,7 @@ export class SearchDateComponent implements OnInit {
   dataSource: any = [];
   error;
   success;
+  total:any;
 @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
 
@@ -28,9 +29,9 @@ constructor(
 
   ngOnInit() {
 
-    this.actRoute.params.subscribe(params => {
+    this.actRoute.params
+      .subscribe(params => {
       const termino: string = (params.term);
-     // console.log(termino);
       this.searchByDate(termino);
     });
 
@@ -39,18 +40,23 @@ constructor(
 
 searchByDate(term: string ) {
 
-    this.trayApi.SearchDate(term).subscribe(datos => {
-       console.log(datos);
-       this.Trayxdate = datos;
+    this.trayApi.SearchDate(term)
+    .subscribe(data => {
+       console.log(data);
+       this.Trayxdate = data;
        this.displayedColumns = ['detalles', 'codigoqr', 'fechaIngreso'];
        this.dataSource = new MatTableDataSource<Tray>(this.Trayxdate.bandejaDB);
        this.dataSource.paginator = this.paginator;
-       this.error = '';
-      }, error => {
-      this.Trayxdate = '';
-      this.error = (error);
-      // console.log(this.error);
-      });
+       this.error = this.Trayxdate.message;
+       const total = this.Trayxdate.bandejaDB;
+       if(!total) {
+         this.total = 0;
+       } else {
+       const index = this.getAllIndexes(total);
+       this.total = index.length;
+      }
+
+    });
 }
 
 
@@ -58,5 +64,12 @@ verBandejas(idx) {
    this.enrutador.navigate(['/tray', idx]);
   }
 
+  getAllIndexes(arr) {
+    let indexes = [], i: number;
+    for (i = 0; i < arr.length; i++) {
+          indexes.push(i);
+  }
+    return indexes;
+  }
 
 }

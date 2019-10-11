@@ -44,7 +44,7 @@ import { NgModel } from '@angular/forms';
           </mat-panel-description>
       </mat-expansion-panel-header>
       <div class="contenedor">
-      <input id="rangeDate" name="rangeDate" #input="ngModel" [(ngModel)]="!rangeDate" type="text" bsDaterangepicker class="form-control" />
+      <input id="rangeDate" name="rangeDate" #input="ngModel" [(ngModel)]="rangeDate" type="text" bsDaterangepicker class="form-control" />
       </div>
       <button mat-raised-button color="accent" (click)="obtainDate(input.viewModel)">Buscar</button>
   </mat-expansion-panel>
@@ -89,11 +89,11 @@ import { NgModel } from '@angular/forms';
           Ingresa los campos requeridos
       </mat-panel-description>
   </mat-expansion-panel-header>
-  <input id="dateRange2" name="rangeDate2" #input="ngModel" [(ngModel)]="!rangeDate2" type="text" bsDaterangepicker class="form-control" />
+  <input id="dateRange2" name="rangeDate2" #input2="ngModel" [(ngModel)]="rangeDate2" type="text" bsDaterangepicker class="form-control" />
 <mat-form-field class="example-full-width">
 <input matInput placeholder="Rut" required="true" #rut2>
 </mat-form-field>
-<button mat-raised-button color="accent" (click)="searchByDateRangeAndUser(input.viewModel,rut2.value)">Buscar</button>
+<button mat-raised-button color="accent" (click)="searchByDateRangeAndUser(input2.viewModel,rut2.value)">Buscar</button>
 
 </mat-expansion-panel>
 </mat-accordion>
@@ -165,6 +165,7 @@ obtenerFecha(fecha , event: MatDatepickerInputEvent<Date>) {
 }
   // Filtro X Rango de Fechas
   obtainDate(term) {
+     console.log(term);
      this.fechas = term;
      this.fecha1 = moment(this.fechas[0]).format('YYYY-MM-DD');
      this.fecha2 = moment(this.fechas[1]).format('YYYY-MM-DD');
