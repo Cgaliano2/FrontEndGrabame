@@ -7,12 +7,12 @@ body {
 }
 
 body {
-    background-image: url(http://smarthub.cl/images/polygon-bg.svg);
+    background: linear-gradient(#1e1e2f, #1e1e24);
     background-position: center;
     background-size: 2500px;
     background-repeat: no-repeat;
     min-height: 100vh;
-    font-family: 'Roboto', sans-serif;
+    margin: 0;
 }
 
 .app-header {
@@ -41,7 +41,7 @@ body {
 }
 
 .mat-drawer .mat-drawer-inner-container .mat-list-base {
-    padding-top: 70px;
+    padding-top: 0px;
     display: block;
     -webkit-tap-highlight-color: transparent;
 }
@@ -61,7 +61,6 @@ body {
     text-decoration: none;
     color: #ffffff;
     width: 120px;
-    margin-left: 30%
 }
 
 .logox {
@@ -354,7 +353,7 @@ mat-accordion {
 }
 
 .main-container {
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 

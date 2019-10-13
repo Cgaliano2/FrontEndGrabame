@@ -14,7 +14,6 @@ import { UbicacionComponent } from './components/TrayComponents/ubicacion/ubicac
 import { SearchDateRangeComponent } from './components/TrayComponents/search-date-range/search-date-range.component';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
-import { NavComponent } from './components/shared/nav/nav.component';
 import { TrayListComponent } from './components/TrayComponents/tray-list/tray-list.component';
 import { TrayComponent } from './components/TrayComponents/tray/tray.component';
 import { registerLocaleData } from '@angular/common';
@@ -44,6 +43,13 @@ import { GetTypeTrayComponent } from './components/TypeTray/get-type-tray/get-ty
 import { CreateTypeTrayComponent } from './components/TypeTray/create-type-tray/create-type-tray.component';
 import { SearchTypeTrayComponent } from './components/TypeTray/search-type-tray/search-type-tray.component';
 import { SearchNameComponent } from './components/UserComponets/search-name/search-name.component';
+import { MainNavComponent } from './components/shared/main-nav/main-nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 
 
 
@@ -52,7 +58,6 @@ registerLocaleData(locales);
   declarations: [
     AppComponent,
     HomeComponent,
-    NavComponent,
     TrayListComponent,
     TrayComponent,
     SearchDateComponent,
@@ -70,6 +75,7 @@ registerLocaleData(locales);
     CreateTypeTrayComponent,
     SearchTypeTrayComponent,
     SearchNameComponent,
+    MainNavComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,7 +87,13 @@ registerLocaleData(locales);
     VerticalTimelineModule,
     FormsModule,
     NgbModule,
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule
 
 
   ],
