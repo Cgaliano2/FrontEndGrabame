@@ -27,6 +27,7 @@ import { LoginComponent } from './_auth/login/login.component';
 import { RegisterComponent } from './components/UserComponets/register/register.component';
 import { FormsModule } from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 // datepicker
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
@@ -41,7 +42,6 @@ import { SearchTrayUserComponent } from './components/TrayComponents/search-tray
 import { TrayDateRangeUserComponent } from './components/TrayComponents/tray-date-range-user/tray-date-range-user.component';
 import { GetTypeTrayComponent } from './components/TypeTray/get-type-tray/get-type-tray.component';
 import { CreateTypeTrayComponent } from './components/TypeTray/create-type-tray/create-type-tray.component';
-import { SearchTypeTrayComponent } from './components/TypeTray/search-type-tray/search-type-tray.component';
 import { SearchNameComponent } from './components/UserComponets/search-name/search-name.component';
 import { MainNavComponent } from './components/shared/main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -50,6 +50,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { UbicationListComponent } from './components/UbicationComponents/ubication-list/ubication-list.component';
+import { CreateUbicationsComponent } from './components/UbicationComponents/create-ubications/create-ubications.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 
 
 
@@ -73,9 +77,10 @@ registerLocaleData(locales);
     TrayDateRangeUserComponent,
     GetTypeTrayComponent,
     CreateTypeTrayComponent,
-    SearchTypeTrayComponent,
     SearchNameComponent,
     MainNavComponent,
+    UbicationListComponent,
+    CreateUbicationsComponent,
   ],
   imports: [
     BrowserModule,
@@ -93,7 +98,9 @@ registerLocaleData(locales);
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatPaginatorModule
+
 
 
   ],

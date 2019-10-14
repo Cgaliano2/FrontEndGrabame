@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TrayServices } from '../../../_Services/tray.service';
 import {ActivatedRoute} from '@angular/router';
-import { MatTableDataSource, MatPaginator } from '@angular/material';
+import { MatTableDataSource} from '@angular/material';
+import {MatPaginator } from '@angular/material/paginator';
 import { Tray } from '../../../models/tray';
 import {Router} from '@angular/router';
 
@@ -18,20 +19,19 @@ export class SearchDateComponent implements OnInit {
   error;
   success;
   total:any;
-@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-
 
 constructor(
     private trayApi: TrayServices,
     private actRoute: ActivatedRoute,
     private enrutador: Router
     ) { }
-
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   ngOnInit() {
-
+  
     this.actRoute.params
       .subscribe(params => {
       const termino: string = (params.term);
+      this.displayedColumns = ['detalles', 'codigoqr', 'fechaIngreso'];
       this.searchByDate(termino);
     });
 
@@ -42,13 +42,13 @@ searchByDate(term: string ) {
 
     this.trayApi.SearchDate(term)
     .subscribe(data => {
-       console.log(data);
-       this.Trayxdate = data;
-       this.displayedColumns = ['detalles', 'codigoqr', 'fechaIngreso'];
-       this.dataSource = new MatTableDataSource<Tray>(this.Trayxdate.bandejaDB);
+       const datos = data;
+       // console.log(datos);
+       this.Trayxdate = datos.bandejaDB;
+       this.dataSource = new MatTableDataSource(this.Trayxdate);
        this.dataSource.paginator = this.paginator;
-       this.error = this.Trayxdate.message;
-       const total = this.Trayxdate.bandejaDB;
+       this.error = datos.message;
+       const total = this.Trayxdate;
        if(!total) {
          this.total = 0;
        } else {

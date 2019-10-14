@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TrayTypeComponent } from './tray-type.component';
+import { UbicationListComponent } from './ubication-list.component';
 
-describe('TrayTypeComponent', () => {
-  let component: TrayTypeComponent;
-  let fixture: ComponentFixture<TrayTypeComponent>;
+describe('UbicationListComponent', () => {
+  let component: UbicationListComponent;
+  let fixture: ComponentFixture<UbicationListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TrayTypeComponent ]
+      declarations: [ UbicationListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TrayTypeComponent);
+    fixture = TestBed.createComponent(UbicationListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,65 @@
+import { Component, OnInit } from '@angular/core';
+import { UbicationService } from '../../../_Services/ubication.service';
+import { Route, Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+@Component({
+  selector: 'app-create-ubications',
+  templateUrl: './create-ubications.component.html',
+  styleUrls: ['./create-ubications.component.css']
+})
+export class CreateUbicationsComponent implements OnInit {
+  registerType: FormGroup;
+  message: any;
+  loading: any;
+  submitted = false;
+  AllTypes: any;
+  res:any;
+  idUbication: any;
+  error;
+  constructor(private formBuilder: FormBuilder,
+              private ApiService: UbicationService,
+              private router: Router,
+              private actRoute:ActivatedRoute) { }
+
+  ngOnInit() {
+    this.actRoute.params.subscribe(params=>{
+      this.idUbication= params.id;
+    });
+    this.registerType = this.formBuilder.group({
+      lugar: ['', [ Validators.required, Validators.minLength(5)]]
+      });
+  }
+  get f() {return this.registerType.controls; }
+
+  onSubmit() {
+    this.submitted = true;
+    if (this.registerType.invalid) {
+      return;
+    }
+    this.ApiService.createUbications(this.registerType.value)
+    .subscribe(data => {
+     // console.log(data);
+      this.res = data;
+      if(this.res.ok===true)
+      {
+        this.message = 'Ubicacion registrada con exito';
+      }
+    
+    });
+  }
+
+  updateUser() {
+    const formulario = this.registerType.value;
+   // console.log(this.UpdateForm.value);
+   // this.userEdited = formulario;
+    this.ApiService.updateUbication(this.idUbication, formulario)
+     .subscribe(data => {
+       this.res = data;
+       this.message = this.res.message;
+     }, error => {
+       this.message='';
+       this.error = error;
+     });
+ }
+}

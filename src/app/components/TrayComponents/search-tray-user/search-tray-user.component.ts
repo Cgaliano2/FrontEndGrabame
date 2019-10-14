@@ -13,7 +13,7 @@ error;
 TrayXUser:any = []; 
 displayedColumns: string[] = [];
 dataSource: any = [];
-@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+@ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   total: number;
   constructor(private actRoute:ActivatedRoute, private ApiService:TrayServices , private enrutador: Router) { }
 
@@ -28,7 +28,7 @@ dataSource: any = [];
 
   getByUser(rut: string) {
     this.ApiService.getByUser(rut).subscribe(datos => {
-      console.log(datos);
+      // console.log(datos);
       this.TrayXUser = datos;
       this.displayedColumns = ['detalles', 'codigoqr', 'fechaIngreso','nombre'];
       this.dataSource = new MatTableDataSource<any>(this.TrayXUser.bandejas);

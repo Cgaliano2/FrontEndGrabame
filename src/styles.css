@@ -7,9 +7,9 @@ body {
 }
 
 body {
-    background: linear-gradient(#1e1e2f, #1e1e24);
+    background: linear-gradient(#0084ff, #00398f);
     background-position: center;
-    background-size: 2500px;
+    background-size: 50000px;
     background-repeat: no-repeat;
     min-height: 100vh;
     margin: 0;
@@ -344,7 +344,7 @@ mat-form-field {
 
 table {
     width: 100%;
-    margin-top: 8%
+    margin-top: 0%
 }
 
 mat-accordion {

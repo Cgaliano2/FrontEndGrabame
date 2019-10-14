@@ -16,6 +16,8 @@ export class TrayComponent implements OnInit {
     displayedColumns: string[] = [];
     dataSource: any = [];
     TrayNumber: any = [];
+    sucursal:any;
+
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   constructor(private actRoute: ActivatedRoute,
@@ -47,7 +49,9 @@ export class TrayComponent implements OnInit {
 
     showOneTray(term: string ) {
       this.trayApi.SearchTray(term).subscribe(datos=> {
+        console.log(datos);
         this.Tray = datos.bandejaDB;
+        this.sucursal = this.Tray.ubicacion.lugar;
         this.TrayNumber = this.Tray.length;
       });
   }

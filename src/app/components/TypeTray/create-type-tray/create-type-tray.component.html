@@ -23,12 +23,12 @@
             </mat-card-content>
 
             <button [disabled]="loading" mat-stroked-button color="primary" class="btn-block">Register</button>
-            <div *ngIf="error" class="alert alert-danger mt-3 mb-0">
-                {{error}}
+            <div *ngIf="message" class="alert alert-success mt-3 mb-0">
+                {{message}}
             </div>
 
             <img *ngIf="loading" src="../../../assets/loading.gif" />
-            <a [routerLink]="['home']" class="btn btn-link">Cancel</a>
+            <a [routerLink]="['traytype/list']" class="btn btn-link">volver</a>
         </form>
     </mat-card>
 </div>

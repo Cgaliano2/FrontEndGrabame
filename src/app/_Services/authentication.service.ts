@@ -28,7 +28,6 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   }
    register(user: User) {
-     console.log(user);
      return this.http.post(`${config.apiUrl}user`, user);
   }
   

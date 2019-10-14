@@ -17,12 +17,16 @@ import { GetUsersComponent } from './components/UserComponets/get-users/get-user
 import { SearchUserComponent } from './components/UserComponets/search-user/search-user.component';
 import { UpdateUsersComponent } from './components/UserComponets/update-users/update-users.component';
 import { SearchNameComponent } from './components/UserComponets/search-name/search-name.component';
+// Ubications
+import { UbicationListComponent } from './components/UbicationComponents/ubication-list/ubication-list.component';
+
 
 // type Tray
 import { CreateTypeTrayComponent } from './components/TypeTray/create-type-tray/create-type-tray.component';
 import { GetTypeTrayComponent } from './components/TypeTray/get-type-tray/get-type-tray.component';
 // guard
 import { AuthGuard } from './_guards/auth.guard';
+import { CreateUbicationsComponent } from './components/UbicationComponents/create-ubications/create-ubications.component';
 
 
 
@@ -30,8 +34,9 @@ import { AuthGuard } from './_guards/auth.guard';
 const APP_ROUTES: Routes = [
 
     {path: '', component: HomeComponent, canActivate: [AuthGuard] }, // canActivate: [AuthGuard]
+    // login
     {path: 'login', component: LoginComponent},
-    
+    // Tray
     {path: 'tray-list',  canActivate: [AuthGuard], component: TrayListComponent,
     children: [
     {path: 'search-date/:term', component: SearchDateComponent, canActivate: [AuthGuard]},
@@ -49,7 +54,10 @@ const APP_ROUTES: Routes = [
     {path: 'search-user/:rut', component: SearchUserComponent, canActivate: [AuthGuard]},
     {path: 'get-user-name/:name', component: SearchNameComponent, canActivate: [AuthGuard]},
     ]},
-  
+    // ubication
+    {path: 'ubication-list', component: UbicationListComponent, canActivate: [AuthGuard]},
+    {path: 'create-ubication', component: CreateUbicationsComponent, canActivate: [AuthGuard]},
+    {path: 'edit-ubication/:id', component: CreateUbicationsComponent, canActivate: [AuthGuard]},
    // type Tray
    
    {path: 'register/traytype', component: CreateTypeTrayComponent, canActivate: [AuthGuard]},

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../../../_Services/authentication.service';
 import { TrayServices } from '../../../_Services/tray.service';
+import { UbicationService } from '../../../_Services/ubication.service';
 
 
 export interface ubicacionI {
@@ -22,29 +23,31 @@ export class RegisterComponent implements OnInit {
   submitted = false;
   error = '';
   success = '';
-  Ubicaciones: any = [];
   res:any;
   // Activado: Act[] = [{value: true, viewValue: 'Si'}, {value: false, viewValue: 'No'}];
   // Rol: Roles[] = [{value2: 'ADMIN_ROLE', viewValue2: 'Administrador'}, {value2: 'USER_ROLE', viewValue2: 'Usuario'} ];
   value: string;
   message: string;
+  Ubicaciones: any;
   constructor(
    private formBuilder: FormBuilder,
    private router: Router,
    private Authservice: AuthenticationService,
-   private TrayApi: TrayServices) {
+   private TrayApi: TrayServices,
+   private UbicationApi:UbicationService) {
 
    }
 
 ngOnInit() {
 
-  this.TrayApi.getUbication()
+  this.UbicationApi.getUbications2()
   .subscribe(res => {
-
-    this.Ubicaciones = res.ubicaciones;
-    console.log(this.Ubicaciones);
+    const sucursal = Object.values(res);
+    this.Ubicaciones = sucursal[1];
+    
 
   });
+
   this.registerForm = this.formBuilder.group({
     ubicacion: ['', Validators.required],
     nombre:   ['', Validators.required],
@@ -52,6 +55,7 @@ ngOnInit() {
     apMat:    ['', Validators.required],
     rut:      ['', Validators.required],
     password: ['', [ Validators.required, Validators.minLength(6)]],
+    confirmpassword:['',Validators.required,{validator:this.checkPasswords}],
     sexo:     ['', Validators.required],
     telefono:  ['', [Validators.required, Validators.minLength(6)]],
     email:    ['', Validators.required],
@@ -69,9 +73,9 @@ onSubmit() {
   }
   this.Authservice.register(this.registerForm.value)
   .subscribe(data => {
-    this.res=data;
-    this.message ='Usuario Agregado con exito!'
-    this.error='';
+    this.res = data;
+    this.message = 'Usuario Agregado con exito!';
+    this.error = '';
   },
   error => {
     // console.log(error);
@@ -80,6 +84,15 @@ onSubmit() {
   });
 
 }
+
+
+checkPasswords(group: FormGroup) { // here we have the 'passwords' group
+  let pass = group.get('password').value;
+  let confirmPass = group.get('confirmPass').value;
+
+  return pass === confirmPass ? null : { notSame: true };
+}
+
 
 }
 

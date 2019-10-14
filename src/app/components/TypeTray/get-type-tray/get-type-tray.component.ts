@@ -24,9 +24,9 @@ error;
   getTypes() {
     this.ApiService.getTypes()
     .subscribe(data => {
-      console.log(data);
+      // console.log(data);
       this.AllTypes = data;
-      console.log(this.AllTypes);
+      // console.log(this.AllTypes);
       this.displayedColumns = ['tipo', 'detalles', 'acciones'];
       this.dataSource = new MatTableDataSource<TypeTray>(this.AllTypes.detalleDB);
       this.dataSource.paginator = this.paginator;

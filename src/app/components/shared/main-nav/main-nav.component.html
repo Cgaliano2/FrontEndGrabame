@@ -1,5 +1,5 @@
 <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    <mat-sidenav *ngIf="currentUser" #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
         <mat-toolbar class="menu">
             <div class="logox"><img src="../../../../assets/logo-light.png" alt="" class="positronx"></div>
         </mat-toolbar>
@@ -14,6 +14,11 @@
                         <p>Gestionar Tipos</p>
                     </a>
                 </mat-list-item>
+                <mat-list-item role="listitem">
+                    <a class="links" [routerLink]="['register/traytype']" mat-list-item>
+                        <p>Registrar Tipo</p>
+                    </a>
+                </mat-list-item>
             </mat-list>
             <h5 class="titles"> <i class="material-icons">
               supervised_user_circle
@@ -22,6 +27,14 @@
                 <mat-list-item role="listitem"><a class="links" [routerLink]="['register']" routerLinkActive="active" mat-list-item>Registrar</a></mat-list-item>
 
                 <mat-list-item role="listitem"> <a class="links" [routerLink]="['get-users']" mat-list-item>Busqueda</a></mat-list-item>
+            </mat-list>
+            <h5 class="titles"> <i class="material-icons">
+                business
+                </i>Sucursales</h5>
+            <mat-list class="lista" role="list">
+                <mat-list-item role="listitem"><a class="links" [routerLink]="['ubication-list']" routerLinkActive="active" mat-list-item>Ver Sucursales</a></mat-list-item>
+
+                <mat-list-item role="listitem"><a class="links" [routerLink]="['create-ubication']" routerLinkActive="active" mat-list-item>Registrar</a></mat-list-item>
             </mat-list>
         </mat-nav-list>
     </mat-sidenav>

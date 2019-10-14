@@ -28,7 +28,7 @@ export class SearchNameComponent implements OnInit {
   getUser(fullname: string) {
     this.UserApi.getUserByName(fullname)
     .subscribe(data => {
-      console.log(data);
+      // console.log(data);
       this.UserXName = data;
       this.displayedColumns = ['rut', 'nombre', 'apellidos', 'acciones'];
       this.dataSource = new MatTableDataSource<any>(this.UserXName.usuarioEncontrado);

@@ -1,4 +1,4 @@
-<div class=login-wrapper2 fxLayout="row" fxLayoutAlign="center center">
+<div class=login-wrapper3 fxLayout="row" fxLayoutAlign="center center">
     <mat-card class="box3">
         <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
@@ -14,7 +14,10 @@
             </div>
 
             <div class=" card-body">
-                <div class=" chart-area"><strong>Subida el:</strong> {{Tray.fechaIngreso | date:'fullDate'}}</div>
+                <div class=" chart-area"><strong>Subida el:</strong> {{Tray.fechaIngreso |date:'fullDate':'+0000'}}</div>
+            </div>
+            <div class=" card-body">
+                <div class=" chart-area"><strong>sucursal:</strong> {{sucursal}}</div>
             </div>
         </mat-card-content>
         <mat-card-actions>

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SearchTypeTrayComponent } from './search-type-tray.component';
+import { CreateUbicationsComponent } from './create-ubications.component';
 
-describe('SearchTypeTrayComponent', () => {
-  let component: SearchTypeTrayComponent;
-  let fixture: ComponentFixture<SearchTypeTrayComponent>;
+describe('CreateUbicationsComponent', () => {
+  let component: CreateUbicationsComponent;
+  let fixture: ComponentFixture<CreateUbicationsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SearchTypeTrayComponent ]
+      declarations: [ CreateUbicationsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SearchTypeTrayComponent);
+    fixture = TestBed.createComponent(CreateUbicationsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

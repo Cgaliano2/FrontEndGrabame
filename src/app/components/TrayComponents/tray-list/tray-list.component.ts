@@ -116,10 +116,10 @@ constructor(
   ) {
   }
   // Mostrar Bandejas
-tray: any = [];
-displayedColumns: string[] = [];
-dataSource: any = [];
-// Filtros
+ tray: any = [];
+ displayedColumns: string[] = [];
+ dataSource: any = [];
+ Filtros
 fechas: any;
 fecha2: any;
 fecha1: any;
@@ -135,9 +135,8 @@ RutxFecha:any;
 @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   events: string[] = [];
   ngOnInit() {
-   this.LoadTray();
-
   }
+  
   // Cargar bandejas
   LoadTray() {
     return this.trayApi.getTray()
@@ -147,6 +146,7 @@ RutxFecha:any;
           this.displayedColumns = ['detalles', 'codigoqr', 'fechaIngreso', 'ubicacion'];
           this.dataSource = new MatTableDataSource<Tray>(data);
           this.dataSource.paginator = this.paginator;
+         
 
 
     });
@@ -165,7 +165,7 @@ obtenerFecha(fecha , event: MatDatepickerInputEvent<Date>) {
 }
   // Filtro X Rango de Fechas
   obtainDate(term) {
-     console.log(term);
+     // console.log(term);
      this.fechas = term;
      this.fecha1 = moment(this.fechas[0]).format('YYYY-MM-DD');
      this.fecha2 = moment(this.fechas[1]).format('YYYY-MM-DD');
@@ -191,7 +191,7 @@ searchByDateRangeAndUser(daterange, rut) {
   this.fecha1 = moment(this.fechas[0]).format('YYYY-MM-DD');
   this.fecha2 = moment(this.fechas[1]).format('YYYY-MM-DD');
   this.RutxFecha = this.rut + '&' + this.fecha1 + '&' + this.fecha2;
-  console.log(this.RutxFecha);
+  // console.log(this.RutxFecha);
   this.router.navigate(['tray-date-range-user/', this.RutxFecha], {relativeTo: this.actRoute});
 
 

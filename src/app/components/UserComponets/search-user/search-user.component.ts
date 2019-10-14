@@ -22,7 +22,7 @@ export class SearchUserComponent implements OnInit {
 
   ngOnInit() {
     this.actRoute.params.subscribe(params  =>  {
-      console.log(params);
+      // console.log(params);
       const rut = (params ['rut']);
       // console.log(rut);
       this.searchUser(rut);

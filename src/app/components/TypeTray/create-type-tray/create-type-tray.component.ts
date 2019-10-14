@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class CreateTypeTrayComponent implements OnInit {
 registerType: FormGroup;
-error: any;
+message: any;
 loading: any;
 submitted = false;
 AllTypes: any;
@@ -34,7 +34,11 @@ res:any;
     .subscribe(data => {
       console.log(data);
       this.res = data;
-      this.error = this.res.error.errors.tipo.message;
+      if(this.res.success===true)
+      {
+        this.message = 'bandeja guardada con exito';
+      }
+      
     });
   }
 }

@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   dato2: any;
   dato3: any;
   // Ubicaciones
-  ubicaciones: any = [];
+  Ubicaciones: any = [];
   // chart x año
   Anual: any = [];
   anio: any;
@@ -39,7 +39,6 @@ export class HomeComponent implements OnInit {
 daily: any;
 error: any;
 
- 
 
   constructor(private apiService: TrayServices) { }
 
@@ -47,8 +46,9 @@ ngOnInit() {
   // CHART UBICACION
   this.apiService.getUbication()
     .subscribe(datos => {
-    const ArrayUbicaciones= Object.values(datos);
-    this.ubicaciones = ArrayUbicaciones[1];
+    this.Ubicaciones = datos.ubicaciones;
+    
+  
 
     const gradientChartOptionsConfigurationWithTooltipBlue: any = {
     maintainAspectRatio: false,
@@ -209,6 +209,7 @@ ngOnInit() {
 // CHART CHART MENSUAL
   this.apiService.getChartsMontly()
 .subscribe(res => {
+
       const Anio = res.cantidad.map(res => res._id.año);
       const Total = res.cantidad.map(res => res.total);
       const Info = res.cantidad.map(res => res._id.mes);

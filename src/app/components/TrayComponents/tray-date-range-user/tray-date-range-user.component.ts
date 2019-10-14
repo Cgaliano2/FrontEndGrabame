@@ -13,38 +13,39 @@ export class TrayDateRangeUserComponent implements OnInit {
   displayedColumns: string[] = [];
   dataSource: any = [];
   error;
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   total: number;
   constructor(private actRoute: ActivatedRoute, private TrayApi: TrayServices, private enrutador: Router) { }
 
   ngOnInit() {
     this.actRoute.params.subscribe(params => {
       const termino: string = (params.termino);
+      this.displayedColumns = ['detalles', 'codigoqr', 'fechaIngreso'];
       this.searchByUserAndDateRange(termino);
     });
 
   }
   searchByUserAndDateRange(term) {
-    this.TrayApi.getByDateRangeAndUser(term).subscribe((res: {}) => {
-      // console.log(res);
-       this.TrayXDateXUser = res;
-       this.displayedColumns = ['detalles', 'codigoqr', 'fechaIngreso'];
-       this.dataSource = new MatTableDataSource<any>(this.TrayXDateXUser.bandejas);
-       this.dataSource.paginator = this.paginator;
-       this.error = '';
-       const total = this.TrayXDateXUser.bandejas;
-      if (!total) {
-       this.total = 0;
-     } else {
+    this.TrayApi.getByDateRangeAndUser(term).subscribe(datos => {
+     const data = datos;
+     this.TrayXDateXUser = data.bandejas;
+     this.dataSource = new MatTableDataSource(this.TrayXDateXUser);
+     this.dataSource.paginator = this.paginator;
+     this.error = '';
+     const total = this.TrayXDateXUser;
+     if (!total) {
+         this.total = 0;
+        } else {
      const index = this.getAllIndexes(total);
      this.total = index.length;
-    }
-     }, error => {
-       this.TrayXDateXUser = '';
-       this.error = (error);
-       // console.log(this.error);
-     });
- }
+}
+}, error => {
+ this.TrayXDateXUser = '';
+ this.error = (error);
+ // console.log(this.error);
+});
+  }
+ 
  verBandejas(idx) {
   this.enrutador.navigate(['/tray', idx]);
  }

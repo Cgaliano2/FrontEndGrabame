@@ -39,8 +39,8 @@
                     <mat-form-field>
                         <mat-label>Sucursal</mat-label>
                         <mat-select [formControl]="ubicacionControl">
-                            <mat-option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion">
-                                {{ubicacion._id.lugar}}
+                            <mat-option [value]="Ubicaciones[i]._id._id" *ngFor="let ubicacion of Ubicaciones;let i =index">
+
                             </mat-option>
                         </mat-select>
 
