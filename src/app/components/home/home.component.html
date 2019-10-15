@@ -39,17 +39,15 @@
                     <mat-form-field>
                         <mat-label>Sucursal</mat-label>
                         <mat-select [formControl]="ubicacionControl">
-                            <mat-option [value]="Ubicaciones[i]._id._id" *ngFor="let ubicacion of Ubicaciones;let i =index">
-
+                            <mat-option *ngFor="let sucursal of ubicaciones;let i = index" [value]="sucursal">
+                                {{ubicaciones[i]}}
                             </mat-option>
                         </mat-select>
-
-
                     </mat-form-field>
                 </div>
                 <div class=" card-body">
 
-                    <div class=" chart-area">{{ubicacionControl.value?.total}} Bandejas subidas<canvas *ngIf="false" id="CountryChart"> </canvas></div>
+                    <div class=" chart-area"> {{ubicacionControl.value?.total}} Bandejas subidas<canvas *ngIf="false" id="CountryChart"> </canvas></div>
 
                 </div>
             </div>

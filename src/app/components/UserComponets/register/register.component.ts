@@ -44,7 +44,7 @@ ngOnInit() {
   .subscribe(res => {
     const sucursal = Object.values(res);
     this.Ubicaciones = sucursal[1];
-    
+
 
   });
 
@@ -55,7 +55,6 @@ ngOnInit() {
     apMat:    ['', Validators.required],
     rut:      ['', Validators.required],
     password: ['', [ Validators.required, Validators.minLength(6)]],
-    confirmpassword:['',Validators.required,{validator:this.checkPasswords}],
     sexo:     ['', Validators.required],
     telefono:  ['', [Validators.required, Validators.minLength(6)]],
     email:    ['', Validators.required],
@@ -82,7 +81,6 @@ onSubmit() {
     this.error = error;
     this.loading = false;
   });
-
 }
 
 

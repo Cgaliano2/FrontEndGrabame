@@ -33,7 +33,8 @@
                 <mat-form-field class="generic-fields">
                     <mat-label>Sucursal</mat-label>
                     <mat-select formControlName="ubicacion" [(ngModel)]="User.ubicacion._id">
-                        <mat-option [value]="Ubicaciones[i]._id._id" *ngFor="let ubicacion of Ubicaciones;let i =index">{{Ubicaciones[i]._id.lugar}}
+                        <mat-option [value]="Ubicaciones[i]._id" *ngFor="let ubicacion of Ubicaciones ;let i =index">
+                            {{Ubicaciones[i].lugar}}
                         </mat-option>
 
                     </mat-select>

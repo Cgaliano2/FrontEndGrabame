@@ -135,13 +135,12 @@ RutxFecha:any;
 @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   events: string[] = [];
   ngOnInit() {
+    this.LoadTray();
   }
-  
   // Cargar bandejas
   LoadTray() {
     return this.trayApi.getTray()
     .subscribe( data => {
-         // console.log(data);
           this.tray = data;
           this.displayedColumns = ['detalles', 'codigoqr', 'fechaIngreso', 'ubicacion'];
           this.dataSource = new MatTableDataSource<Tray>(data);

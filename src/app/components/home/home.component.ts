@@ -1,8 +1,10 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, LOCALE_ID } from '@angular/core';
 import { Chart } from 'chart.js';
 import { TrayServices } from '../../_Services/tray.service';
 import * as _moment from 'moment';
 import { FormControl } from '@angular/forms';
+import { element } from 'protractor';
+import { MatCardLgImage } from '@angular/material';
 const moment = _moment;
 
 
@@ -30,7 +32,7 @@ export class HomeComponent implements OnInit {
   dato2: any;
   dato3: any;
   // Ubicaciones
-  Ubicaciones: any = [];
+  ubicaciones: any = [];
   // chart x año
   Anual: any = [];
   anio: any;
@@ -40,15 +42,19 @@ daily: any;
 error: any;
 
 
+
   constructor(private apiService: TrayServices) { }
 
 ngOnInit() {
   // CHART UBICACION
-  this.apiService.getUbication()
-    .subscribe(datos => {
-    this.Ubicaciones = datos.ubicaciones;
+    this.apiService.getUbication().subscribe(datos =>{
+    const data = datos
+    this.ubicaciones = data.ubicaciones;
+    console.log(this.ubicaciones);
     
-  
+    // this.ubicaciones =datos.ubicaciones.map(datos => datos.lugar);
+    // console.log(this.ubicaciones);
+    // let data = datos.map(datos => ubicaciones.lugar)
 
     const gradientChartOptionsConfigurationWithTooltipBlue: any = {
     maintainAspectRatio: false,
@@ -101,7 +107,7 @@ ngOnInit() {
 
 });
 
-  this.apiService.getChartDaily()
+    this.apiService.getChartDaily()
 .subscribe(res => {
   const informacion = res.cantidad;
   const total = informacion.pop();
@@ -109,7 +115,7 @@ ngOnInit() {
 });
 
 // CHART X AÑO!
-  this.apiService.getChartYearly()
+    this.apiService.getChartYearly()
 .subscribe(res => {
   this.Anual = res;
   const total = this.Anual.cantidad.map(res => res.total);
@@ -207,7 +213,7 @@ ngOnInit() {
 
 });
 // CHART CHART MENSUAL
-  this.apiService.getChartsMontly()
+    this.apiService.getChartsMontly()
 .subscribe(res => {
 
       const Anio = res.cantidad.map(res => res._id.año);
@@ -314,6 +320,10 @@ ngOnInit() {
     this.myChartData.update();
   }
 
+ getUbication(value:any) {
+   console.log(value.total);
+
+ }
 
 
 }

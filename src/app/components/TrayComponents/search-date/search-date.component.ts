@@ -43,7 +43,6 @@ searchByDate(term: string ) {
     this.trayApi.SearchDate(term)
     .subscribe(data => {
        const datos = data;
-       // console.log(datos);
        this.Trayxdate = datos.bandejaDB;
        this.dataSource = new MatTableDataSource(this.Trayxdate);
        this.dataSource.paginator = this.paginator;

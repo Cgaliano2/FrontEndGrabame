@@ -4,6 +4,7 @@ import { UserService } from 'src/app/_Services/user.service';
 import { TrayServices } from '../../../_Services/tray.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { User } from '../../../models/user';
+import { UbicationService } from '../../../_Services/ubication.service';
 
 @Component({
   selector: 'app-update-users',
@@ -20,13 +21,14 @@ error: any;
 id: any;
 userEdited: any;
 submitted = false;
-message='';
-res:any
+message = '';
+res: any;
   constructor(private actRoute: ActivatedRoute,
               private UserApi: UserService,
               private router: Router,
-              private TrayApi: TrayServices,
-              private formBuilder: FormBuilder, ){}
+              private UbicationApi: UbicationService,
+
+              private formBuilder: FormBuilder, ) {}
 
   ngOnInit() {
     // formulario
@@ -38,11 +40,11 @@ res:any
   });
 
 // obtener ubicaciones
-    this.TrayApi.getUbication().subscribe(res => {
-        this.Ubicaciones = res.ubicaciones;
-        // console.log(this.Ubicaciones);
-    });
-
+    this.UbicationApi.getUbications2()
+.subscribe(res => {
+  const sucursal = Object.values(res);
+  this.Ubicaciones = sucursal[1];
+});
     this.UpdateForm = this.formBuilder.group({
       ubicacion: ['', Validators.required],
       nombre:   ['', Validators.required],
@@ -77,7 +79,7 @@ res:any
         this.res = data;
         this.message = this.res.message;
       }, error => {
-        this.message='';
+        this.message = '';
         this.error = error;
       });
   }
