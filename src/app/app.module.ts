@@ -53,6 +53,7 @@ import { MatListModule } from '@angular/material/list';
 import { UbicationListComponent } from './components/UbicationComponents/ubication-list/ubication-list.component';
 import { CreateUbicationsComponent } from './components/UbicationComponents/create-ubications/create-ubications.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { SearchTypeTrayComponent } from './components/TrayComponents/search-type-tray/search-type-tray.component';
 
 
 
@@ -81,6 +82,7 @@ registerLocaleData(locales);
     MainNavComponent,
     UbicationListComponent,
     CreateUbicationsComponent,
+    SearchTypeTrayComponent,
   ],
   imports: [
     BrowserModule,

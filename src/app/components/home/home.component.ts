@@ -50,8 +50,7 @@ ngOnInit() {
     this.apiService.getUbication().subscribe(datos =>{
     const data = datos
     this.ubicaciones = data.ubicaciones;
-    console.log(this.ubicaciones);
-    
+
     // this.ubicaciones =datos.ubicaciones.map(datos => datos.lugar);
     // console.log(this.ubicaciones);
     // let data = datos.map(datos => ubicaciones.lugar)

@@ -360,5 +360,16 @@ mat-accordion {
 /*SEARCHER*/
 
 .contenedor {
-    width: 40%;
+    width: 30%;
+}
+
+.tittle {
+    position: fixed;
+    padding-top: .3125rem;
+    padding-bottom: .3125rem;
+    color: #fff;
+    margin-left: 17px;
+    margin-top: 3px;
+    text-transform: uppercase;
+    font-size: 1rem;
 }

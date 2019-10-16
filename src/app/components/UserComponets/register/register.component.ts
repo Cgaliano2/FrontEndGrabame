@@ -55,10 +55,11 @@ ngOnInit() {
     apMat:    ['', Validators.required],
     rut:      ['', Validators.required],
     password: ['', [ Validators.required, Validators.minLength(6)]],
+    confirmPass:['' ,Validators.required],
     sexo:     ['', Validators.required],
     telefono:  ['', [Validators.required, Validators.minLength(6)]],
     email:    ['', Validators.required],
-  });
+  },{validator: this.checkPasswords });
 }
 
 get f() {return this.registerForm.controls; }
@@ -68,6 +69,7 @@ get f() {return this.registerForm.controls; }
 onSubmit() {
   this.submitted = true;
   if (this.registerForm.invalid) {
+    console.log(this.registerForm);
     return;
   }
   this.Authservice.register(this.registerForm.value)

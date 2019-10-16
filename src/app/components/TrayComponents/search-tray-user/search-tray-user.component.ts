@@ -13,6 +13,9 @@ error;
 TrayXUser:any = []; 
 displayedColumns: string[] = [];
 dataSource: any = [];
+  // paginator
+  length = 100;
+  pageSize = 10;
 @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   total: number;
   constructor(private actRoute:ActivatedRoute, private ApiService:TrayServices , private enrutador: Router) { }
@@ -21,6 +24,7 @@ dataSource: any = [];
 
     this.actRoute.params.subscribe(params => {
       const termino: string = (params['rut']);
+      this.displayedColumns = ['detalles', 'codigoqr', 'fechaIngreso','nombre'];
       this.getByUser(termino);
     });
   }
@@ -30,7 +34,6 @@ dataSource: any = [];
     this.ApiService.getByUser(rut).subscribe(datos => {
       // console.log(datos);
       this.TrayXUser = datos;
-      this.displayedColumns = ['detalles', 'codigoqr', 'fechaIngreso','nombre'];
       this.dataSource = new MatTableDataSource<any>(this.TrayXUser.bandejas);
       this.dataSource.paginator = this.paginator;
       this.error='';

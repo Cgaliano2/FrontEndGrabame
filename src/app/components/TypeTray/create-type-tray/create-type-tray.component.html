@@ -1,7 +1,8 @@
+<div class="tittle">Registrar Tipo de Bandeja</div>
 <div class="login-wrapper2" fxLayout="row" fxLayoutAlign="center center">
     <mat-card class="box2">
         <mat-card-header>
-            <mat-card-title>Registrar Tipo de bandeja</mat-card-title>
+            <mat-card-title>Formulario de Tipo</mat-card-title>
         </mat-card-header>
 
         <form [formGroup]="registerType" (ngSubmit)="onSubmit()">
@@ -22,7 +23,7 @@
 
             </mat-card-content>
 
-            <button [disabled]="loading" mat-stroked-button color="primary" class="btn-block">Register</button>
+            <button [disabled]="loading" mat-stroked-button color="primary" class="btn-block">Crear Tipo de Bandeja</button>
             <div *ngIf="message" class="alert alert-success mt-3 mb-0">
                 {{message}}
             </div>

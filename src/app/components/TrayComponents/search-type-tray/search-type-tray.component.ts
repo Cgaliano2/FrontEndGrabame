@@ -1,51 +1,51 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { TrayServices } from '../../../_Services/tray.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
-import { Tray } from '../../../models/tray';
+import { TrayServices } from 'src/app/_Services/tray.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-search-date-range',
-  templateUrl: './search-date-range.component.html'
+  selector: 'app-search-type-tray',
+  templateUrl: './search-type-tray.component.html',
+  styleUrls: ['./search-type-tray.component.css']
 })
-export class SearchDateRangeComponent implements OnInit {
-  Trayxdaterange: any = [];
-  error;
-  total: number;
-  // datetable
+export class SearchTypeTrayComponent implements OnInit {
   displayedColumns: string[] = [];
   dataSource: any = [];
-  // paginator
+  error;
+  total: number;
+  TrayxType: any;
+  Tipo:any
+   // paginator
   length = 100;
   pageSize = 10;
-  
-
   constructor(private TrayApi: TrayServices, private actRoute: ActivatedRoute, private enrutador: Router) { }
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
   ngOnInit() {
     this.actRoute.params.subscribe(params => {
-      const termino: string = (params.term);
+      this.Tipo = (params.tipo);
       this.displayedColumns = ['detalles', 'codigoqr', 'fechaIngreso'];
-      this.searchByDateRange(termino);
+      this.searchByType(this.Tipo);
     });
 
   }
-  searchByDateRange(term:string) {
-   this.TrayApi.getByDateRange(term)
+  searchByType(term:string) {
+   this.TrayApi.getType(term)
    .subscribe(data => {
+     console.log(data);
      const datos  = data;
-     this.Trayxdaterange = datos.bandejaDB;
-     this.dataSource = new MatTableDataSource(this.Trayxdaterange);
+     this.TrayxType = datos;
+     this.dataSource = new MatTableDataSource(this.TrayxType.bandejas);
      this.dataSource.paginator = this.paginator;
-     this.error = datos.message;
-     const total = this.Trayxdaterange;
+     const total = this.TrayxType;
      if (!total) {
        this.total = 0;
      } else {
      const index = this.getAllIndexes(total);
      this.total = index.length;
     }
+  },error =>{
+    this.error = error;
   });
 
 }
@@ -60,4 +60,5 @@ verBandejas(idx) {
 }
   return indexes;
 }
+
 }

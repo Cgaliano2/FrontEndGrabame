@@ -19,6 +19,9 @@ export class SearchDateComponent implements OnInit {
   error;
   success;
   total:any;
+  // paginator
+  length = 100;
+  pageSize = 10;
 
 constructor(
     private trayApi: TrayServices,
@@ -27,7 +30,7 @@ constructor(
     ) { }
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   ngOnInit() {
-  
+
     this.actRoute.params
       .subscribe(params => {
       const termino: string = (params.term);

@@ -38,6 +38,8 @@ export class SearchUserComponent implements OnInit {
           this.displayedColumns = ['rut', 'nombre', 'apellidos', 'ubicacion', 'acciones'];
           this.dataSource = new MatTableDataSource<any>(this.userByrut.usuarioEncontrado);
           this.error = this.userByrut.message;
+    },error => {
+      this.error = error;
     });
   }
 

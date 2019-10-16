@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { config } from '../../config';
+import { Tray } from '../models/tray';
 
 
 
@@ -75,5 +76,8 @@ getByBarcode(codigoQr: string) {
     return this.http.get(`${config.apiUrl}trays/code/${codigoQr}`);
 }
 
+getType(tipo:string){
+    return this.http.get(`${config.apiUrl}trays/type/${tipo}`);
+}
 }
 

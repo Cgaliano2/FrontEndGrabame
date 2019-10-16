@@ -1,7 +1,9 @@
+<div class="tittle">Registrar Usuarios</div>
 <div class="login-wrapper2" fxLayout="row" fxLayoutAlign="center center">
     <mat-card class="box2">
         <mat-card-header>
-            <mat-card-title>Register</mat-card-title>
+
+            <mat-card-title>Formulario de Usuarios</mat-card-title>
         </mat-card-header>
 
         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
@@ -9,33 +11,33 @@
             <mat-card-content>
                 <mat-form-field class="generic-fields">
                     <input type="text" formControlName="nombre" matInput placeholder="Nombre" name="nombre" [ngClass]="{ 'is-invalid': submitted && !f.nombre.errors }">
-                    <mat-error *ngIf="!f.nombre?.errors?.required">
+                    <mat-error *ngIf="f.nombre?.errors?.required">
                         Ingrese <strong>Nombre</strong>
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field class="generic-fields">
                     <input formControlName="apPat" matInput placeholder="Apellido Paterno" name="apPat" [ngClass]="{ 'is-invalid': submitted && f.apPat.errors }">
-                    <mat-error *ngIf="!f.apPat.errors">
+                    <mat-error *ngIf="f.apPat.errors">
                         ingrese <strong>Apellido</strong>
                     </mat-error>
                 </mat-form-field>
 
                 <mat-form-field class="generic-fields">
                     <input formControlName="apMat" matInput placeholder="Apellido Materno" name="apMat" [ngClass]="{ 'is-invalid': submitted && f.apMat.errors }">
-                    <mat-error *ngIf="!f.apMat.errors">
+                    <mat-error *ngIf="f.apMat.errors">
                         ingrese <strong>Apellido</strong>
                     </mat-error>
                 </mat-form-field>
 
                 <mat-form-field class="generic-fields">
                     <input formControlName="rut" matInput placeholder="Rut" name="rut" [ngClass]="{ 'is-invalid': submitted && f.rut.errors }">
-                    <mat-error *ngIf="!f.rut.errors">
+                    <mat-error *ngIf="f.rut.errors">
                         ingrese <strong>Rut</strong>
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field class="fields-large">
                     <input formControlName="email" matInput placeholder="Email" name="email" [ngClass]="{ 'is-invalid': submitted && !f.email.errors }">
-                    <mat-error *ngIf="!f.email.errors">
+                    <mat-error *ngIf="f.email.errors">
                         ingrese <strong>Email</strong>
                     </mat-error>
                 </mat-form-field>
@@ -45,12 +47,14 @@
                         <mat-option [value]="Ubicaciones[i]._id" *ngFor="let ubicacion of Ubicaciones ;let i =index">
                             {{Ubicaciones[i].lugar}}
                         </mat-option>
-
                     </mat-select>
+                    <mat-error *ngIf="f.ubicacion.errors">
+                        Seleccione <strong>ubicacion</strong>
+                    </mat-error>
                 </mat-form-field>
                 <mat-form-field class="generic-fields">
                     <input formControlName="telefono" matInput placeholder="Teléfono" name="telefono" [ngClass]="{ 'is-invalid': submitted && f.telefono.errors }">
-                    <mat-error *ngIf="!f.telefono.errors">
+                    <mat-error *ngIf="f.telefono.errors">
                         ingrese <strong>telefono</strong>
                     </mat-error>
                 </mat-form-field>
@@ -61,18 +65,27 @@
                         <mat-option [value]="sexo" *ngFor="let sexo of Sexo">{{ sexo }}
                         </mat-option>
                     </mat-select>
+                    <mat-error *ngIf="f.sexo.errors">
+                        Seleccione <strong>sexo</strong>
+                    </mat-error>
                 </mat-form-field>
                 <mat-form-field class="example-full-width4">
                     <input formControlName="password" matInput type="password" placeholder="Contraseña" name="password">
+                    <mat-error *ngIf="f.password.errors">
+                        ingrese <strong>contraseña</strong>
+                    </mat-error>
                 </mat-form-field>
 
                 <mat-form-field class="example-full-width4">
-                    <input matInput type="password" placeholder="Repetir Contraseña">
+                    <input formControlName="confirmPass" matInput type="password" placeholder="Repetir Contraseña">
                 </mat-form-field>
+                <mat-error *ngIf="submitted && registerForm.hasError('notSame')">
+                    Contraseñas no <strong>coinciden</strong>
+                </mat-error>
 
             </mat-card-content>
 
-            <button [disabled]="loading" mat-stroked-button color="primary" class="btn-block">Register</button>
+            <button [disabled]="loading" mat-stroked-button color="primary" class="btn-block">Crear Usuario</button>
             <div *ngIf="error" class="alert alert-danger mt-3 mb-0">
                 {{error}}
             </div>
@@ -81,7 +94,7 @@
             </div>
 
             <img *ngIf="loading" src="../../../assets/loading.gif" />
-            <a [routerLink]="['home']" class="btn btn-link">Regresar</a>
+            <a [routerLink]="['/get-users']" class="btn btn-link">ir a usuarios</a>
         </form>
     </mat-card>
 </div>

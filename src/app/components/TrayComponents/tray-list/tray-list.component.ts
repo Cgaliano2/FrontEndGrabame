@@ -6,17 +6,14 @@ import { Tray } from '../../../models/tray';
 import * as _moment from 'moment';
 const moment = _moment;
 import {MatDatepickerInputEvent} from '@angular/material/datepicker';
-import { NgModel } from '@angular/forms';
-
-
-
-
-
+import { NgModel, FormControl } from '@angular/forms';
+import { TypeTrayService } from '../../../_Services/TypeTray.service';
 
 
 @Component({
   selector: 'app-tray-list',
   template: ` 
+  <div class ="tittle">Busqueda de Bandejas</div>
   <div class="container main-container">
   <mat-accordion>
   <mat-expansion-panel>
@@ -44,56 +41,89 @@ import { NgModel } from '@angular/forms';
           </mat-panel-description>
       </mat-expansion-panel-header>
       <div class="contenedor">
-      <input id="rangeDate" name="rangeDate" #input="ngModel" [(ngModel)]="rangeDate" type="text" bsDaterangepicker class="form-control" />
+      <input id="rangeDate" name="rangeDate" #input="ngModel" [(ngModel)]="rangeDate" type="text" bsDaterangepicker class="form-control"/>
       </div>
-      <button mat-raised-button color="accent" (click)="obtainDate(input.viewModel)">Buscar</button>
+      <button mat-raised-button color="accent" (click)="obtainDate(input.viewModel)"><i class="material-icons">
+      search
+      </i></button>
   </mat-expansion-panel>
   <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
   <mat-expansion-panel-header>
       <mat-panel-title>
-          Busqueda por codigo QR
+              Busqueda por codigo QR
       </mat-panel-title>
       <mat-panel-description>
-          Escribe el codigo 
+              Escribe el codigo 
       </mat-panel-description>
   </mat-expansion-panel-header>
   <form class="example-form">
   <mat-form-field class="example-full-width">
     <input matInput placeholder="CodigoQR" #codigoqr required="true">
   </mat-form-field>
-  <button mat-raised-button color="accent" (click)="obtainBarCode(codigoqr.value)">Buscar</button>
+  <button mat-raised-button color="accent" (click)="obtainBarCode(codigoqr.value)"><i class="material-icons">
+  search
+  </i></button>
 </form>
 </mat-expansion-panel>
 <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
   <mat-expansion-panel-header>
       <mat-panel-title>
-        Historial de Usuario
+              Busqueda por tipo
       </mat-panel-title>
       <mat-panel-description>
-          Escribe el rut del usuario
+              Selecciona el tipo
+      </mat-panel-description>
+  </mat-expansion-panel-header>
+  <form class="example-form" >
+  <mat-form-field>
+    <mat-label>Tipo</mat-label>
+      <mat-select [formControl]="tipoControl">
+          <mat-option *ngFor="let tipoBandeja of tipos;let i = index" [value]="tipoBandeja">
+          {{tipoBandeja.tipo}}
+          </mat-option>
+      </mat-select>
+    </mat-form-field>
+  <button mat-raised-button color="accent" (click)="getType(tipoControl.value.tipo)"><i class="material-icons">
+  search
+  </i></button>
+</form>
+</mat-expansion-panel>
+<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+  <mat-expansion-panel-header>
+      <mat-panel-title>
+               Historial de Usuario
+      </mat-panel-title>
+      <mat-panel-description>
+              Escribe el rut del usuario
       </mat-panel-description>
   </mat-expansion-panel-header>
   <form class="example-form2">
   <mat-form-field class="example-full-width">
     <input matInput placeholder="Rut" #rut required="true">
   </mat-form-field>
-  <button mat-raised-button color="accent" (click)="sendRut(rut.value)">Buscar</button>
+  <button mat-raised-button color="accent" (click)="sendRut(rut.value)"><i class="material-icons">
+  search
+  </i></button>
 </form>
 </mat-expansion-panel>
 <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
   <mat-expansion-panel-header>
       <mat-panel-title>
-        Busqueda Avanzada
+              Busqueda Avanzada
       </mat-panel-title>
       <mat-panel-description>
-          Ingresa los campos requeridos
+              Ingresa los campos requeridos
       </mat-panel-description>
   </mat-expansion-panel-header>
+  <div class="contenedor">
   <input id="dateRange2" name="rangeDate2" #input2="ngModel" [(ngModel)]="rangeDate2" type="text" bsDaterangepicker class="form-control" />
+  </div>
 <mat-form-field class="example-full-width">
 <input matInput placeholder="Rut" required="true" #rut2>
 </mat-form-field>
-<button mat-raised-button color="accent" (click)="searchByDateRangeAndUser(input2.viewModel,rut2.value)">Buscar</button>
+<button mat-raised-button color="accent" (click)="searchByDateRangeAndUser(input2.viewModel,rut2.value)"><i class="material-icons">
+search
+</i></button>
 
 </mat-expansion-panel>
 </mat-accordion>
@@ -108,34 +138,44 @@ import { NgModel } from '@angular/forms';
 export class TrayListComponent implements OnInit {
   model1: Date;
   panelOpenState = false;
+  error: any;
+    // Mostrar Bandejas
+    tipoControl = new FormControl();
+    tray: any = [];
+    displayedColumns: string[] = [];
+    dataSource: any = [];
+    Filtros
+   fechas: any;
+   fecha2: any;
+   fecha1: any;
+   consulta: any;
+   fecha: any;
+   unArray: any = [];
+   codigoqr: string;
+   // busqueda por user
+   rut: any;
+   // busqueda por fecha y user
+   RutxFecha:any;
+   respuesta:any=[];
+   tipos:any =[];
 constructor(
     private trayApi: TrayServices,
     private router: Router,
     public dialog: MatDialog,
-    private actRoute: ActivatedRoute
+    private actRoute: ActivatedRoute,
+    private typeApi:TypeTrayService
   ) {
   }
-  // Mostrar Bandejas
- tray: any = [];
- displayedColumns: string[] = [];
- dataSource: any = [];
- Filtros
-fechas: any;
-fecha2: any;
-fecha1: any;
-consulta: any;
-fecha: any;
-unArray: any = [];
-codigoqr: string;
-// busqueda por user
-rut: any;
-// busqueda por fecha y user
-RutxFecha:any;
 
 @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   events: string[] = [];
   ngOnInit() {
     this.LoadTray();
+    this.typeApi.getTypes().subscribe(datos=>{
+        this.respuesta  = datos;
+        this.tipos = this.respuesta.detalleDB;
+    });
+
   }
   // Cargar bandejas
   LoadTray() {
@@ -170,7 +210,7 @@ obtenerFecha(fecha , event: MatDatepickerInputEvent<Date>) {
      this.fecha2 = moment(this.fechas[1]).format('YYYY-MM-DD');
      this.consulta = this.fecha1 + '&' + this.fecha2;
      this.router.navigate(['search-dateRange/', this.consulta], {relativeTo: this.actRoute});
-  }
+    }
 
 obtainBarCode(codigoqr: string) {
 
@@ -194,5 +234,15 @@ searchByDateRangeAndUser(daterange, rut) {
   this.router.navigate(['tray-date-range-user/', this.RutxFecha], {relativeTo: this.actRoute});
 
 
+}
+getType(tipo:any)
+{ 
+  const tipoBandeja = tipo;
+  if(tipoBandeja === null || tipoBandeja===0)
+  {
+      this.error = 'debe seleleccionar tipo!'
+    
+  }
+  this.router.navigate(['trays/type/', tipoBandeja], {relativeTo: this.actRoute});
 }
 }

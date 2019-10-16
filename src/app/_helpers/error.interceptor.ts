@@ -35,6 +35,11 @@ export class ErrorInterceptor implements HttpInterceptor {
                     const error = err.error.message || err.statusText;
                     return throwError(error); 
                 }
+                else if (err.status ===404)
+                {
+                    const error = 'No se encontro el registro!';
+                    return throwError(error);
+                }
             const error = err.error.message || err.statusText;
             return throwError(error);
         

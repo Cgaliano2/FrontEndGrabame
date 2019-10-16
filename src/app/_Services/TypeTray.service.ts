@@ -25,9 +25,9 @@ createDetails(TYPE_TRAY:TypeTray ){
     return this.http.post(`${config.apiUrl}types`, TYPE_TRAY);
 }
 
-getTypes(): Observable <TypeTray> {
+getTypes() {
 
-    return this.http.get<TypeTray>(`${config.apiUrl}types`);
+    return this.http.get(`${config.apiUrl}types`);
 }
 
 updateTypes(tipo: string): Observable<TypeTray> {

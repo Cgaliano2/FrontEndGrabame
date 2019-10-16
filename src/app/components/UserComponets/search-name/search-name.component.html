@@ -28,8 +28,14 @@
         <ng-container matColumnDef="acciones">
             <th mat-header-cell *matHeaderCellDef> acciones </th>
             <td mat-cell *matCellDef="let element">
-                <button mat-raised-button color="primary" (click)="sendID(element.rut)">Actualizar</button>
-                <button mat-raised-button color="accent" (click)="deleteUser(element._id)">Borrar</button>
+                <a (click)="sendID(element.rut)">
+                    <i class="material-icons">
+                    edit
+                    </i></a>
+                <a (click)="deleteUser(element._id)">
+                    <i class="material-icons">
+                        delete
+                        </i></a>
             </td>
         </ng-container>
 

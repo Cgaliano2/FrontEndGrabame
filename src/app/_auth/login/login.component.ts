@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate([this.returnUrl]);
         if (data.success === false)
         {
-          this.error = data.message;
+          this.error = 'Contraseña o rut ingresado incorrectos';
           this.loading= false;
         }
       });

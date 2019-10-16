@@ -11,6 +11,8 @@ import { SearchBarcodeComponent } from './components/TrayComponents/search-barco
 import {SearchDateComponent} from './components/TrayComponents/search-date/search-date.component';
 import { SearchTrayUserComponent } from './components/TrayComponents/search-tray-user/search-tray-user.component';
 import { TrayDateRangeUserComponent } from './components/TrayComponents/tray-date-range-user/tray-date-range-user.component';
+import { SearchTypeTrayComponent } from './components/TrayComponents/search-type-tray/search-type-tray.component';
+
 // User Component
 import { RegisterComponent } from './components/UserComponets/register/register.component';
 import { GetUsersComponent } from './components/UserComponets/get-users/get-users.component';
@@ -44,6 +46,7 @@ const APP_ROUTES: Routes = [
     {path: 'search-barcode/:codigoQr', component: SearchBarcodeComponent, canActivate: [AuthGuard]},
     {path: 'search-tray-user/:rut', component: SearchTrayUserComponent, canActivate: [AuthGuard]},
     {path: 'tray-date-range-user/:termino', component: TrayDateRangeUserComponent, canActivate: [AuthGuard]},
+    {path: 'trays/type/:tipo', component: SearchTypeTrayComponent, canActivate: [AuthGuard]},
      ]},
     {path: 'tray/:id', component: TrayComponent, canActivate: [AuthGuard]},
     {path: 'ubicacion', component: UbicacionComponent, canActivate: [AuthGuard]},

@@ -6,7 +6,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-get-users',
-  template: `<div class="container main-container">
+  template: `
+  <div class ="tittle">Busqueda de usuarios</div>
+  <div class="container main-container">
   <mat-accordion>
   <mat-expansion-panel>
       <mat-expansion-panel-header>
@@ -21,7 +23,9 @@ import { Router, ActivatedRoute } from '@angular/router';
       <mat-form-field class="example-full-width">
         <input matInput placeholder="digite Rut" #rut required="true">
       </mat-form-field>
-      <button mat-raised-button color="accent" (click)="getRut(rut.value)">Buscar</button>
+      <button mat-raised-button color="accent" (click)="getRut(rut.value)"><i class="material-icons">
+      search
+      </i></button>
     </form>
   </mat-expansion-panel>
   <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
@@ -42,7 +46,9 @@ import { Router, ActivatedRoute } from '@angular/router';
     <mat-form-field class="example-full-width">
     <input matInput placeholder="Apellido Materno" #apMat required="true">
   </mat-form-field>
-  <button mat-raised-button color="accent" (click)="getFulName(nombre.value, apPat.value,apMat.value)">Buscar</button>
+  <button mat-raised-button color="accent" (click)="getFulName(nombre.value, apPat.value,apMat.value)"><i class="material-icons">
+  search
+  </i></button>
 
   </mat-expansion-panel>
 

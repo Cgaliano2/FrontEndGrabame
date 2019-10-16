@@ -35,7 +35,7 @@ export class UbicationListComponent implements OnInit {
 }
 
   deleteUbication(id: number) {
-    if (window.confirm('¿Elimina el tipo de bandeja?')) {
+    if (window.confirm('¿Elimina el registro de sucursal?')) {
    this.ubicationApi.deleteUbication(id)
    .subscribe(data => {
      location.reload(true);
