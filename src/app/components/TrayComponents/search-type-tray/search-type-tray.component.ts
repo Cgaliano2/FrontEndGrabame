@@ -17,7 +17,7 @@ export class SearchTypeTrayComponent implements OnInit {
   Tipo:any
    // paginator
   length = 100;
-  pageSize = 10;
+  pageSize = 5;
   constructor(private TrayApi: TrayServices, private actRoute: ActivatedRoute, private enrutador: Router) { }
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
@@ -45,7 +45,7 @@ export class SearchTypeTrayComponent implements OnInit {
      this.total = index.length;
     }
   },error =>{
-    this.error = error;
+    this.error = error.message;
   });
 
 }

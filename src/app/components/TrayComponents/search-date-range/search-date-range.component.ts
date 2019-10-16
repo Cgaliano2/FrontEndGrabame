@@ -17,7 +17,7 @@ export class SearchDateRangeComponent implements OnInit {
   dataSource: any = [];
   // paginator
   length = 100;
-  pageSize = 10;
+  pageSize = 5;
   
 
   constructor(private TrayApi: TrayServices, private actRoute: ActivatedRoute, private enrutador: Router) { }
@@ -34,6 +34,7 @@ export class SearchDateRangeComponent implements OnInit {
   searchByDateRange(term:string) {
    this.TrayApi.getByDateRange(term)
    .subscribe(data => {
+     console.log(data);
      const datos  = data;
      this.Trayxdaterange = datos.bandejaDB;
      this.dataSource = new MatTableDataSource(this.Trayxdaterange);

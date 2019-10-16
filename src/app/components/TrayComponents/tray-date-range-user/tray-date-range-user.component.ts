@@ -15,7 +15,7 @@ export class TrayDateRangeUserComponent implements OnInit {
   error;
   // paginator
   length = 100;
-  pageSize = 10;
+  pageSize = 5;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   total: number;
   constructor(private actRoute: ActivatedRoute, private TrayApi: TrayServices, private enrutador: Router) { }
