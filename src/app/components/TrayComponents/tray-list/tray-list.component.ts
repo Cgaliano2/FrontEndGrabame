@@ -154,6 +154,8 @@ export class TrayListComponent implements OnInit {
    fecha: any;
    unArray: any = [];
    codigoqr: string;
+   rangeDate2;
+   rangeDate;
    // busqueda por user
    rut: any;
    // busqueda por fecha y user

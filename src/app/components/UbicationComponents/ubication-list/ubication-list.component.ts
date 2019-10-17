@@ -43,7 +43,7 @@ export class UbicationListComponent implements OnInit {
   }
   }
 
-  sendID(idx:number ,lugar:string) {
+  sendID(idx:number) {
     // console.log(lugar);
     this.router.navigate(['/edit-ubication', idx]);
  

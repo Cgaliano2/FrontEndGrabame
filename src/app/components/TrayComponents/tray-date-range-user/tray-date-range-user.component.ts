@@ -54,7 +54,9 @@ export class TrayDateRangeUserComponent implements OnInit {
      const index = this.getAllIndexes(total);
      this.total = index.length;
 }
-}});
+}},error=>{
+   this.error = error;
+});
   }
  
  verBandejas(idx) {

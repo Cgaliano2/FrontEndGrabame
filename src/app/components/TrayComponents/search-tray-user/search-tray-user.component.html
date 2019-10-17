@@ -1,7 +1,7 @@
 <div class="container main-container">
     <div *ngIf="error" class="alert alert-danger mt-3 mb-0">
         {{error}}</div>
-    <mat-card *ngIf="total">Total de resultados: {{total}} || Historial de {{usuario}}</mat-card>
+    <mat-card *ngIf="!error">Total de resultados: {{total}} || Historial de {{usuario}}</mat-card>
     <table *ngIf="!error" mat-table class="mat-elevation-z8" [dataSource]="dataSource">
 
         <ng-container matColumnDef="detalles">

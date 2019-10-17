@@ -64,6 +64,7 @@ export class GetUsersComponent implements OnInit {
   rut:any;
   // buscar x Nombre
   fullName: string;
+  panelOpenState;
   constructor(
     private UserApi: UserService,
     private router: Router,
