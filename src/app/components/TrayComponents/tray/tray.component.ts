@@ -49,7 +49,6 @@ export class TrayComponent implements OnInit {
 
     showOneTray(term: string ) {
       this.trayApi.SearchTray(term).subscribe(datos=> {
-        console.log(datos);
         this.Tray = datos.bandejaDB;
         this.sucursal = this.Tray.ubicacion.lugar;
         this.TrayNumber = this.Tray.length;

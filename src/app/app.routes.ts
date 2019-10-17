@@ -53,7 +53,7 @@ const APP_ROUTES: Routes = [
     // users
     {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
     {path: 'update-user/:id', component: UpdateUsersComponent, canActivate: [AuthGuard]},
-    {path: 'get-users', component: GetUsersComponent,children:[
+    {path: 'get-users', component: GetUsersComponent, children: [
     {path: 'search-user/:rut', component: SearchUserComponent, canActivate: [AuthGuard]},
     {path: 'get-user-name/:name', component: SearchNameComponent, canActivate: [AuthGuard]},
     ]},

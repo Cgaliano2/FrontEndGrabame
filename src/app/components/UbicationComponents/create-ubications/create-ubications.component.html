@@ -9,8 +9,8 @@
 
             <mat-card-content>
                 <mat-form-field class="example-full-width4">
-                    <input type="text" formControlName="lugar" matInput placeholder="lugar" name="lugar" [ngClass]="{ 'is-invalid': submitted && !f.lugar.errors }">
-                    <mat-error *ngIf="!f.lugar?.errors?.required">
+                    <input type="text" formControlName="lugar" matInput placeholder="lugar" name="lugar">
+                    <mat-error *ngIf="f.lugar.errors">
                         Ingrese <strong>Lugar</strong>
                     </mat-error>
                 </mat-form-field>

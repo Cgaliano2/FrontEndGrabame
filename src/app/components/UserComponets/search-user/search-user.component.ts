@@ -33,7 +33,7 @@ export class SearchUserComponent implements OnInit {
   searchUser(rut) {
     return this.userApi.getUserByRut(rut)
     .subscribe( data => {
-          console.log(data);
+         // console.log(data);
           this.userByrut = data;
           this.displayedColumns = ['rut', 'nombre', 'apellidos', 'ubicacion', 'acciones'];
           this.dataSource = new MatTableDataSource<any>(this.userByrut.usuarioEncontrado);
@@ -54,7 +54,7 @@ export class SearchUserComponent implements OnInit {
       this.userApi.deleteUser(id).subscribe(data => {
       this.userDelete = data;
       this.error = this.userDelete.message;
-      console.log(data);
+      // console.log(data);
     });
   }
   }

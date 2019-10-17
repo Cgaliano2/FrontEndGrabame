@@ -32,7 +32,7 @@ res:any;
     }
     this.ApiService.createDetails(this.registerType.value)
     .subscribe(data => {
-      console.log(data);
+      // console.log(data);
       this.res = data;
       if(this.res.success===true)
       {

@@ -32,7 +32,7 @@ export class SearchTypeTrayComponent implements OnInit {
   searchByType(term:string) {
    this.TrayApi.getType(term)
    .subscribe(data => {
-     console.log(data);
+     // console.log(data);
      const datos  = data;
      this.TrayxType = datos;
      this.dataSource = new MatTableDataSource(this.TrayxType.bandejas);

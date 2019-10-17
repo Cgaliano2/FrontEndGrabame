@@ -18,6 +18,8 @@ export class TrayDateRangeUserComponent implements OnInit {
   pageSize = 5;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   total: number;
+  res: any;
+  usuario: string;
   constructor(private actRoute: ActivatedRoute, private TrayApi: TrayServices, private enrutador: Router) { }
 
   ngOnInit() {
@@ -31,7 +33,17 @@ export class TrayDateRangeUserComponent implements OnInit {
   searchByUserAndDateRange(term) {
     this.TrayApi.getByDateRangeAndUser(term).subscribe(datos => {
      const data = datos;
+     this.res = datos;
+     if(this.res.success === false)
+     {
+       this.error = this.res.message;
+     }
+     else {
      this.TrayXDateXUser = data.bandejas;
+     const nombre = this.TrayXDateXUser[0].usuario.nombre;
+     const appat = this.TrayXDateXUser[0].usuario.apPat;
+     const apmat = this.TrayXDateXUser[0].usuario.apMat;
+     this.usuario = nombre + ' ' + appat + ' ' + apmat;
      this.dataSource = new MatTableDataSource(this.TrayXDateXUser);
      this.dataSource.paginator = this.paginator;
      this.error = '';
@@ -42,11 +54,7 @@ export class TrayDateRangeUserComponent implements OnInit {
      const index = this.getAllIndexes(total);
      this.total = index.length;
 }
-}, error => {
- this.TrayXDateXUser = '';
- this.error = (error);
- // console.log(this.error);
-});
+}});
   }
  
  verBandejas(idx) {

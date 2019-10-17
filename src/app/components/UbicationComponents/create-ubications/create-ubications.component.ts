@@ -14,20 +14,20 @@ export class CreateUbicationsComponent implements OnInit {
   loading: any;
   submitted = false;
   AllTypes: any;
-  res:any;
+  res: any;
   idUbication: any;
   error;
   constructor(private formBuilder: FormBuilder,
               private ApiService: UbicationService,
               private router: Router,
-              private actRoute:ActivatedRoute) { }
+              private actRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.actRoute.params.subscribe(params=>{
-      this.idUbication= params.id;
+    this.actRoute.params.subscribe(params => {
+      this.idUbication = params.id;
     });
     this.registerType = this.formBuilder.group({
-      lugar: ['', [ Validators.required, Validators.minLength(5)]]
+      lugar: ['',  Validators.required]
       });
   }
   get f() {return this.registerType.controls; }
@@ -35,17 +35,17 @@ export class CreateUbicationsComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     if (this.registerType.invalid) {
-      return;
-    }
+    // console.log(this.registerForm);
+    return;
+  }
+
     this.ApiService.createUbications(this.registerType.value)
     .subscribe(data => {
-     // console.log(data);
       this.res = data;
-      if(this.res.ok===true)
-      {
+      if (this.res.success === true) {
         this.message = 'Ubicacion registrada con exito';
       }
-    
+
     });
   }
 
@@ -55,10 +55,11 @@ export class CreateUbicationsComponent implements OnInit {
    // this.userEdited = formulario;
     this.ApiService.updateUbication(this.idUbication, formulario)
      .subscribe(data => {
+       console.log(data);
        this.res = data;
        this.message = this.res.message;
      }, error => {
-       this.message='';
+       this.message = '';
        this.error = error;
      });
  }

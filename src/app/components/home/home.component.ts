@@ -217,8 +217,8 @@ ngOnInit() {
 
       const Anio = res.cantidad.map(res => res._id.año);
       const Total = res.cantidad.map(res => res.total);
-      const Info = res.cantidad.map(res => res._id.mes);
-
+      const Info = res.cantidad.map(res => res._id.mes).sort();
+      console.log(Info);
       this.dato1 = Total;
       this.dato2 = Info;
       this.dato3 = Anio;

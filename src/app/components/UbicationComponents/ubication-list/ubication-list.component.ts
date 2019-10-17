@@ -38,13 +38,13 @@ export class UbicationListComponent implements OnInit {
     if (window.confirm('¿Elimina el registro de sucursal?')) {
    this.ubicationApi.deleteUbication(id)
    .subscribe(data => {
-     location.reload(true);
+     this.router.navigate(['/ubication-list']);
    });
   }
   }
 
   sendID(idx:number ,lugar:string) {
-    console.log(lugar);
+    // console.log(lugar);
     this.router.navigate(['/edit-ubication', idx]);
  
    }

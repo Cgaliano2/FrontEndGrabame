@@ -21,7 +21,7 @@ export class SearchDateComponent implements OnInit {
   total:any;
   // paginator
   length = 100;
-  pageSize = 10;
+  pageSize = 5;
 
 constructor(
     private trayApi: TrayServices,

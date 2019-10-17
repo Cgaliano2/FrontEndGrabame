@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
     .pipe(first())
     .subscribe(
       data => {
-        console.log(data.message);
+        // console.log(data.message);
         this.router.navigate([this.returnUrl]);
         if (data.success === false)
         {
@@ -63,29 +63,3 @@ export class LoginComponent implements OnInit {
   }
 
 }
-/*
-onSubmit() {
-    this.submitted = true;
-
-    // stop here if form is invalid
-    if (this.loginForm.invalid) {
-        return;
-    }
-    this.loading = true;
-    this.AuthService.login(this.f.rut.value, this.f.password.value).pipe(first()).subscribe(data => {
-      this.router.navigate([this.returnUrl]);
-      if (data.success === false) {
-        this.error = data.message;
-        this.loading = false;
-      }
-
-      });
-
-  }
-
-this.Authserv.login(this.loginForm.value).subscribe( success =>{
-  console.log(success.valueOf);
-  if(success){
-    this.router.navigate(['/home']);
-  }
-});*/

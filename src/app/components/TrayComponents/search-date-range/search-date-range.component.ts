@@ -34,7 +34,6 @@ export class SearchDateRangeComponent implements OnInit {
   searchByDateRange(term:string) {
    this.TrayApi.getByDateRange(term)
    .subscribe(data => {
-     console.log(data);
      const datos  = data;
      this.Trayxdaterange = datos.bandejaDB;
      this.dataSource = new MatTableDataSource(this.Trayxdaterange);

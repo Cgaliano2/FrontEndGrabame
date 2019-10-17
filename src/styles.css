@@ -373,3 +373,7 @@ mat-accordion {
     text-transform: uppercase;
     font-size: 1rem;
 }
+
+.total {
+    width: 90%;
+}

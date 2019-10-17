@@ -43,17 +43,7 @@ export class AuthenticationService {
 
 
   }
-/*
-public getToken()
-{
-  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-  if(currentUser)
-  {
-    return currentUser.token;
-  }else
-  return null;
-}
-*/
+
 logout() {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);

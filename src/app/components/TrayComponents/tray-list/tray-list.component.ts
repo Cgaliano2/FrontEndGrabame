@@ -172,27 +172,14 @@ constructor(
 @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   events: string[] = [];
   ngOnInit() {
-    this.LoadTray();
-    this.typeApi.getTypes().subscribe(datos=>{
-        this.respuesta  = datos;
-        this.tipos = this.respuesta.detalleDB;
+    this.typeApi.getTypes()
+    .subscribe(datos=>{
+       this.respuesta  = datos;
+       this.tipos = this.respuesta.detalleDB;
     });
 
   }
-  // Cargar bandejas
-  LoadTray() {
-    return this.trayApi.getTray()
-    .subscribe( data => {
-          this.tray = data;
-          this.displayedColumns = ['detalles', 'codigoqr', 'fechaIngreso', 'ubicacion'];
-          this.dataSource = new MatTableDataSource<Tray>(data);
-          this.dataSource.paginator = this.paginator;
-         
 
-
-    });
-  }
-  // detalles bandeja
   verBandejas(idx) {
 
    this.router.navigate(['/tray', idx]);
@@ -211,7 +198,6 @@ obtenerFecha(fecha , event: MatDatepickerInputEvent<Date>) {
       this.error = 'ingrese rango de fechas!'
     }
     else{
-     // console.log(term);
      this.error='';
      this.fechas = term;
      this.fecha1 = moment(this.fechas[0]).format('YYYY-MM-DD');
@@ -235,7 +221,7 @@ sendRut(rut: string) {
 searchByDateRangeAndUser(daterange, rut) {
   if(daterange ===undefined)
   {
-    this.error = 'ingrese rango de fechas!'
+    this.error = 'ingrese rango de fechas!';
   }
   else{
   this.error='';
@@ -244,19 +230,34 @@ searchByDateRangeAndUser(daterange, rut) {
   this.fecha1 = moment(this.fechas[0]).format('YYYY-MM-DD');
   this.fecha2 = moment(this.fechas[1]).format('YYYY-MM-DD');
   this.RutxFecha = this.rut + '&' + this.fecha1 + '&' + this.fecha2;
-  // console.log(this.RutxFecha);
   this.router.navigate(['tray-date-range-user/', this.RutxFecha], {relativeTo: this.actRoute});}
 
 
 }
-getType(tipo:any)
-{ console.log(tipo);
+getType(tipo:any){ 
+ 
+
   const tipoBandeja = tipo;
   if(tipoBandeja === null || tipoBandeja===0)
   {
-      this.error = 'debe seleleccionar tipo!'
+      this.error = 'debe seleleccionar tipo!';
     
   }
   this.router.navigate(['trays/type/', tipoBandeja], {relativeTo: this.actRoute});
 }
 }
+
+
+
+  /*// Cargar bandejas
+  LoadTray() {
+    return this.trayApi.getTray()
+    .subscribe( data => {
+          this.tray = data;
+          this.displayedColumns = ['detalles', 'codigoqr', 'fechaIngreso', 'ubicacion'];
+          this.dataSource = new MatTableDataSource<Tray>(data);
+          this.dataSource.paginator = this.paginator;
+
+
+    });
+  }*/

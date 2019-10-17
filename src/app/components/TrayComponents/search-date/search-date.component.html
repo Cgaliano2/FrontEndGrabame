@@ -1,8 +1,11 @@
-<div *ngIf="error" class="alert alert-danger mt-3 mb-0">
-    {{error}}</div>
-<div class="container main-container" *ngIf="!error">
+<div class="container main-container">
+    <div *ngIf="error" class="alert alert-danger mt-3 mb-0">
+        {{error}}</div>
+
     <mat-card *ngIf="total">Total de resultados: {{total}}</mat-card>
-    <table mat-table class="mat-elevation-z8" [dataSource]="dataSource">
+
+
+    <table *ngIf="!error" mat-table class="mat-elevation-z8" [dataSource]="dataSource">
 
         <ng-container matColumnDef="detalles">
             <th mat-header-cell *matHeaderCellDef> Detalles de bandeja </th>
@@ -34,7 +37,6 @@
     </table>
     <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="[5, 9]" showFirstLastButtons></mat-paginator>
 </div>
-
 <!--
     
 <a  (click)="verBandejas(element._id)" class="btn btn-outline-light" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">

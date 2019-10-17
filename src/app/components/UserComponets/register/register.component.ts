@@ -17,13 +17,14 @@ export interface ubicacionI {
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  formularioReal: FormGroup;
   Sexo: any = ['M', 'F'];
   registerForm: FormGroup;
   loading = false;
   submitted = false;
   error = '';
-  success = '';
-  res:any;
+  hecho = '';
+  res: any;
   // Activado: Act[] = [{value: true, viewValue: 'Si'}, {value: false, viewValue: 'No'}];
   // Rol: Roles[] = [{value2: 'ADMIN_ROLE', viewValue2: 'Administrador'}, {value2: 'USER_ROLE', viewValue2: 'Usuario'} ];
   value: string;
@@ -34,7 +35,7 @@ export class RegisterComponent implements OnInit {
    private router: Router,
    private Authservice: AuthenticationService,
    private TrayApi: TrayServices,
-   private UbicationApi:UbicationService) {
+   private UbicationApi: UbicationService) {
 
    }
 
@@ -55,11 +56,11 @@ ngOnInit() {
     apMat:    ['', Validators.required],
     rut:      ['', Validators.required],
     password: ['', [ Validators.required, Validators.minLength(6)]],
-    confirmPass:['' ,Validators.required],
+    confirmPass: [''],
     sexo:     ['', Validators.required],
     telefono:  ['', [Validators.required, Validators.minLength(6)]],
     email:    ['', Validators.required],
-  },{validator: this.checkPasswords });
+  }, {validator: this.checkPasswords });
 }
 
 get f() {return this.registerForm.controls; }
@@ -69,26 +70,37 @@ get f() {return this.registerForm.controls; }
 onSubmit() {
   this.submitted = true;
   if (this.registerForm.invalid) {
-    console.log(this.registerForm);
+    // console.log(this.registerForm);
     return;
   }
-  this.Authservice.register(this.registerForm.value)
-  .subscribe(data => {
-    this.res = data;
-    this.message = 'Usuario Agregado con exito!';
-    this.error = '';
-  },
-  error => {
-    // console.log(error);
-    this.error = error;
-    this.loading = false;
+  this.formularioReal = this.formBuilder.group({
+    ubicacion: this.registerForm.value.ubicacion,
+    nombre:   this.registerForm.value.nombre,
+    apPat:   this.registerForm.value.apPat,
+    apMat:    this.registerForm.value.apMat,
+    rut:      this.registerForm.value.rut,
+    password: this.registerForm.value.password,
+    sexo:     this.registerForm.value.sexo,
+    telefono:  this.registerForm.value.telefono,
+    email:  this.registerForm.value.email,
   });
+  console.log(this.formularioReal.value);
+  this.Authservice.register(this.formularioReal.value)
+    .subscribe(data => {
+      this.res = data;
+      if(this.res.success === false)
+      { this.error = this.res.message;
+      }else {
+        this.message = this.res.message;
+      }
+     
+    });
 }
 
 
 checkPasswords(group: FormGroup) { // here we have the 'passwords' group
-  let pass = group.get('password').value;
-  let confirmPass = group.get('confirmPass').value;
+  const pass = group.get('password').value;
+  const confirmPass = group.get('confirmPass').value;
 
   return pass === confirmPass ? null : { notSame: true };
 }

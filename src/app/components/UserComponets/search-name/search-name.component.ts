@@ -46,13 +46,14 @@ export class SearchNameComponent implements OnInit {
   }
 
   deleteUser(id: number) {
-    if(window.confirm('estas seguro de eliminar?')){
+      if(window.confirm('estas seguro de eliminar?')) {
       this.UserApi.deleteUser(id).subscribe(data => {
+      console.log(data);
       this.userDelete = data;
       this.error = this.userDelete.message;
-      console.log(data);
+      // console.log(data);
     });
-  }
+   }
   }
 
 }

@@ -21,10 +21,7 @@ export class UbicacionComponent implements OnInit {
     this.trayApi.getTray()
     .subscribe( data => {
           this.ubicacion = data;
-          console.log(this.ubicacion);
     });
-    
-   
   }
 
  /* getAllUbication()
@@ -43,4 +40,5 @@ export class UbicacionComponent implements OnInit {
 });
 
  }*/
+  // console.log(this.ubicacion);
 }

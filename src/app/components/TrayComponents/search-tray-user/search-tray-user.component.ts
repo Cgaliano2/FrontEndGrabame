@@ -13,9 +13,10 @@ error;
 TrayXUser:any = []; 
 displayedColumns: string[] = [];
 dataSource: any = [];
+usuario:any;
   // paginator
   length = 100;
-  pageSize = 10;
+  pageSize = 5;
 @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   total: number;
   constructor(private actRoute:ActivatedRoute, private ApiService:TrayServices , private enrutador: Router) { }
@@ -24,7 +25,7 @@ dataSource: any = [];
 
     this.actRoute.params.subscribe(params => {
       const termino: string = (params['rut']);
-      this.displayedColumns = ['detalles', 'codigoqr', 'fechaIngreso','nombre'];
+      this.displayedColumns = ['detalles', 'codigoqr', 'fechaIngreso'];
       this.getByUser(termino);
     });
   }
@@ -32,10 +33,19 @@ dataSource: any = [];
 
   getByUser(rut: string) {
     this.ApiService.getByUser(rut).subscribe(datos => {
-      // console.log(datos);
+      console.log(datos);
       this.TrayXUser = datos;
+      if(this.TrayXUser.success ===false)
+      {
+        this.error = 'Usuario ingresado no existe!!';
+      }
+     else{
       this.dataSource = new MatTableDataSource<any>(this.TrayXUser.bandejas);
       this.dataSource.paginator = this.paginator;
+      const nombre = this.TrayXUser.bandejas[0].usuario.nombre;
+      const appat = this.TrayXUser.bandejas[0].usuario.apPat;
+      const apmat = this.TrayXUser.bandejas[0].usuario.apMat;
+      this.usuario = nombre + ' ' + appat + ' ' + apmat;
       this.error='';
       const total = this.TrayXUser.bandejas;
       if (!total) {
@@ -44,11 +54,10 @@ dataSource: any = [];
      const index = this.getAllIndexes(total);
      this.total = index.length;
     }
-     }, error => {
-       this.TrayXUser = '';
-       this.error = error;
+     }},error=>{
+       this.error=error;
      });
-
+    
   }
 
 verBandejas(idx) {
