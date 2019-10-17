@@ -54,6 +54,7 @@ export class SearchUserComponent implements OnInit {
       this.userApi.deleteUser(id).subscribe(data => {
       this.userDelete = data;
       this.error = this.userDelete.message;
+
       // console.log(data);
     });
   }

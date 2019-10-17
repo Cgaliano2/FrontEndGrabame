@@ -377,3 +377,9 @@ mat-accordion {
 .total {
     width: 90%;
 }
+
+.eliminar {
+    padding: 0 px;
+    min-width: 44px;
+    line-height: 05px;
+}

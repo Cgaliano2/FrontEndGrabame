@@ -46,7 +46,7 @@ import { Router, ActivatedRoute } from '@angular/router';
     <mat-form-field class="example-full-width">
     <input matInput placeholder="Apellido Materno" #apMat required="true">
   </mat-form-field>
-  <button mat-raised-button color="accent" (click)="getFulName(nombre.value, apPat.value,apMat.value)"><i class="material-icons">
+  <button mat-raised-button color="accent" (click)="getFulName(nombre.value,apPat.value,apMat.value)"><i class="material-icons">
   search
   </i></button>
 

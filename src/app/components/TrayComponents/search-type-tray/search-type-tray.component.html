@@ -2,7 +2,7 @@
     <div *ngIf="error" class="alert alert-danger mt-3 mb-0">
         {{error}}</div>
     <mat-card *ngIf="!error">
-        <h5>bandejas del tipo: {{Tipo}}</h5>
+        <h5 *ngIf="!error">bandejas del tipo: {{Tipo}}</h5>
     </mat-card>
     <mat-card *ngIf="total">Total de resultados: {{total}}</mat-card>
     <table *ngIf="!error" mat-table class="mat-elevation-z8" [dataSource]="dataSource">

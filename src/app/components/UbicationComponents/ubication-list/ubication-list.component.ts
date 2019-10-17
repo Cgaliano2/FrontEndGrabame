@@ -16,6 +16,7 @@ export class UbicationListComponent implements OnInit {
   displayedColumns: string[] = [];
   dataSource: any = [];
   error;
+  res;
  
 @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   constructor(private ubicationApi:UbicationService, private router: Router) { }
@@ -35,12 +36,15 @@ export class UbicationListComponent implements OnInit {
 }
 
   deleteUbication(id: number) {
-    if (window.confirm('¿Elimina el registro de sucursal?')) {
    this.ubicationApi.deleteUbication(id)
    .subscribe(data => {
-     this.router.navigate(['/ubication-list']);
+        this.res = data;
+        this.error = this.res.message;
+        setTimeout(() => {
+        this.ngOnInit();
+        }, 900);
    });
-  }
+  
   }
 
   sendID(idx:number) {
