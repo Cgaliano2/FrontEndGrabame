@@ -14,6 +14,8 @@ export class SearchNameComponent implements OnInit {
   error: any;
   updateId: any;
   userDelete: any;
+  hecho: any;
+  progress: boolean;
   constructor(private actRoute:ActivatedRoute, private UserApi:UserService, private router: Router) { }
 
   ngOnInit() {
@@ -48,9 +50,21 @@ export class SearchNameComponent implements OnInit {
   deleteUser(id: number) {
       if(window.confirm('estas seguro de eliminar?')) {
       this.UserApi.deleteUser(id).subscribe(data => {
-      console.log(data);
       this.userDelete = data;
-      this.error = this.userDelete.message;
+      
+      this.userDelete = data;
+      setTimeout(() => {
+        this.progress = true;
+      }, 500);
+      setTimeout(() => {
+     this.hecho = this.userDelete.message;
+     this.progress = false;
+
+     }, 2000);
+      setTimeout(() => {
+      this.router.navigate(['get-users/']);
+     }, 3000);
+
       // console.log(data);
     });
    }

@@ -17,18 +17,20 @@ export class UbicationListComponent implements OnInit {
   dataSource: any = [];
   error;
   res;
- 
+  progress;
+
 @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-  constructor(private ubicationApi:UbicationService, private router: Router) { }
+  constructor(private ubicationApi: UbicationService, private router: Router) { }
 
   ngOnInit() {
-   this.getUbication()
+   this.getUbication();
+   
   }
   getUbication() {
     this.ubicationApi.getUbications()
     .subscribe(data => {
       this.AllUbications = data;
-      this.displayedColumns = ['lugar','acciones'];
+      this.displayedColumns = ['lugar', 'acciones'];
       this.dataSource = new MatTableDataSource<Ubication>(this.AllUbications.ubicaciones);
       this.dataSource.paginator = this.paginator;
       this.error = '';
@@ -39,17 +41,21 @@ export class UbicationListComponent implements OnInit {
    this.ubicationApi.deleteUbication(id)
    .subscribe(data => {
         this.res = data;
-        this.error = this.res.message;
         setTimeout(() => {
+          this.progress = true;
+        }, 500);
+        setTimeout(() => {
+        this.error = this.res.message;
+        this.progress =false;
         this.ngOnInit();
-        }, 900);
+       }, 2000);
    });
-  
+
   }
 
-  sendID(idx:number) {
+  sendID(idx: number) {
     // console.log(lugar);
     this.router.navigate(['/edit-ubication', idx]);
- 
+
    }
 }

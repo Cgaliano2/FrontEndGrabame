@@ -13,6 +13,8 @@ displayedColumns: string[] = [];
 dataSource: any = [];
 error;
 @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  hecho: any;
+  progress: boolean;
   constructor(private ApiService: TypeTrayService) { }
 
   ngOnInit() {
@@ -35,11 +37,18 @@ error;
 }
 
   deleteType(tipo: string) {
-    if (window.confirm('¿Elimina el tipo de bandeja?')) {
    this.ApiService.deleteTypes(tipo)
    .subscribe(data => {
-     location.reload(true);
+     const MSG = data.message;
+     setTimeout(() => {
+      this.progress = true;
+    }, 500);
+    
+     setTimeout(() => {
+    this.error = MSG;
+    this.progress = false;
+    this.ngOnInit();
+   }, 2000);
    });
-  }
   }
 }

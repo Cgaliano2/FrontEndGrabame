@@ -8,10 +8,6 @@
         </h5>
     </ul>
 </div>-->
-
-
-
-
 <div class=" content">
     <div class=" row">
         <div class=" col-12">
@@ -20,7 +16,7 @@
                     <div class=" row">
                         <div class=" col-sm-6 text-left">
                             <h5 class=" card-category">Reporte de Bandejas </h5>
-                            <h2 class=" card-title"> Mensual</h2>
+                            <h2 class=" card-title"> Anual</h2>
                         </div>
 
                     </div>
@@ -35,6 +31,7 @@
         <div class=" col-lg-4">
             <div class=" card card-chart">
                 <div class=" card-header">
+
                     <h5 class=" card-category">Reporte de Bandejas por Sucursal</h5>
                     <mat-form-field>
                         <mat-label>Sucursal</mat-label>
@@ -47,7 +44,7 @@
                 </div>
                 <div class=" card-body">
 
-                    <div class=" chart-area"> {{ubicacionControl.value?.total}} Bandejas subidas<canvas *ngIf="false" id="CountryChart"> </canvas></div>
+                    <div class=" chart-area"><strong>{{ubicacionControl.value?.total}}</strong> <img src="../../../assets/TrayIcon.png" alt="" height="42" width="42"><canvas *ngIf="false" id="CountryChart"> Bandejas </canvas></div>
 
                 </div>
             </div>
@@ -61,8 +58,7 @@
                     </h3>
                 </div>
                 <div class=" card-body">
-                    <div class=" chart-area">{{daily}}
-                        <h6><strong>Bandejas</strong></h6>
+                    <div class=" chart-area"><strong>{{daily}}</strong> <img src="../../../assets/TrayIcon.png" alt="" height="42" width="42">
                     </div>
                 </div>
             </div>

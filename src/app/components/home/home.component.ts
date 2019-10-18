@@ -47,8 +47,8 @@ error: any;
 
 ngOnInit() {
   // CHART UBICACION
-    this.apiService.getUbication().subscribe(datos =>{
-    const data = datos
+    this.apiService.getUbication().subscribe(datos => {
+    const data = datos;
     this.ubicaciones = data.ubicaciones;
 
     // this.ubicaciones =datos.ubicaciones.map(datos => datos.lugar);
@@ -113,17 +113,18 @@ ngOnInit() {
   this.daily = total.total;
 });
 
-// CHART X AÑO!
-    this.apiService.getChartYearly()
+// CHART MENSUAL!
+    this.apiService.getChartsMontly()
 .subscribe(res => {
-  this.Anual = res;
-  const total = this.Anual.cantidad.map(res => res.total);
-  const anio = this.Anual.cantidad.map(res => res._id.año);
-  this.anio = anio;
-  this.total = total;
-
-
-  const gradientChartOptionsConfigurationWithTooltipGreen: any = {
+console.log(res);
+const Anio = res.cantidad.map(res => res._id.año);
+const Total = res.cantidad.map(res => res.total);
+const Info = res.cantidad.map(res => res._id.mes);
+console.log(res);
+this.dato1 = Total;
+this.dato2 = Info;
+this.dato3 = Anio;
+const gradientChartOptionsConfigurationWithTooltipGreen: any = {
   maintainAspectRatio: false,
   legend: {
     display: false
@@ -171,17 +172,17 @@ ngOnInit() {
   }
 };
 
-  this.canvas = document.getElementById('chartLineGreen');
-  this.ctx = this.canvas.getContext('2d');
+this.canvas = document.getElementById('chartLineGreen');
+this.ctx = this.canvas.getContext('2d');
 
 
-  const gradientStroke = this.ctx.createLinearGradient(0, 230, 0, 50);
+const gradientStroke = this.ctx.createLinearGradient(0, 230, 0, 50);
 
-  gradientStroke.addColorStop(1, 'rgba(66,134,121,0.15)');
-  gradientStroke.addColorStop(0.4, 'rgba(66,134,121,0.0)'); // green colors
-  gradientStroke.addColorStop(0, 'rgba(66,134,121,0)'); // green colors
+gradientStroke.addColorStop(1, 'rgba(66,134,121,0.15)');
+gradientStroke.addColorStop(0.4, 'rgba(66,134,121,0.0)'); // green colors
+gradientStroke.addColorStop(0, 'rgba(66,134,121,0)'); // green colors
 
-  const data = {
+const data = {
   labels: this.anio,
   datasets: [{
     label: 'Data',
@@ -198,12 +199,12 @@ ngOnInit() {
     pointHoverRadius: 4,
     pointHoverBorderWidth: 15,
     pointRadius: 4,
-    data: this.total,
+    data: this.dato1,
   }]
 };
 
 
-  const myChart = new Chart(this.ctx, {
+const myChart = new Chart(this.ctx, {
   type: 'line',
   data,
   options: gradientChartOptionsConfigurationWithTooltipGreen
@@ -211,19 +212,20 @@ ngOnInit() {
 });
 
 });
-// CHART CHART MENSUAL
-    this.apiService.getChartsMontly()
-.subscribe(res => {
+// CHART AÑO
 
-      const Anio = res.cantidad.map(res => res._id.año);
-      const Total = res.cantidad.map(res => res.total);
-      const Info = res.cantidad.map(res => res._id.mes).sort();
-      console.log(Info);
-      this.dato1 = Total;
-      this.dato2 = Info;
-      this.dato3 = Anio;
 
-      const gradientChartOptionsConfigurationWithTooltipRed: any = {
+
+    this.apiService.getChartYearly()
+      .subscribe(res => {
+        this.Anual = res;
+        const total = this.Anual.cantidad.map(res => res.total);
+        const anio = this.Anual.cantidad.map(res => res._id.año);
+        this.anio = anio;
+        this.total = total;
+
+
+        const gradientChartOptionsConfigurationWithTooltipRed: any = {
       maintainAspectRatio: false,
       legend: {
         display: false
@@ -260,7 +262,7 @@ ngOnInit() {
           barPercentage: 1.6,
           gridLines: {
             drawBorder: false,
-            color: 'rgba(0,252,212,0.1)',
+            color: '#2E323A',
             zeroLineColor: 'transparent',
           },
           ticks: {
@@ -272,39 +274,39 @@ ngOnInit() {
     };
 
 
-      this.canvas = document.getElementById('chartBig1');
-      this.ctx = this.canvas.getContext('2d');
+        this.canvas = document.getElementById('chartBig1');
+        this.ctx = this.canvas.getContext('2d');
 
-      const gradientStroke = this.ctx.createLinearGradient(0, 230, 0, 50);
-
-
-      gradientStroke.addColorStop(1, 'rgba(66,134,121,0.15)');
-      gradientStroke.addColorStop(0.4, 'rgba(66,134,121,0.0)'); // green colors
-      gradientStroke.addColorStop(0, 'rgba(66,134,121,0)'); // green colors
+        const gradientStroke = this.ctx.createLinearGradient(0, 230, 0, 50);
 
 
-      const data = {
-      labels: this.dato2,
+        gradientStroke.addColorStop(1, 'rgba(66,134,121,0.15)');
+        gradientStroke.addColorStop(0.4, 'rgba(66,134,121,0.0)'); // green colors
+        gradientStroke.addColorStop(0, 'rgba(66,134,121,0)'); // green colors
+
+
+        const data = {
+      labels: this.anio,
       datasets: [{
         label: 'Data',
         fill: true,
         backgroundColor: gradientStroke,
-        borderColor: '#00D6B4',
+        borderColor: '#131098',
         borderWidth: 2,
         borderDash: [],
         borderDashOffset: 0.0,
-        pointBackgroundColor: '#00D6B4',
+        pointBackgroundColor: '#131098',
         pointBorderColor: 'rgba(255,255,255,0)',
-        pointHoverBackgroundColor: '#00D6B4',
+        pointHoverBackgroundColor: '#131098',
         pointBorderWidth: 20,
         pointHoverRadius: 4,
         pointHoverBorderWidth: 15,
         pointRadius: 4,
-        data: this.dato1,
+        data: this.total,
       }]
     };
 
-      const myChart = new Chart(this.ctx, {
+        const myChart = new Chart(this.ctx, {
       type: 'line',
       data,
       options: gradientChartOptionsConfigurationWithTooltipRed
@@ -319,7 +321,7 @@ ngOnInit() {
     this.myChartData.update();
   }
 
- getUbication(value:any) {
+ getUbication(value: any) {
    console.log(value.total);
 
  }

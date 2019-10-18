@@ -17,13 +17,15 @@ export class SearchUserComponent implements OnInit {
   // user
   userDelete: any;
   error: any;
+  hecho: any;
+  progress: boolean;
 
-  constructor(private actRoute:ActivatedRoute,  private router:Router, private userApi:UserService) { }
+  constructor(private actRoute: ActivatedRoute,  private router: Router, private userApi: UserService) { }
 
   ngOnInit() {
     this.actRoute.params.subscribe(params  =>  {
       // console.log(params);
-      const rut = (params ['rut']);
+      const rut = (params.rut);
       // console.log(rut);
       this.searchUser(rut);
     });
@@ -38,7 +40,7 @@ export class SearchUserComponent implements OnInit {
           this.displayedColumns = ['rut', 'nombre', 'apellidos', 'ubicacion', 'acciones'];
           this.dataSource = new MatTableDataSource<any>(this.userByrut.usuarioEncontrado);
           this.error = this.userByrut.message;
-    },error => {
+    }, error => {
       this.error = error;
     });
   }
@@ -50,13 +52,25 @@ export class SearchUserComponent implements OnInit {
   }
 
   deleteUser(id: number) {
-    if(window.confirm('estas seguro de eliminar?')){
+      console.log(id);
       this.userApi.deleteUser(id).subscribe(data => {
       this.userDelete = data;
-      this.error = this.userDelete.message;
+      setTimeout(() => {
+        this.progress = true;
+      }, 500);
+      setTimeout(() => {
+     this.hecho = this.userDelete.message;
+     console.log(this.hecho);
+     this.progress = false;
 
-      // console.log(data);
+     }, 2000);
+      setTimeout(() => {
+      this.router.navigate(['get-users/']);
+     }, 3000);
+
+
+
     });
-  }
+
   }
 }

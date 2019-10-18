@@ -9,9 +9,14 @@
 }
 
 .chart-area {
-    background-color: #3F51B5;
+    background-color: rgb(255, 255, 255);
+    text-align: center;
 }
 
 .card-body {
-    background-color: #3F51B5
+    background-color: rgb(255, 255, 255);
+}
+
+.card-header:first-child {
+    background: linear-gradient(#2E323A, #2E323A);
 }

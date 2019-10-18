@@ -1,7 +1,6 @@
 <div class="tittle">Sucursales</div>
 <div class="container main-container">
-    <div *ngIf="error" class="alert alert-success mt-3 mb-0">
-        {{error}}</div>
+
     <table mat-table class="mat-elevation-z8" [dataSource]="dataSource">
 
         <!--- Note that these columns can be defined in any order.
@@ -32,4 +31,7 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
     <mat-paginator [pageSizeOptions]="[5, 9]" showFirstLastButtons></mat-paginator>
+    <div *ngIf="error" class="alert alert-success mt-3 mb-0">
+        {{error}}</div>
+    <mat-progress-bar *ngIf="progress" mode="indeterminate"></mat-progress-bar>
 </div>

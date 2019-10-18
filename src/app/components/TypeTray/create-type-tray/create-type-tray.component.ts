@@ -13,6 +13,7 @@ loading: any;
 submitted = false;
 AllTypes: any;
 res:any;
+  error: any;
 
   constructor(private formBuilder: FormBuilder, private ApiService: TypeTrayService, private router: Router) { }
 
@@ -32,13 +33,20 @@ res:any;
     }
     this.ApiService.createDetails(this.registerType.value)
     .subscribe(data => {
-      // console.log(data);
+      console.log(data);
       this.res = data;
       if(this.res.success===true)
       {
         this.message = 'bandeja guardada con exito';
+        this.registerType.reset();
+        setTimeout(() => {
+          this.message ='';
+        }, 900);
       }
-      
+      else
+      {
+        this.error = this.res.message;
+      }
     });
   }
 }

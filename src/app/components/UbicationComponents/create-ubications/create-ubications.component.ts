@@ -44,6 +44,10 @@ export class CreateUbicationsComponent implements OnInit {
       this.res = data;
       if (this.res.success === true) {
         this.message = 'Ubicacion registrada con exito';
+        this.registerType.reset();
+        setTimeout(() => {
+          this.message ='';
+        }, 900);
       }
 
     });

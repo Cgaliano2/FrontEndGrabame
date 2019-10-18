@@ -4,7 +4,7 @@
 
 .sidenav {
     width: 200px;
-    background: linear-gradient(0deg, #127ab4 0, #000000 100%);
+    background: linear-gradient(0deg, #2E323A, #2E323A 100%);
 }
 
 .sidenav .mat-toolbar {
@@ -15,7 +15,7 @@
     position: sticky;
     top: 0;
     z-index: 1;
-    background: #000000;
+    background: #2E323A;
 }
 
 .links {

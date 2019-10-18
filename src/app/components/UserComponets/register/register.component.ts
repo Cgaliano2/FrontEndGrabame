@@ -84,14 +84,20 @@ onSubmit() {
     telefono:  this.registerForm.value.telefono,
     email:  this.registerForm.value.email,
   });
-  console.log(this.formularioReal.value);
   this.Authservice.register(this.formularioReal.value)
     .subscribe(data => {
+      console.log(data);
       this.res = data;
       if(this.res.success === false)
-      { this.error = this.res.message;
+      { this.error = this.res.error.message;
+        this.message ='';
       }else {
+        this.error='';
         this.message = this.res.message;
+        this.registerForm.reset();
+        setTimeout(() => {
+          this.message ='';
+        }, 900);
       }
      
     });
