@@ -10,7 +10,6 @@ import {ReactiveFormsModule} from '@angular/forms';
 // rutas
 import { APP_ROUTING } from './app.routes';
 // componentes
-import { UbicacionComponent } from './components/TrayComponents/ubicacion/ubicacion.component';
 import { SearchDateRangeComponent } from './components/TrayComponents/search-date-range/search-date-range.component';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -68,7 +67,6 @@ registerLocaleData(locales);
     SearchDateComponent,
     LoginComponent,
     RegisterComponent,
-    UbicacionComponent,
     SearchDateRangeComponent,
     SearchBarcodeComponent,
     GetUsersComponent,

@@ -62,8 +62,6 @@ res: any;
     return this.UserApi.getUserByRut(rut)
     .subscribe((data: {}) => {
       this.UserXRut = data;
-      console.log(this.UserXRut);
-      // this.id = this.UserXRut[0]._id
       this.user = this.UserXRut.usuarioEncontrado;
       this.id = this.user[0]._id;
 
@@ -73,7 +71,6 @@ res: any;
   updateUser() {
      const formulario = this.UpdateForm.value;
     // console.log(this.UpdateForm.value);
-    // this.userEdited = formulario;
      this.UserApi.updateUser(this.id, formulario)
       .subscribe(data => {
         this.res = data;

@@ -22,16 +22,12 @@ export class TrayComponent implements OnInit {
 
   constructor(private actRoute: ActivatedRoute,
               private trayApi: TrayServices) {
-    /*this.actRoute.params.subscribe(params => {
-        console.log(params);
-
-        this.Tray = this.trayApi.SearchTray(params ['id'] );
-    });*/
   }
 
   ngOnInit() {
 
-  this.actRoute.params.subscribe(params => {
+  this.actRoute.params
+      .subscribe(params => {
       const idex: string = (params.id );
       this.showOneTray(idex);
 
@@ -40,15 +36,10 @@ export class TrayComponent implements OnInit {
 }
 
 
-  /*
-   ngOINIT
-  this.actRoute.params.subscribe(params => {
-      let idex = (params ['id'] );
-      this.showTray(idex);
-    });*/
 
     showOneTray(term: string ) {
-      this.trayApi.SearchTray(term).subscribe(datos=> {
+      this.trayApi.SearchTray(term)
+        .subscribe(datos=> {
         this.Tray = datos.bandejaDB;
         this.sucursal = this.Tray.ubicacion.lugar;
         this.TrayNumber = this.Tray.length;

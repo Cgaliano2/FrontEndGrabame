@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
   public clicked = true;
   public clicked1 = false;
   public clicked2 = false;
-  // CHART 1
+  // chart
   dato1: any;
   dato2: any;
   dato3: any;
@@ -40,6 +40,8 @@ export class HomeComponent implements OnInit {
 // Diarios
 daily: any;
 error: any;
+// chart mensual
+respuesta: any;
 
 
 
@@ -116,14 +118,17 @@ ngOnInit() {
 // CHART MENSUAL!
     this.apiService.getChartsMontly()
 .subscribe(res => {
-console.log(res);
-const Anio = res.cantidad.map(res => res._id.año);
-const Total = res.cantidad.map(res => res.total);
-const Info = res.cantidad.map(res => res._id.mes);
-console.log(res);
+// console.log(res);
+const respuestas = res.cantidad;
+const result = respuestas.filter(respuesta => respuesta._id.año = 2019);
+// console.log(result);
+// const Anio = result.map(res => res._id.año);
+const Total = result.map(res => res.total);
+const Mes = result.map(res => res._id.mes);
+// console.log(res);
 this.dato1 = Total;
-this.dato2 = Info;
-this.dato3 = Anio;
+this.dato2 = Mes;
+// this.dato3 = Anio;
 const gradientChartOptionsConfigurationWithTooltipGreen: any = {
   maintainAspectRatio: false,
   legend: {
@@ -146,7 +151,7 @@ const gradientChartOptionsConfigurationWithTooltipGreen: any = {
       barPercentage: 1.6,
       gridLines: {
         drawBorder: false,
-        color: 'rgba(29,140,248,0.0)',
+        color: '#2E323A',
         zeroLineColor: 'transparent',
       },
       ticks: {
@@ -161,7 +166,7 @@ const gradientChartOptionsConfigurationWithTooltipGreen: any = {
       barPercentage: 1.6,
       gridLines: {
         drawBorder: false,
-        color: 'rgba(0,242,195,0.1)',
+        color: '#2E323A',
         zeroLineColor: 'transparent',
       },
       ticks: {
@@ -183,16 +188,16 @@ gradientStroke.addColorStop(0.4, 'rgba(66,134,121,0.0)'); // green colors
 gradientStroke.addColorStop(0, 'rgba(66,134,121,0)'); // green colors
 
 const data = {
-  labels: this.anio,
+  labels: this.dato2,
   datasets: [{
     label: 'Data',
     fill: true,
     backgroundColor: gradientStroke,
-    borderColor: '#00D6B4',
+    borderColor: '#131098',
     borderWidth: 2,
     borderDash: [],
     borderDashOffset: 0.0,
-    pointBackgroundColor: '#00D6B4',
+    pointBackgroundColor: '#131098',
     pointBorderColor: 'rgba(255,255,255,0)',
     pointHoverBackgroundColor: '#00D6B4',
     pointBorderWidth: 20,

@@ -5,7 +5,6 @@ import { LoginComponent } from './_auth/login/login.component';
 // Componente Bandejas
 import { TrayListComponent } from './components/TrayComponents/tray-list/tray-list.component';
 import { TrayComponent } from './components/TrayComponents/tray/tray.component';
-import { UbicacionComponent } from './components/TrayComponents/ubicacion/ubicacion.component';
 import { SearchDateRangeComponent } from './components/TrayComponents/search-date-range/search-date-range.component';
 import { SearchBarcodeComponent } from './components/TrayComponents/search-barcode/search-barcode.component';
 import {SearchDateComponent} from './components/TrayComponents/search-date/search-date.component';
@@ -49,7 +48,6 @@ const APP_ROUTES: Routes = [
     {path: 'trays/type/:tipo', component: SearchTypeTrayComponent, canActivate: [AuthGuard]},
      ]},
     {path: 'tray/:id', component: TrayComponent, canActivate: [AuthGuard]},
-    {path: 'ubicacion', component: UbicacionComponent, canActivate: [AuthGuard]},
     // users
     {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
     {path: 'update-user/:id', component: UpdateUsersComponent, canActivate: [AuthGuard]},
