@@ -33,7 +33,7 @@ usuario:any;
 
   getByUser(rut: string) {
     this.ApiService.getByUser(rut).subscribe(datos => {
-      console.log(datos);
+      // console.log(datos);
       this.TrayXUser = datos;
       if(this.TrayXUser.success ===false)
       {

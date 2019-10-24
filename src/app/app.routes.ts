@@ -64,7 +64,7 @@ const APP_ROUTES: Routes = [
    {path: 'register/traytype', component: CreateTypeTrayComponent, canActivate: [AuthGuard]},
    {path: 'traytype/list', component: GetTypeTrayComponent, canActivate: [AuthGuard]},
      // canActivate: [AuthGuard]
-    {path: '**', redirectTo: ''}
+    {path: '**', redirectTo:''}
 // canActivate: [HomeGuard], canLoad: [HomeGuard]
 //
 
