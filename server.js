@@ -1,11 +1,16 @@
+//Install express server
 const express = require('express');
-const app = express();
 const path = require('path');
-var port = process.env.PORT || 5000;
-app.use(express.static(__dirname + '/dist'));
 
-app.listen(port);
+const app = express();
+
+// Serve only the static files form the dist directory
+app.use(express.static(__dirname + '/dist/grabame'));
+
 app.get('/*', function(req, res) {
-    res.sendFile(path.join('./FrontEndGrabame/dist/index.html'));
+
+    res.sendFile(path.join(__dirname + '/dist/grabame/index.html'));
 });
-console.log('console listen!');
+
+// Start the app by listening on the default Heroku port
+app.listen(process.env.PORT || 8080);
