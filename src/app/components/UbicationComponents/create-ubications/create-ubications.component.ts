@@ -59,7 +59,7 @@ export class CreateUbicationsComponent implements OnInit {
    // this.userEdited = formulario;
     this.ApiService.updateUbication(this.idUbication, formulario)
      .subscribe(data => {
-       console.log(data);
+      // console.log(data);
        this.res = data;
        this.message = this.res.message;
      }, error => {

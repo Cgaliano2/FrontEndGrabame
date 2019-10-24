@@ -52,7 +52,7 @@ export class SearchUserComponent implements OnInit {
   }
 
   deleteUser(id: number) {
-      console.log(id);
+      // console.log(id);
       this.userApi.deleteUser(id).subscribe(data => {
       this.userDelete = data;
       setTimeout(() => {
@@ -60,7 +60,7 @@ export class SearchUserComponent implements OnInit {
       }, 500);
       setTimeout(() => {
      this.hecho = this.userDelete.message;
-     console.log(this.hecho);
+    // console.log(this.hecho);
      this.progress = false;
 
      }, 2000);

@@ -80,7 +80,7 @@ export class GetUsersComponent implements OnInit {
   getUser() {
     return this.UserApi.getUsers()
     .subscribe( data => {
-          console.log(data);
+         // console.log(data);
           this.users = data;
           this.displayedColumns = ['detalles', 'codigoqr', 'fechaIngreso', 'ubicacion'];
           this.dataSource = new MatTableDataSource<any>(this.users.cantidad);
@@ -101,7 +101,7 @@ export class GetUsersComponent implements OnInit {
     const APPAT = apPat;
     const APMAT = apMat;
     this.fullName = NOMBRE + '&' + APPAT + '&' + APMAT;
-    console.log(this.fullName);
+    // console.log(this.fullName);
     this.router.navigate(['get-user-name', this.fullName], {relativeTo: this.actRoute});
 
   }

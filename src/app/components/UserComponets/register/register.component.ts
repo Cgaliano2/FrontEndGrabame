@@ -86,7 +86,7 @@ onSubmit() {
   });
   this.Authservice.register(this.formularioReal.value)
     .subscribe(data => {
-      console.log(data);
+     // console.log(data);
       this.res = data;
       if(this.res.success === false)
       { this.error = this.res.error.message;
