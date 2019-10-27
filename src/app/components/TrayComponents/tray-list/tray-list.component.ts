@@ -79,14 +79,11 @@ import { TypeTrayService } from '../../../_Services/TypeTray.service';
   <mat-form-field>
     <mat-label>Tipo</mat-label>
       <mat-select [formControl]="tipoControl">
-          <mat-option *ngFor="let tipoBandeja of tipos;let i = index" [value]="tipoBandeja">
+          <mat-option *ngFor="let tipoBandeja of tipos;let i = index" [value]="tipoBandeja" (click)="getType(tipoBandeja.tipo)">
           {{tipoBandeja.tipo}}
           </mat-option>
       </mat-select>
     </mat-form-field>
-  <button mat-raised-button color="accent" (click)="getType(tipoControl.value.tipo)"><i class="material-icons">
-  search
-  </i></button>
 </form>
 </mat-expansion-panel>
 <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
@@ -220,6 +217,7 @@ sendRut(rut: string) {
 
 }
 
+
 searchByDateRangeAndUser(daterange, rut) {
   if(daterange ===undefined)
   {
@@ -236,9 +234,7 @@ searchByDateRangeAndUser(daterange, rut) {
 
 
 }
-getType(tipo:any){ 
- 
-
+getType(tipo:any){
   const tipoBandeja = tipo;
   if(tipoBandeja === null || tipoBandeja===0)
   {
