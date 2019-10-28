@@ -370,7 +370,7 @@ mat-accordion {
 }
 
 .tittle {
-    position: fixed;
+    /*  position: fixed;*/
     padding-top: .3125rem;
     padding-bottom: .3125rem;
     color: #2E323A;
